@@ -7,14 +7,14 @@ import Menu from "./assets/HamburgerMenu.svg";
 import Instagram from "./assets/Instagram-icon.svg";
 import WhatsApp from "./assets/Whatsapp-icon.svg";
 import ShoppingCart from "./assets/Shopping-cart.png";
-import Header from "./Header";
+import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<BrowserRouter>
 		<header className="w-full fixed top-0 z-50">
 			<nav className="w-full h-20 flex items-center bg-mainColor z-50 justify-between shadow-lg relative">
 				<picture className="order-5">
-					<Link to="/Header">
+					<Link to="/">
 						<img
 							src={Logo}
 							alt="Logo AquilaBrand"
@@ -51,9 +51,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 					</button>
 				</div>
 			</nav>
-			<Routes>
-				<Route path="/Header" element={<Header />} />;
-			</Routes>
 		</header>
+
+		<Routes>
+			<Route path="/" element={<App />} />;
+		</Routes>
 	</BrowserRouter>
 );
