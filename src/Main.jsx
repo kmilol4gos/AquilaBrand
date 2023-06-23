@@ -52,6 +52,75 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 					</button>
 				</div>
 			</nav>
+			<nav
+				id="dropdown-menu"
+				className="fixed top-20 z-50 block w-full overflow-hidden rounded-bl-xl rounded-br-xl bg-black text-white"
+			>
+				<ul
+					className="flex w-full list-none justify-around
+					[&>li]:mx-3 [&>li]:h-full [&>li]:w-72 [&>li]:flex [&>li]:flex-col [&>li]:items-center
+					[&>li>a]:inline-block [&>li>a]:pt-3 [&>li>a]:pb-1 [&>li>a]:text-xl [&>li>a]:font-bold [&>li>a]:self-center [&>li>a]:w-36
+					[&>li>div]:flex [&>li>div]:flex-col [&>li>div]:justify-center [&>li>div]:my-2
+					[&>li>div>a]:text-s [&>li>div>a]:w-36 [&>li>div>a]:p-1 [&>li>div>a]:my-1 [&>li>div>a]:px-3 [&>li>div>a]:rounded"
+				>
+					<li>
+						<Link to="/Catalogo">Ropa</Link>
+						<div>
+							<Link to="/" className="hover:bg-mainColor">
+								Poleras
+							</Link>
+							<Link to="/" className="hover:bg-mainColor">
+								Pantalones
+							</Link>
+							<Link to="" className="hover:bg-mainColor">
+								Polerones
+							</Link>
+							<Link to="" className="hover:bg-mainColor">
+								Faldas
+							</Link>
+						</div>
+					</li>
+					<li>
+						<Link to="/">Skate</Link>
+						<div>
+							<Link to="/" className="hover:bg-mainColor">
+								Ruedas
+							</Link>
+							<Link to="/" className="hover:bg-mainColor">
+								Tablas
+							</Link>
+						</div>
+					</li>
+					<li>
+						<Link to="/">Accesorios</Link>
+						<div>
+							<Link to="/" className="hover:bg-mainColor">
+								Bolsos
+							</Link>
+							<Link to="/" className="hover:bg-mainColor">
+								Pulseras
+							</Link>
+							<Link to="/" className="hover:bg-mainColor">
+								Collares
+							</Link>
+						</div>
+					</li>
+					<li>
+						<Link to="Informacion">Informacion</Link>
+						<div>
+							<Link to="/" className="hover:bg-mainColor">
+								Eventos
+							</Link>
+							<Link to="/" className="hover:bg-mainColor">
+								Quienes Somos
+							</Link>
+							<Link to="/" className="hover:bg-mainColor">
+								Contacto
+							</Link>
+						</div>
+					</li>
+				</ul>
+			</nav>
 		</header>
 		<footer className="absolute bottom-0 h-60 mt-24 bg-black w-screen">
 			<section className="mx-40 h-full flex justify-between items-stretch text-white">
