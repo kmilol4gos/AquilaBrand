@@ -8,6 +8,7 @@ import Instagram from "./assets/Instagram-icon.svg";
 import WhatsApp from "./assets/Whatsapp-icon.svg";
 import ShoppingCart from "./assets/Shopping-cart.png";
 import Webpay from "./assets/logo-webpay.png";
+import Catalogo from "./Catalogo";
 import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -52,7 +53,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 					</button>
 				</div>
 			</nav>
-			<nav
+			{/* <nav
 				id="dropdown-menu"
 				className="fixed top-20 z-50 block w-full overflow-hidden rounded-bl-xl rounded-br-xl bg-black text-white"
 			>
@@ -120,7 +121,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 						</div>
 					</li>
 				</ul>
-			</nav>
+			</nav> */}
 		</header>
 		<footer className="absolute bottom-0 h-60 mt-24 bg-black w-screen">
 			<section className="mx-40 h-full flex justify-between items-stretch text-white">
@@ -183,7 +184,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 		</footer>
 		<Routes>
 			<Route path="/" element={<App />} />;
-			<Route path="/" element={<App />} />
+			<Route path="/Catalogo" element={<Catalogo />} />
 			<Route path="/" element={<App />} />
 			<Route path="/" element={<App />} />
 			<Route path="/" element={<App />} />
