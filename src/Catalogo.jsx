@@ -4,15 +4,11 @@ import { Link } from "react-router-dom";
 
 function Catalogo() {
 	return (
-		<div className="relative top-20">
+		<div className="absolute top-20">
 			<section className="flex justify-center w-screen h-[35rem] items-center">
 				<div className="flex flex-col w-full h-full m-8">
 					<div className="w-full h-full flex relative ">
-						<img
-							src={img}
-							alt=""
-							className="w-full object-cover rounded-xl"
-						/>
+						<img src={img} alt="" className="w-full object-cover rounded-xl" />
 						<div className="absolute flex flex-col text-center bottom-0 right-0 justify-center opacity-80 backdrop-blur-2xl h-40 w-auto ">
 							<h2 className="drop-shadow-aq text-white text-4xl font-bold m-2">
 								Nuestra Coleccion

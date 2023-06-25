@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function App() {
 	return (
-		<main>
+		<main className="absolute">
 			<div className="relative w-screen h-[90vh] flex overflow-hidden justify-center items-center top-20">
 				<section className="absolute top-0 left-0 w-full h-full z-40">
 					<header className="p-16 flex flex-col items-center">

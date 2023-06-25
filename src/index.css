@@ -8,11 +8,11 @@
     padding: 0;
 	font-family: "Ubuntu", sans-serif;
 	scroll-behavior: smooth;
-    
+
 }   
 
 body {
     background-color: #402039;
 	position: relative;
-    height: 3000px;
+    height: 2000px;
 }
