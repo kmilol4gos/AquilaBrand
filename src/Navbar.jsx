@@ -5,6 +5,7 @@ import Instagram from "./assets/Instagram-icon.svg";
 import WhatsApp from "./assets/Whatsapp-icon.svg";
 import ShoppingCart from "./assets/Shopping-cart.png";
 import IconMenu from "./assets/HamburgerMenu.svg";
+import ProductCart from "./ProductCart";
 
 const Menu = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +46,7 @@ const Menu = () => {
 					</a>
 				</picture>
 				<picture className="order-5">
-					<a href="" rel="noreferrer" target="_blank">
+					<a href="https://www.google.cl" rel="noreferrer" target="_blank">
 						<img src={WhatsApp} alt="" />
 					</a>
 				</picture>
@@ -141,7 +142,9 @@ const Menu = () => {
 						</div>
 						<div className="relative overflow-y-auto h-[71%]">
 							<div className="flex flex-col">
-								<div className="h-[85%]">Aqui va el producto</div>
+								<div className="h-[85%]">
+									<ProductCart />
+								</div>
 							</div>
 						</div>
 					</div>
@@ -152,7 +155,9 @@ const Menu = () => {
 						</div>
 						<div className="flex justify-between items-center px-6 m-2">
 							<h4>Total</h4>
-							<span className="text-sm font-medium">$100.000</span>
+							<span className="text-sm font-medium before:content-['$']">
+								100.000
+							</span>
 						</div>
 						<div className="flex justify-center w-full">
 							<button className="w-full py-4 border-none bg-black text-white text-sm font-medium cursor-pointer ease-in-out duration-100 hover:text-black hover:bg-white">
