@@ -6,6 +6,7 @@ import Navbar from "./Navbar.jsx";
 import Webpay from "./assets/logo-webpay.png";
 import Catalogo from "./Catalogo.jsx";
 import App from "./App";
+import Events from "./Events";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -74,7 +75,7 @@ root.render(
 			</footer>
 			<Routes>
 				<Route path="/" element={<App />} />;
-				<Route path="/Catalogo" element={<Catalogo />} />
+				<Route path="/Catalogo" element={<Events />} />
 				<Route path="/" element={<App />} />
 				<Route path="/" element={<App />} />
 				<Route path="/" element={<App />} />

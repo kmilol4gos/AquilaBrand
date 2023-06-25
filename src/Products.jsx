@@ -1,16 +1,22 @@
-import react, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 
-const category = '0';
-const section = '0';
+function Products(props) {
 
-function Products() {
+  console.log(props);
 
   const URL = 'https://aquilabrand-api.onrender.com/products';
 
   const [products, setProducts] = useState();
 
   const fetchApi = async () => {
-    const response = await fetch(URL);
+    const response = await fetch(URL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        category: props.category,
+        section: props.section
+      }
+    });
     const responseJSON = await response.json();
     setProducts(responseJSON);
   }
