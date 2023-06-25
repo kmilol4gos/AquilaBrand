@@ -76,43 +76,43 @@ const Menu = () => {
 					[&>li>div>a]:text-s [&>li>div>a]:w-36 [&>li>div>a]:p-1 [&>li>div>a]:my-1 [&>li>div>a]:px-3 [&>li>div>a]:rounded"
 					>
 						<li>
-							<Link to="/Catalogo">Ropa</Link>
+							<Link to="/Ropa">Ropa</Link>
 							<div>
-								<Link to="/" className="hover:bg-mainColor">
+								<Link to="/ropa/poleras" className="hover:bg-mainColor">
 									Poleras
 								</Link>
-								<Link to="/" className="hover:bg-mainColor">
+								<Link to="/ropa/pantalones" className="hover:bg-mainColor">
 									Pantalones
 								</Link>
-								<Link to="" className="hover:bg-mainColor">
+								<Link to="/ropa/polerones" className="hover:bg-mainColor">
 									Polerones
 								</Link>
-								<Link to="" className="hover:bg-mainColor">
+								<Link to="/ropa/faldas" className="hover:bg-mainColor">
 									Faldas
 								</Link>
 							</div>
 						</li>
 						<li>
-							<Link to="/">Skate</Link>
+							<Link to="/skate">Skate</Link>
 							<div>
-								<Link to="/" className="hover:bg-mainColor">
+								<Link to="/skate/ruedas" className="hover:bg-mainColor">
 									Ruedas
 								</Link>
-								<Link to="/" className="hover:bg-mainColor">
+								<Link to="/skate/tablas" className="hover:bg-mainColor">
 									Tablas
 								</Link>
 							</div>
 						</li>
 						<li>
-							<Link to="/">Accesorios</Link>
+							<Link to="/accesorios">Accesorios</Link>
 							<div>
-								<Link to="/" className="hover:bg-mainColor">
+								<Link to="/accesorios/bolsos" className="hover:bg-mainColor">
 									Bolsos
 								</Link>
-								<Link to="/" className="hover:bg-mainColor">
+								<Link to="/accesorios/pulseras" className="hover:bg-mainColor">
 									Pulseras
 								</Link>
-								<Link to="/" className="hover:bg-mainColor">
+								<Link to="/accesorios/collares" className="hover:bg-mainColor">
 									Collares
 								</Link>
 							</div>
@@ -120,13 +120,13 @@ const Menu = () => {
 						<li>
 							<Link to="Informacion">Informacion</Link>
 							<div>
-								<Link to="/" className="hover:bg-mainColor">
+								<Link to="/events" className="hover:bg-mainColor">
 									Eventos
 								</Link>
-								<Link to="/" className="hover:bg-mainColor">
+								<Link to="/info" className="hover:bg-mainColor">
 									Quienes Somos
 								</Link>
-								<Link to="/" className="hover:bg-mainColor">
+								<Link to="/contact" className="hover:bg-mainColor">
 									Contacto
 								</Link>
 							</div>
