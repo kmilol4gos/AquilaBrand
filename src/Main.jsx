@@ -21,7 +21,7 @@ root.render(
 						<ul className="flex flex-col">
 							<li>
 								<Link
-									to="/"
+									to="/Catalogo"
 									className="font-normal text-lg py-2 hover:text-mainColor "
 								>
 									Eventos
@@ -75,8 +75,8 @@ root.render(
 			</footer>
 			<Routes>
 				<Route path="/" element={<App />} />;
-				<Route path="/Catalogo" element={<Events />} />
-				<Route path="/" element={<App />} />
+				<Route path="/Events" element={<Events />} />
+				<Route path="/Catalogo" element={<Catalogo />} />
 				<Route path="/" element={<App />} />
 				<Route path="/" element={<App />} />
 				<Route path="/" element={<App />} />

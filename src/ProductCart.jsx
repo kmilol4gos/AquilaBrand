@@ -20,7 +20,7 @@ const ProductCart = () => {
 						<Link to="/" className="font-bold text-xl no-underline">
 							Jeans Hombre
 						</Link>
-						<div className="pb-7">
+						<div className="pb-7 flex gap-3">
 							<span className="font-light text-xs">Talla: 45</span>
 							<span className="font-light text-xs">Color: Negro</span>
 						</div>
