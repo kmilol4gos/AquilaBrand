@@ -1,7 +1,12 @@
 
 import { useCart } from "./hook/useCart";
+import { Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import ImgProduct from "./assets/img-ejemplo.jpeg";
+import IconDelete from "./assets/Delete.svg";
+import Product from "./Products";
 
-function CartProduct_Card({name, size, color, price, quantity, }){
+function CartProduct_Card({name, size, color, price, quantity, addToCart }){
     return (
         <div className="flex w-[90%] items-stretch pt-4 pb-6" id="card-product">
             <div className="w-[30%] flex justify-center items-center mx-2">
@@ -39,6 +44,7 @@ function CartProduct_Card({name, size, color, price, quantity, }){
                 </button>
             </div>
         </div>
+
     )
 }
 

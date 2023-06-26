@@ -9,6 +9,7 @@ import App from "./App";
 import Events from "./Events";
 import Products from "./Products";
 import { CartProvider } from "./context/cart";
+import { Cart } from "./Cart";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -75,6 +76,7 @@ root.render(
 					</div>
 				</section>
 			</footer>
+			<Cart />
 			<Routes>
 				<Route path="/" element={<App />} />;
 				<Route path="/ropa" element={<Products category='ropa' section='all' />} />
