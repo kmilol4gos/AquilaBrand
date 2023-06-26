@@ -1,1 +1,0 @@
-// hacer llamado a webpoy desde el componente
