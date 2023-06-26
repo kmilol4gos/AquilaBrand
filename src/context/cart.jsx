@@ -20,19 +20,24 @@ function useCartReducer() {
         type: 'CLEAR_CART'
     })
 
-    return { state, addToCart, removeFromCart, clearCart }
+    const calcularTotal = () => dispatch({
+        type: 'CALCULAR_TOTAL'
+    })
+
+    return { state, addToCart, removeFromCart, clearCart, calcularTotal}
 }
 
 export function CartProvider ({ children }) {
     
-    const { state, addToCart, removeFromCart, clearCart } = useCartReducer();
+    const { state, addToCart, removeFromCart, clearCart, calcularTotal } = useCartReducer();
 
     return (
         <CartContext.Provider value={{ 
             cart: state, 
             addToCart, 
             removeFromCart, 
-            clearCart }}
+            clearCart,
+            calcularTotal}}
             >
                 {children}
         </CartContext.Provider>

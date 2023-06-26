@@ -3,7 +3,8 @@ export const cartInitialState = JSON.parse(window.localStorage.getItem('cart')) 
 export const CART_ACTION_TYPES = {
     ADD_TO_CART: 'ADD_TO_CART',
     REMOVE_FROM_CART: 'REMOVE_FROM_CART',
-    CLEAR_CART: 'CLEAR_CART'
+    CLEAR_CART: 'CLEAR_CART',
+    CALCULAR_TOTAL: 'CALCULAR_TOTAL'
 }
 
 //update localstorage con el state del carrito
@@ -49,6 +50,14 @@ export const cartReducer = (state, action) => {
         case CART_ACTION_TYPES.CLEAR_CART: {
             updateLocalStorage([]);
             return [];
+        }
+
+        case CART_ACTION_TYPES.CALCULAR_TOTAL: {
+            const total = state.reduce((acc, item) => {
+                return acc + (item.price * item.quantity);
+            }
+                , 0);
+            return total;
         }
     }
 
