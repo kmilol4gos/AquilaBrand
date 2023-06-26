@@ -3,7 +3,7 @@ import ArrowIcon from "./assets/Flecha-icon.svg";
 import Video from "./assets/video.mp4";
 import PoleraNegra from "./assets/img-ejemplo.jpeg";
 import { Link } from "react-router-dom";
-import { CartProvider } from "./context/cart";
+import { CartProvider } from "./context/cart_context";
 import { Cart } from "./Cart";
 
 function App() {

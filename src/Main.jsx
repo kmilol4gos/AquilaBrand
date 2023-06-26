@@ -8,7 +8,7 @@ import Catalogo from "./Catalogo.jsx";
 import App from "./App";
 import Events from "./Events";
 import Products from "./Products";
-import { CartProvider } from "./context/cart";
+import { CartProvider } from "./context/cart_context";
 import { Cart } from "./Cart";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

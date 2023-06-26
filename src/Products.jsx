@@ -1,6 +1,26 @@
 import {useState, useEffect} from 'react';
 import { useCart } from './hook/useCart';
 
+function Product_Card({PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRECIO, addToCart }){
+  return(<li key={PRODUCT_ID}>
+    <img
+      alt={PRODUCT_NAME}
+    />
+    <div id="titulo-producto">
+      <strong>{PRODUCT_NAME}</strong>
+    </div>
+    <div id="descripcion-producto">
+      <strong>{PRODUCT_DESCRIPTION}</strong>
+    </div>
+    <div id="precio-producto">
+      <strong>${PRECIO}</strong>
+    </div>
+    <div id="boton-producto">
+      <button onClick={addToCart}>Agregar al carrito</button>
+    </div>
+    </li>)
+}
+
 function Products(props) {
 
   const { addToCart, cart} = useCart();
@@ -21,6 +41,7 @@ function Products(props) {
       }
     });
     const responseJSON = await response.json();
+    console.log(responseJSON);
     setProducts(responseJSON);
   }
 
@@ -33,23 +54,13 @@ function Products(props) {
   <div id="product-card">
     <ul>
       {!products ? 'Cargando...' : 
-        products.map((product, index) => {
-          return(<li key={product.PRODUCT_ID}>
-            <img
-              alt={product.PRODUCT_NAME}
-            />
-            <div id="titulo-producto">
-              <strong>{product.PRODUCT_NAME}</strong>
-            </div>
-            <div id="precio-producto">
-              <strong>${product.PRECIO}</strong>
-            </div>
-            <div id="boton-producto">
-              <button onClick={() => addToCart(product)}>Agregar al carrito</button>
-            </div>
-            </li>)
-        })
-      }
+        products.map((product, index) => (
+          <Product_Card
+            key={product.PRODUCT_ID}
+            addToCart = {() => addToCart(product)}
+            {...product}
+          />
+        ))}
     </ul>
   </div>
   );

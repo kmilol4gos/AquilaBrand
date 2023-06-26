@@ -6,8 +6,9 @@ import ImgProduct from "./assets/img-ejemplo.jpeg";
 import IconDelete from "./assets/Delete.svg";
 import Product from "./Products";
 
-function CartProduct_Card({name, size, color, price, quantity, addToCart }){
+function CartProduct_Card({PRODUCT_NAME, SIZE_NAME, color, PRECIO, quantity, addToCart }){
     return (
+        <li>
         <div className="flex w-[90%] items-stretch pt-4 pb-6" id="card-product">
             <div className="w-[30%] flex justify-center items-center mx-2">
                 <Link to="/product/idproducto">
@@ -21,19 +22,19 @@ function CartProduct_Card({name, size, color, price, quantity, addToCart }){
             <div className="flex justify-center flex-grow items-stretch ml-2">
                 <div className="w-full h-full flex flex-col justify-around text-white items-start">
                     <Link to="/" className="font-bold text-xl no-underline">
-                        ${name}
+                        {PRODUCT_NAME}
                     </Link>
                     <div className="pb-7">
-                        <span className="font-light text-xs">Talla: ${size}</span>
-                        <span className="font-light text-xs">Color: ${color}</span>
+                        <span className="font-light text-xs">Talla: {SIZE_NAME}</span>
+                        <span className="font-light text-xs">Color: {color}</span>
                     </div>
                     <div className="pb-7">
-                        <span className="font-light text-xs">Cantidad: ${quantity}</span>
+                        <span className="font-light text-xs">Cantidad: {quantity}</span>
                         <button onClick={addToCart}>+</button>
                     </div>
                     <div>
                         <span className="font-normal text-xl before:content-['$']">
-                            ${price}
+                            {PRECIO}
                         </span>
                     </div>
                 </div>
@@ -44,13 +45,13 @@ function CartProduct_Card({name, size, color, price, quantity, addToCart }){
                 </button>
             </div>
         </div>
-
+    </li>
     )
 }
 
 export function Cart () {
 
-    const { cart, clearCart, addToCart } = useCart();
+    const { cart, clearCart, addToCart, calcularTotal, removeFromCart, calcularCantidad } = useCart();
     return (
         <nav className="z-40 top-0 fixed right-0 h-screen flex flex-col w-[30rem]">
 					<div className="w-full top-20 h-full relative bg-black">
@@ -64,8 +65,9 @@ export function Cart () {
                                     <ul>
                                         {cart.map((product) => (
                                             <CartProduct_Card
-                                                key={product.id}
+                                                key={product.PRODUCT_ID}
                                                 addToCart = {() => addToCart(product)}
+                                                removeFromCart = {() => removeFromCart(product)}
                                                 {...product}
                                             />
                                         ))}
@@ -78,12 +80,12 @@ export function Cart () {
 					<div className="border-t-2 border-solid border-white absolute w-full bottom-0 z-50 text-white bg-mainColor">
 						<div className="flex justify-between items-center px-6 m-2">
 							<h4>Productos</h4>
-							<span className="text-sm font-medium">2</span>
+							<span className="text-sm font-medium">{() => calcularCantidad()}</span>
 						</div>
 						<div className="flex justify-between items-center px-6 m-2">
 							<h4>Total</h4>
 							<span className="text-sm font-medium before:content-['$']">
-								100.000
+                                {() => calcularTotal()}
 							</span>
 						</div>
 						<div className="flex justify-center w-full">
