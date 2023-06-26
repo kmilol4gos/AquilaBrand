@@ -7,7 +7,7 @@ const ProductCart = () => {
 		<div className="my-2 flex flex-col justify-center bg-mainColor">
 			<div className="flex w-[90%] items-stretch pt-4 pb-6" id="card-product">
 				<div className="w-[30%] flex justify-center items-center mx-2">
-					<Link to="/">
+					<Link to="/product/idproducto">
 						<img
 							src={ImgProduct}
 							alt=""

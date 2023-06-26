@@ -1,6 +1,9 @@
 import {useState, useEffect} from 'react';
+import { useCart } from './hook/useCart';
 
 function Products(props) {
+
+  const { addToCart, cart} = useCart();
 
   console.log(props);
 
@@ -25,6 +28,7 @@ function Products(props) {
     fetchApi();
   }, []);
 
+
   return(
   <div id="product-card">
     <ul>
@@ -41,7 +45,7 @@ function Products(props) {
               <strong>${product.PRECIO}</strong>
             </div>
             <div id="boton-producto">
-              <button>Agregar al carrito</button>
+              <button onClick={() => addToCart(product)}>Agregar al carrito</button>
             </div>
             </li>)
         })
