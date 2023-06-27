@@ -54,6 +54,8 @@ export function Cart () {
 
     const { cart, clearCart, addToCart, calcularTotal, removeFromCart, calcularCantidad } = useCart();
     
+    const carrito = cart;
+
     return (
         <nav className="z-40 top-0 fixed right-0 h-screen flex flex-col w-[30rem]">
 			<div className="w-full top-20 h-full relative bg-black">
@@ -82,12 +84,12 @@ export function Cart () {
 			<div className="border-t-2 border-solid border-white absolute w-full bottom-0 z-50 text-white bg-mainColor">
 				<div className="flex justify-between items-center px-6 m-2">
 					<h4>Productos</h4>
-					<span className="text-sm font-medium">{() => Cart_Cantidad()}</span>
+					<span className="text-sm font-medium">{<Cart_Cantidad/>}</span>
 				</div>
 				<div className="flex justify-between items-center px-6 m-2">
 					<h4>Total</h4>
 					<span className="text-sm font-medium before:content-['$']">
-                        {() => Cart_Amount()}
+                        {<Cart_Amount/>}
 					</span>
 				</div>
 				<div className="flex justify-center w-full">

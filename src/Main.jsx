@@ -14,8 +14,9 @@ import { Cart } from "./Cart";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-	<CartProvider>
+	<>
 		<BrowserRouter>
+		<CartProvider>
 			<Navbar />
 			<footer className="absolute bottom-0 h-60 mt-24 bg-black w-screen">
 				<section className="mx-40 h-full flex justify-between items-stretch text-white">
@@ -102,6 +103,7 @@ root.render(
 				<Route path="/events" element={<Events />} />
 >>>>>>> 791e57d5936db4f96a7017680d64e4ad770241b8
 			</Routes>
+		</CartProvider>
 		</BrowserRouter>
-	</CartProvider>
+	</>
 );

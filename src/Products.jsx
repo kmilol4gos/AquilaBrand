@@ -23,6 +23,8 @@ function Product_Card({id, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRECIO, addToCart 
 
 function Products(props) {
 
+  console.log(props);
+
   const { addToCart, cart} = useCart();
 
   const URL = 'https://aquilabrand-api.onrender.com/products';
