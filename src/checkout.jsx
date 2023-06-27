@@ -1,5 +1,7 @@
-import Webpay from "./webpay_post"
+import { useState, useEffect } from "react";
 import { useCart } from "./hook/useCart";
+import { Cart_Amount } from "./hook/datosCart";
+
 
 //pagina de confirmacion de compra
 
@@ -7,9 +9,36 @@ import { useCart } from "./hook/useCart";
 
 //llamar a webpay luego de confirmar compra.
 
+function Webpay(order_id, session_id, amount){
+
+    const URL = 'https://aquilabrand-api.onrender.com/checkout';
+
+    const [retorno, setRetorno] = useState();
+
+    const fetchApi = async () => {
+        const response = await fetch(URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                buy_order: order_id,
+                session_id: session_id,
+                amount: amount,
+                return_url: "http://localhost:5173/summary",
+            })
+        });
+        const responseJSON = await response.json();
+        setRetorno(responseJSON);
+    }
+
+    useEffect(() => {
+        fetchApi();
+    }, []);
+
+
+    return retorno;
+}
+
 export default function Checkout() {
 
-    const { calcularTotal } = useCart();
     const fecha = new Date();
     const dia = fecha.getDate();
     const mes = fecha.getMonth();
@@ -18,23 +47,25 @@ export default function Checkout() {
     const minuto = fecha.getMinutes();
     const segundo = fecha.getSeconds();
 
+    //Aquila_26062023221232
+
+    //AquilaSession_26062023221232
+
     const order_id = 'Aquila_' + dia + mes + año + hora + minuto + segundo;
     const session_id = 'AquilaSession_' + dia + mes + año + hora + minuto + segundo;
 
-    const total = calcularTotal();
 
-    const info_redireccion = <Webpay order_id={order_id} session_id={session_id} amount={total}/>
+    const info = Webpay(order_id, session_id, Cart_Amount());
 
-    const url = info_redireccion.url;
-    const token = info_redireccion.token;
+    if(!info) return (<div>Cargando...</div>);
 
-
-    //falta hacer el diseño de la pagina de confirmacion de compra
+    //falta hacer el diseño de la pagina de confirmacion de compra, mostrar el carro de compras y el total a pagar
     //no borrar el form, es necesario para redireccionar a webpay
     return (
-        <div className="flex flex-col justify-center items-center" id="redireccion webpay">
-            <form method="post" action={url}>
-                <input type="hidden" name="token_ws" value={token} />
+        <div className="flex flex-col justify-center items-center  pt-[50rem]" id="redireccion webpay">
+            <p>Chupa el pico</p>
+            <form method="post" action={info.url}>
+                <input type="hidden" name="token_ws" value={info.token} />
                 <input type="submit" value="Ir a pagar"/>
             </form>
         </div>

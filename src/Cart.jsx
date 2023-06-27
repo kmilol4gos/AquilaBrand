@@ -4,6 +4,7 @@ import AddIcon from "./assets/Add.svg";
 import ImgProduct from "./assets/img-ejemplo.jpeg";
 import DeleteIcon from "./assets/Delete.svg";
 import { Cart_Amount, Cart_Cantidad } from "./hook/datosCart";
+import Checkout from "./Checkout";
 
 function CartProduct_Card({
 	PRODUCT_NAME,
@@ -105,9 +106,9 @@ export default function Cart() {
 					</span>
 				</div>
 				<div className="flex justify-center w-full">
-					<button className="w-full py-4 border-none bg-black text-white text-sm font-medium cursor-pointer ease-in-out duration-100 hover:text-black hover:bg-white">
+					<Link to="/checkout" className="text-center w-full py-4 border-none bg-black text-white text-sm font-medium cursor-pointer ease-in-out duration-100 hover:text-black hover:bg-white">
 						Finalizar Compra
-					</button>
+					</Link>
 				</div>
 			</div>
 		</nav>
