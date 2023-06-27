@@ -14,8 +14,9 @@ import { Cart } from "./Cart";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-	<CartProvider>
+	<>
 		<BrowserRouter>
+		<CartProvider>
 			<Navbar />
 			<footer className="absolute bottom-0 h-60 mt-24 bg-black w-screen">
 				<section className="mx-40 h-full flex justify-between items-stretch text-white">
@@ -94,6 +95,7 @@ root.render(
 				<Route path="/accesorios/collares" element={<Products category='accesorios' section='collares' />} />
 				<Route path="/events" element={<Events />} />
 			</Routes>
+		</CartProvider>
 		</BrowserRouter>
-	</CartProvider>
+	</>
 );
