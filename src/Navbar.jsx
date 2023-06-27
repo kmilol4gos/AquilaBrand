@@ -5,7 +5,6 @@ import Instagram from "./assets/Instagram-icon.svg";
 import WhatsApp from "./assets/Whatsapp-icon.svg";
 import ShoppingCart from "./assets/Shopping-cart.png";
 import IconMenu from "./assets/HamburgerMenu.svg";
-import ProductCart from "./ProductCart";
 import Cart from "./Cart";
 
 const Menu = () => {
