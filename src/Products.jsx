@@ -26,7 +26,7 @@ function Product_Card({
 					className="object-cover box-content min-w-[12rem] max-w-[12rem] min-h-[13rem] max-h-[13rem] ml-[-60px] mr-[30px] rounded-3xl shadow-xl"
 				/>
 			</Link>
-			<div className="flex flex-col justify-around h-60">
+			<div className="flex flex-col justify-around h-60 w-60">
 				<Link to="/" className="text-black text-xl font-bold ">
 					<h3>{PRODUCT_NAME}</h3>
 				</Link>
@@ -34,16 +34,11 @@ function Product_Card({
 				<span className="text-black text-xl font-bold before:content-['$']">
 					{PRECIO}
 				</span>
-				<div className="flex">
-					<button className="ease-in-out duration-100 m-2 p-2 border-2 border-black text-white bg-black font-bold cursor-pointer hover:bg-mainColor hover:border-mainColor active:scale-90">
+				<div className="flex w-full">
+					<button className="w-full ease-in-out duration-100 m-2 p-2 border-2 border-black text-white bg-black font-bold cursor-pointer hover:bg-mainColor hover:border-mainColor">
 						Comprar
 					</button>
-					<button
-						onClick={addToCart}
-						className="ease-in-out duration-100  m-2 p-3 border-2 border-mainColor text-white bg-mainColor font-bold cursor-pointer hover:bg-black hover:border-black active:scale-90"
-					>
-						Agregar al Carrito
-					</button>
+					
 				</div>
 			</div>
 		</div>
