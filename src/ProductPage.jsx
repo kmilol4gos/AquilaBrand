@@ -100,7 +100,7 @@ export default function ProductPage() {
 					</form>
 					<span>Seleccionar color</span>
 					<form id="color" className="mb-2 ">
-						<select id="color" className="w-[70%] text-black bg-white p-2 ">
+						<select id="color" className="w-[70%]  bg-black p-2 ">
 							{product[1].map((color) => (
 								<Colors key={color.COLOR_ID} {...color} />
 							))}
