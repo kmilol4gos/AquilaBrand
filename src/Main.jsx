@@ -74,6 +74,9 @@ root.render(
 							element={<Products category="accesorios" section="collares" />}
 						/>
 						<Route path="/events" element={<Events />} />
+						<Route path="/checkout" element={<Checkout />} />
+						<Route path="/summary" element={<Summary />} />
+						<Route path="/product/:id" element={<ProductPage />} />
 					</Routes>
 					<Footer />
 				</CartProvider>

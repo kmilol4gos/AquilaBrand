@@ -47,9 +47,6 @@ export default function Checkout() {
     const minuto = fecha.getMinutes();
     const segundo = fecha.getSeconds();
 
-    //Aquila_26062023221232
-
-    //AquilaSession_26062023221232
 
     const order_id = 'Aquila_' + dia + mes + año + hora + minuto + segundo;
     const session_id = 'AquilaSession_' + dia + mes + año + hora + minuto + segundo;

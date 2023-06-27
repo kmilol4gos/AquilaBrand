@@ -9,7 +9,7 @@ import Checkout from "./Checkout";
 function CartProduct_Card({
 	PRODUCT_NAME,
 	SIZE_NAME,
-	color,
+	COLOR_NAME,
 	PRECIO,
 	quantity,
 	addToCart,
@@ -34,7 +34,7 @@ function CartProduct_Card({
 						</Link>
 						<div className="flex flex-col my-2">
 							<span className="font-light text-xs">Talla: {SIZE_NAME}</span>
-							<span className="font-light text-xs">Color: {color}</span>
+							<span className="font-light text-xs">Color: {COLOR_NAME}</span>
 							<span className="font-light text-xs">Cantidad: {quantity}</span>
 						</div>
 						{/* <div className="pb-7">
