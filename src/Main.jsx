@@ -9,6 +9,9 @@ import App from "./App";
 import Events from "./Events";
 import Products from "./Products";
 import { CartProvider } from "./context/cart_context";
+import Checkout from "./Checkout";
+import Summary from "./Summary";
+import ProductPage from "./ProductPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -92,6 +95,9 @@ root.render(
 				<Route path="/accesorios/pulseras" element={<Products category='accesorios' section='pulseras' />} />
 				<Route path="/accesorios/collares" element={<Products category='accesorios' section='collares' />} />
 				<Route path="/events" element={<Events />} />
+				<Route path="/checkout" element={<Checkout/>}/>
+				<Route path="/summary" element={<Summary />} />
+				<Route path="/product" element={<ProductPage product_id />} />	
 			</Routes>
 		</CartProvider>
 		</BrowserRouter>

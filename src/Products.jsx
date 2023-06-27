@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import { useCart } from './hook/useCart';
+import ProductPage from './ProductPage';
 
 function Product_Card({PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRECIO, addToCart }){
   return(<li key={PRODUCT_ID}>
@@ -22,8 +24,6 @@ function Product_Card({PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRECIO, ad
 }
 
 function Products(props) {
-
-  console.log(props);
 
   const { addToCart, cart} = useCart();
 
