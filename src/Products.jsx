@@ -38,7 +38,6 @@ function Product_Card({
 					<button className="w-full ease-in-out duration-100 m-2 p-2 border-2 border-black text-white bg-black font-bold cursor-pointer hover:bg-mainColor hover:border-mainColor">
 						Comprar
 					</button>
-					
 				</div>
 			</div>
 		</div>
@@ -48,9 +47,10 @@ function Product_Card({
 function Products(props) {
 	console.log(props);
 
-  const { addToCart, cart} = useCart();
+	const { addToCart, cart } = useCart();
 
 	const [products, setProducts] = useState();
+	const URL = "https://aquilabrand-api.onrender.com/products";
 
 	const fetchApi = async () => {
 		const response = await fetch(URL, {
@@ -70,7 +70,7 @@ function Products(props) {
 	}, []);
 
 	return (
-		<div className="absolute top-20">
+		<div className="relative top-20 w-full">
 			<section className="flex justify-center w-screen h-[35rem] items-center">
 				<div className="flex flex-col w-full h-full m-8">
 					<div className="w-full h-full flex relative ">
@@ -86,7 +86,16 @@ function Products(props) {
 					</div>
 				</div>
 			</section>
-			<section className="m-4 grid grid-cols-2 justify-items-center relative">
+			<section className="m-4 grid grid-cols-2 justify-items-center relative pb-28">
+				{!products
+					? "Cargando..." // me lo saco completamente del culo xd
+					: products.map((product, index) => (
+							<Product_Card
+								key={product.PRODUCT_ID}
+								addToCart={() => addToCart(product)}
+								{...product}
+							/>
+					  ))}
 				{!products
 					? "Cargando..." // me lo saco completamente del culo xd
 					: products.map((product, index) => (

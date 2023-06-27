@@ -7,7 +7,7 @@ import { CartProvider } from "./context/cart_context";
 
 function App() {
 	return (
-		<main className="absolute">
+		<main className="w-full pb-28">
 			<div className="relative w-screen h-[90vh] flex overflow-hidden justify-center items-center top-20">
 				<section className="absolute top-0 left-0 w-full h-full z-40">
 					<header className="p-16 flex flex-col items-center">
@@ -47,7 +47,7 @@ function App() {
 						Productos Destacados
 					</h2>
 				</div>
-				<div className="absolute grid right-0 justify-items-center grid-cols-3 grid-rows-2 gap-4 h-full w-full">
+				<div className="absolute grid right-0 justify-items-center grid-cols-3 grid-rows-2 gap-4 h-full w-full m-2">
 					<div className="flex flex-col rounded-lg bg-white md:max-w-xl md:flex-row w-full">
 						<img
 							src={PoleraNegra}
