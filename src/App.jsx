@@ -4,7 +4,6 @@ import Video from "./assets/video.mp4";
 import PoleraNegra from "./assets/img-ejemplo.jpeg";
 import { Link } from "react-router-dom";
 import { CartProvider } from "./context/cart_context";
-import { Cart } from "./Cart";
 
 function App() {
 	return (

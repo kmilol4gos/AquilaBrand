@@ -6,6 +6,7 @@ import WhatsApp from "./assets/Whatsapp-icon.svg";
 import ShoppingCart from "./assets/Shopping-cart.png";
 import IconMenu from "./assets/HamburgerMenu.svg";
 import ProductCart from "./ProductCart";
+import Cart from "./Cart";
 
 const Menu = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -135,37 +136,7 @@ const Menu = () => {
 				</nav>
 			)}
 			{isCartOpen && (
-				<nav className="z-40 top-0 fixed right-0 h-screen flex flex-col w-[30rem]">
-					<div className="w-full top-20 h-full relative bg-black">
-						<div className="flex justify-center p-4 border-b-2 border-solid border-white">
-							<h3 className="text-white px-6 text-2xl font-bold">Carrito</h3>
-						</div>
-						<div className="relative overflow-y-auto h-[71%]">
-							<div className="flex flex-col">
-								<div className="h-[85%]">
-									<ProductCart />
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="border-t-2 border-solid border-white absolute w-full bottom-0 z-50 text-white bg-mainColor">
-						<div className="flex justify-between items-center px-6 m-2">
-							<h4>Productos</h4>
-							<span className="text-sm font-medium">2</span>
-						</div>
-						<div className="flex justify-between items-center px-6 m-2">
-							<h4>Total</h4>
-							<span className="text-sm font-medium before:content-['$']">
-								100.000
-							</span>
-						</div>
-						<div className="flex justify-center w-full">
-							<button className="w-full py-4 border-none bg-black text-white text-sm font-medium cursor-pointer ease-in-out duration-100 hover:text-black hover:bg-white">
-								Finalizar Compra
-							</button>
-						</div>
-					</div>
-				</nav>
+				<Cart />
 			)}
 		</header>
 	);
