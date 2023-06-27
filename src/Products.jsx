@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
 import { useCart } from './hook/useCart';
 
-function Product_Card({PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRECIO, addToCart }){
-  return(<li key={PRODUCT_ID}>
+function Product_Card({id, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRECIO, addToCart }){
+  return(<li key={id}>
     <img
       alt={PRODUCT_NAME}
     />
@@ -25,8 +25,6 @@ function Products(props) {
 
   const { addToCart, cart} = useCart();
 
-  console.log(props);
-
   const URL = 'https://aquilabrand-api.onrender.com/products';
 
   const [products, setProducts] = useState();
@@ -41,7 +39,6 @@ function Products(props) {
       }
     });
     const responseJSON = await response.json();
-    console.log(responseJSON);
     setProducts(responseJSON);
   }
 
