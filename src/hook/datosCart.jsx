@@ -8,7 +8,6 @@ export function Cart_Amount (){
         acc = acc + product.PRECIO * product.quantity;
     })
     total;
-    console.log(acc)
     return acc;
 }
 

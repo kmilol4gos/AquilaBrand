@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
 import { useCart } from './hook/useCart';
 
-function Product_Card({id, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRECIO, addToCart }){
-  return(<li key={id}>
+function Product_Card({PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRECIO, addToCart }){
+  return(<li key={PRODUCT_ID}>
     <img
       alt={PRODUCT_NAME}
     />

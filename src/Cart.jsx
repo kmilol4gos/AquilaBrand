@@ -50,7 +50,7 @@ function CartProduct_Card({PRODUCT_NAME, SIZE_NAME, color, PRECIO, quantity, add
     )
 }
 
-export function Cart () {
+export default function Cart () {
 
     const { cart, clearCart, addToCart, calcularTotal, removeFromCart, calcularCantidad } = useCart();
     
