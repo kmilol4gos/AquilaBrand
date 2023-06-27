@@ -10,6 +10,16 @@
 	scroll-behavior: smooth;
 }
 
+input[type="radio"] {
+    display: none;
+
+}
+input[type="radio"]:checked + label {
+    background-color: #e2fcef;
+    color: #170f11;
+    transition: all 100ms ease-in-out;
+}
+
 body {
     background-color: #402039;
 

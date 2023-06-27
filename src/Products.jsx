@@ -35,9 +35,13 @@ function Product_Card({
 					{PRECIO}
 				</span>
 				<div className="flex w-full">
-        <Link to={"/product/"+PRODUCT_ID} className="w-full ease-in-out duration-100 m-2 p-2 border-2 border-black text-white bg-black font-bold cursor-pointer hover:bg-mainColor hover:border-mainColor">
-					Comprar
-				</Link>
+					<Link
+						to={"/product/" + PRODUCT_ID}
+						
+						className="text-center w-full ease-in-out duration-100 m-2 p-2 border-2 border-black text-white bg-black font-bold cursor-pointer hover:bg-mainColor hover:border-mainColor"
+					>
+						Comprar
+					</Link>
 				</div>
 			</div>
 		</div>
