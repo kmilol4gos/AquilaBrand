@@ -31,14 +31,11 @@ function guardarTrans(token, cart){
 
     const URL = 'https://aquilabrand-api.onrender.com/transactions';
 
-    const bolsa = cart;
-
     const response = fetch(URL, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
+        body: {
             token: token,
-            bolsa: bolsa
+            bolsa: cart
         }
     })
     console.log(bolsa)

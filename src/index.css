@@ -10,10 +10,10 @@
 	scroll-behavior: smooth;
 }
 
-input[type="radio"] {
+input[type="radio"]{
     display: none;
-
 }
+
 input[type="radio"]:checked + label {
     background-color: #e2fcef;
     color: #170f11;

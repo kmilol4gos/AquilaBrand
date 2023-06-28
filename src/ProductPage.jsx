@@ -7,13 +7,34 @@ import polera4 from "./assets/polera4.png";
 import { lazy } from "react";
 import { TailSpin } from "react-loader-spinner";
 
+function AgregarAlCarro({product, color, size, addToCart}) {
+
+	let filteredProduct = undefined;
+	if (color !== undefined && size !== undefined) {
+		filteredProduct = product[0].filter((item) => {
+			return item.COLOR_ID === color && item.SIZE_ID === size;
+		});
+	}
+
+	return (
+		<button
+			onClick={() => 
+				addToCart(filteredProduct[0])
+			}
+			className="ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
+		>
+			Agregar al carrito
+		</button>
+	)
+}
+
 function Sizes({ SIZE_NAME, SIZE_ID, setSize }) {
 	return (
 		<div>
-			<input type="radio" value={SIZE_ID} name="sizes" id={SIZE_ID}></input>
+			<input type="radio" value={SIZE_ID} name="sizes" id={SIZE_NAME}></input>
 			<label
-				key={SIZE_ID}
-				htmlFor={SIZE_ID}
+				key={SIZE_NAME}
+				htmlFor={SIZE_NAME}
 				className="justify-center bg-black flex items-center p-2 w-14 h-8 text-lg hover:bg-white hover:text-black ease-in-out duration-100 cursor-pointer"
 				onClick={() => setSize(SIZE_ID)}
 			>
@@ -23,16 +44,28 @@ function Sizes({ SIZE_NAME, SIZE_ID, setSize }) {
 	);
 }
 
-function Colors({ COLOR_ID, COLOR_NAME, setColor }) {
+function Colors({ product, setColor }) {
 	return (
-		<option value={COLOR_ID} onClick={() => setColor(COLOR_ID)}>
-			{COLOR_NAME}
-		</option>
+		<form id="color" className="flex py-2 w-12 justify-end gap-2 flex-row-reverse mb-2">
+			{product.map((color) => (
+			<div>
+				<input  type="radio" value={color.COLOR_ID} name="colors" id={color.COLOR_NAME}></input>
+				<label
+					key={color.COLOR_NAME}
+					htmlFor={color.COLOR_NAME}
+					className="justify-center bg-black flex items-center p-2 w-14 h-8 text-lg hover:bg-white hover:text-black ease-in-out duration-100 cursor-pointer"
+					onClick={() => setColor(color.COLOR_ID)}
+				>
+					{color.COLOR_NAME}
+				</label>
+			</div>
+			))}
+		</form>
+		
 	);
 }
 
 export default function ProductPage() {
-	let index = 0;
 
 	const { id } = useParams();
 
@@ -69,19 +102,6 @@ export default function ProductPage() {
 	}
 
 	//falta obtener el index del color y la talla seleccionada
-
-	let filteredProduct = undefined;
-
-	function filterProduct() {
-		if (color !== undefined && size !== undefined) {
-			filteredProduct = product[0].filter((item) => {
-				return item.COLOR_ID === color && item.SIZE_ID === size;
-			});
-		}
-		return filteredProduct;
-	}
-
-	console.log(filteredProduct);
 
 	return (
 		<section
@@ -124,72 +144,27 @@ export default function ProductPage() {
 					>
 						{product[2].map((talla, index) => (
 							<Sizes key={talla.SIZE_ID} setSize={setSize} {...talla} />
+							
 						))}
 					</form>
 					<span>Seleccionar color</span>
-					<form id="color" className="mb-2 ">
-						<select id="color" className="w-[60%]  bg-black p-2 ">
-							{product[1].map((color) => (
-								<Colors key={color.COLOR_ID} setColor={setColor} {...color} />
-							))}
-						</select>
-					</form>
+					<Colors 
+						product={product[1]}
+						setColor={setColor}
+					/>
 				</section>
 				<span className="text-xl font-bold before:content-['$']">
 					{product[0][0].PRECIO}
 				</span>
 				<div>
-					<button
-						onClick={() => {
-							filterProduct();
-							addToCart(filteredProduct[0]);
-						}}
-						className="ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
-					>
-						Agregar al carrito
-					</button>
+					<AgregarAlCarro 
+						product={product}
+						color={color}
+						size={size}
+						addToCart={addToCart}
+					/>
 				</div>
 			</div>
 		</section>
 	);
-
-	/* <div id="titulo-producto">
-					<strong>{product[0][0].PRODUCT_NAME}</strong>
-				</div>
-				<div id="descripcion-producto">
-					<strong>{product[0][0].PRODUCT_DESCRIPTION}</strong>
-				</div>
-				<div id="precio-producto">
-					<strong>${product[0][0].PRECIO}</strong>
-				</div>
-			</div>{" "}
-			//fin info producto
-			<div id="tallas">
-				{" "}
-				//inicio tallas
-				<div id="titulo-tallas">
-					<strong>Tallas</strong>
-					{product[2].map((talla, index) => (
-						<Sizes key={talla.SIZE_ID} {...talla} />
-					))}
-				</div>
-			</div>{" "}
-			//fin tallas
-			<div id="colores">
-				{" "}
-				//inicio colores
-				<div id="titulo-colores">
-					<strong>Colores</strong>
-					{product[1].map((color) => (
-						<Colors key={color.COLOR_ID} {...color} />
-					))}
-				</div>
-			</div>{" "}
-			//fin colores
-			<div id="boton carrito">
-				<button onClick={() => addToCart(product[0][index])}>
-					Agregar al carrito
-				</button>
-			</div>
-		</section> */
 }
