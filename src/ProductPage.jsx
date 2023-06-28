@@ -13,7 +13,7 @@ function Sizes({ SIZE_NAME, SIZE_ID }) {
 			<label
 				key={SIZE_ID}
 				htmlFor={SIZE_ID}
-				className="justify-center bg-black flex items-center p-2 w-12 h-8 text-lg hover:bg-white hover:text-black ease-in-out duration-100 cursor-pointer"
+				className="justify-center bg-black flex items-center p-2 w-14 h-8 text-lg hover:bg-white hover:text-black ease-in-out duration-100 cursor-pointer"
 			>
 				{SIZE_NAME}
 			</label>
@@ -106,18 +106,18 @@ export default function ProductPage() {
 							))}
 						</select>
 					</form>
-					<p className="flex items-center h-24 w-full text-base font-normal">
+					<p className="w-full text-sm font-normal py-2">
 						{product[0][0].PRODUCT_DESCRIPTION}
 					</p>
 				</section>
-				<div>
+				<div className="flex gap-2">
 					<button
 						onClick={() => addToCart(product[0][index])}
-						className="ease-in-out duration-100 m-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
+						className="ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
 					>
 						Agregar al carrito
 					</button>
-					<button className="ease-in-out duration-100 m-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black">
+					<button className="ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black">
 						Comprar
 					</button>
 				</div>

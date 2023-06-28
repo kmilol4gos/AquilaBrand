@@ -34,7 +34,7 @@ export default function FeaturedProducts(){
                     alt=""
                     className="h-96 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
                 />
-                <div className="flex flex-col justify-evenly p-6">
+                <div className="flex flex-col justify-evenly p-6 w-full">
                     <h5 className="mb-2 text-xl font-medium text-black">
                         {product.PRODUCT_NAME}
                     </h5>
