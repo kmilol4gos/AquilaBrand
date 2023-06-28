@@ -7,7 +7,20 @@ import polera4 from "./assets/polera4.png";
 import { lazy } from "react";
 import { TailSpin } from "react-loader-spinner";
 
-function Sizes({ SIZE_NAME, SIZE_ID }) {
+function addProductToCart(product, color, size) {
+	const { addToCart } = useCart();
+	let filteredProduct = [];
+	if (color !== undefined && size !== undefined) {
+		filteredProduct = product[0].filter((item) => {
+			return item.COLOR_ID === color && item.SIZE_ID === size;
+		});
+	}
+	!filteredProduct
+		? "Selecciona una talla y un color"
+		: addToCart(filteredProduct);
+}
+
+function Sizes({ SIZE_NAME, SIZE_ID, setSize }) {
 	return (
 		<div>
 			<input type="radio" value={SIZE_ID} name="sizes" id={SIZE_ID}></input>
@@ -15,6 +28,7 @@ function Sizes({ SIZE_NAME, SIZE_ID }) {
 				key={SIZE_ID}
 				htmlFor={SIZE_ID}
 				className="justify-center bg-black flex items-center p-2 w-14 h-8 text-lg hover:bg-white hover:text-black ease-in-out duration-100 cursor-pointer"
+				onClick={() => setSize(SIZE_ID)}
 			>
 				{SIZE_NAME}
 			</label>
@@ -22,8 +36,12 @@ function Sizes({ SIZE_NAME, SIZE_ID }) {
 	);
 }
 
-function Colors({ COLOR_ID, COLOR_NAME }) {
-	return <option value="color">{COLOR_NAME}</option>;
+function Colors({ COLOR_ID, COLOR_NAME, setColor }) {
+	return (
+		<option value={COLOR_ID} onClick={() => setColor(COLOR_ID)}>
+			{COLOR_NAME}
+		</option>
+	);
 }
 
 export default function ProductPage() {
@@ -36,6 +54,9 @@ export default function ProductPage() {
 	const URL = "https://aquilabrand-api.onrender.com/product";
 
 	const [product, setProduct] = useState();
+
+	const [color, setColor] = useState();
+	const [size, setSize] = useState();
 
 	const fetchApi = async () => {
 		const response = await fetch(URL, {
@@ -62,7 +83,16 @@ export default function ProductPage() {
 
 	//falta obtener el index del color y la talla seleccionada
 
-	console.log(product);
+	let filteredProduct = undefined;
+
+	function filterProduct() {
+		if (color !== undefined && size !== undefined) {
+			filteredProduct = product[0].filter((item) => {
+				return item.COLOR_ID === color && item.SIZE_ID === size;
+			});
+		}
+		return filteredProduct;
+	}
 
 	return (
 		<section
@@ -90,7 +120,9 @@ export default function ProductPage() {
 			</div>
 			<div className="h-[80%] flex flex-col justify-around m-2 w-80 font-bold self-center">
 				<section className="flex flex-col gap-2 mb-3">
-					<h1 className="text-4xl font-bold uppercase">{product[0][0].PRODUCT_NAME}</h1>
+					<h1 className="text-4xl font-bold uppercase">
+						{product[0][0].PRODUCT_NAME}
+					</h1>
 					<p className="w-full text-sm font-normal py-2">
 						{product[0][0].PRODUCT_DESCRIPTION}
 					</p>
@@ -102,14 +134,14 @@ export default function ProductPage() {
 						className="flex py-2 w-12 justify-end gap-2 flex-row-reverse mb-2"
 					>
 						{product[2].map((talla, index) => (
-							<Sizes key={talla.SIZE_ID} {...talla} />
+							<Sizes key={talla.SIZE_ID} setSize={setSize} {...talla} />
 						))}
 					</form>
 					<span>Seleccionar color</span>
 					<form id="color" className="mb-2 ">
 						<select id="color" className="w-[60%]  bg-black p-2 ">
 							{product[1].map((color) => (
-								<Colors key={color.COLOR_ID} {...color} />
+								<Colors key={color.COLOR_ID} setColor={setColor} {...color} />
 							))}
 						</select>
 					</form>
@@ -119,8 +151,11 @@ export default function ProductPage() {
 				</span>
 				<div>
 					<button
-						onClick={() => addToCart(product[0][index])}
-						className="w-full ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
+						onClick={() => {
+							filterProduct();
+							addToCart(filteredProduct[0]);
+						}}
+						className="ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
 					>
 						Agregar al carrito
 					</button>
