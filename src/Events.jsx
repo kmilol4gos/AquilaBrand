@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 function Events() {
-    const URL = "https://aquilabrand-api.onrender.com/event";
+    const URL = "http://localhost:3000/event";
 
     const [events, setEvents] = useState();
 

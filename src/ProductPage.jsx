@@ -71,7 +71,7 @@ export default function ProductPage() {
 
 	const { addToCart } = useCart();
 
-	const URL = "https://aquilabrand-api.onrender.com/product";
+	const URL = "http://localhost:3000/product";
 
 	const [product, setProduct] = useState();
 

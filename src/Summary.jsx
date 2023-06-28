@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useCart } from "./hook/useCart";
 import { Cart_Cantidad } from "./hook/datosCart";
+import { Link } from "react-router-dom";
 
 function Webpay(token){
 
-    const URL = 'https://aquilabrand-api.onrender.com/checkout';
+    const URL = 'http://localhost:3000/checkout';
 
     const [transaction_info, setTransaction_info] = useState();
 
@@ -27,18 +28,21 @@ function Webpay(token){
     return transaction_info;
 }
 
-function guardarTrans(token, cart){
+function guardarTrans(token){
 
-    const URL = 'https://aquilabrand-api.onrender.com/transactions';
+    const {cart} = useCart();
+
+    const URL = 'http://localhost:3000/transactions';
 
     const response = fetch(URL, {
         method: 'POST',
-        body: {
+        headers: {
+            'Content-Type': 'application/json',
             token: token,
-            bolsa: cart
+            bolsa: JSON.stringify(cart)
         }
     })
-    console.log(bolsa)
+    console.log(JSON.stringify(cart))
     return response;
 }
 
@@ -75,9 +79,7 @@ export default function Summary(){
 
     const transaction_info = Webpay(token);
 
-    const guardarTransaccion = guardarTrans(token, cart);
-
-    console.log(guardarTransaccion);
+    const guardarTransaccion = guardarTrans(token);
 
     if(!transaction_info) return 'Cargando...';
     
@@ -98,6 +100,11 @@ export default function Summary(){
                         {...item}/>
                 ))}
                 <strong>Cantidad de productos: {<Cart_Cantidad />}</strong>
+
+                <Link 
+                to="/"
+                onClick={guardarTransaccion}
+                >Volver al inicio</Link>
             </div>
         </div>
     )

@@ -14,6 +14,7 @@ function Product_Card({
 	PRECIO,
 	addToCart,
 }) {
+	console.log(PRODUCT_ID);
 	return (
 		<div
 			id="Product"
@@ -48,7 +49,7 @@ function Product_Card({
 	);
 }
 
-function Products(props) {
+export default function Products(props) {
 	console.log(props);
 
 	const { addToCart, cart } = useCart();
@@ -108,5 +109,3 @@ function Products(props) {
 		</div>
 	);
 }
-
-export default Products;

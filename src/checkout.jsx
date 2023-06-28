@@ -10,7 +10,7 @@ import { TailSpin } from "react-loader-spinner";
 //llamar a webpay luego de confirmar compra.
 
 function Webpay(order_id, session_id, amount) {
-	const URL = "https://aquilabrand-api.onrender.com/checkout";
+	const URL = "http://localhost:3000/checkout";
 
 	const [retorno, setRetorno] = useState();
 

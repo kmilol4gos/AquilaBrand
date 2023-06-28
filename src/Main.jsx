@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom/client";
+import React, {StrictMode} from "react";
 import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";

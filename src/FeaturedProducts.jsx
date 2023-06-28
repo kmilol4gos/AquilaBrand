@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
 
 export default function FeaturedProducts() {
-	const URL = "https://aquilabrand-api.onrender.com/featured";
+	const URL = "http://localhost:3000/featured";
 
 	const [featured, setFeatured] = useState();
 
