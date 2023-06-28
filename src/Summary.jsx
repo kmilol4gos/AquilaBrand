@@ -27,7 +27,25 @@ function Webpay(token){
     return transaction_info;
 }
 
-function Product_Card({PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRECIO, addToCart }){
+function guardarTrans(token, cart){
+
+    const URL = 'https://aquilabrand-api.onrender.com/transactions';
+
+    const bolsa = JSON.stringify(cart);
+
+    const response = fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            token: token,
+            bolsa: bolsa
+        }
+    })
+    console.log(bolsa)
+    return response;
+}
+
+function Product_Card({PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRECIO, quantity, SIZE_NAME, COLOR_NAME, addToCart }){
     return(<li key={PRODUCT_ID}>
     <img
         alt={PRODUCT_NAME}
@@ -40,6 +58,11 @@ function Product_Card({PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRECIO, ad
     </div>
     <div id="precio-producto">
         <strong>${PRECIO}</strong>
+    </div>
+    <div>
+        <p>Talla: {SIZE_NAME}</p>
+        <p>Color: {COLOR_NAME}</p>
+        <strong>Cantidad: {quantity}</strong>
     </div>
     </li>)
 }
@@ -55,7 +78,9 @@ export default function Summary(){
 
     const transaction_info = Webpay(token);
 
-    console.log(transaction_info)
+    const guardarTransaccion = guardarTrans(token, cart);
+
+    console.log(guardarTransaccion);
 
     if(!transaction_info) return 'Cargando...';
     
@@ -75,7 +100,7 @@ export default function Summary(){
                         key={item.PRODUCT_ID}
                         {...item}/>
                 ))}
-                <p>Cantidad de productos: {<Cart_Cantidad />}</p>
+                <strong>Cantidad de productos: {<Cart_Cantidad />}</strong>
             </div>
         </div>
     )

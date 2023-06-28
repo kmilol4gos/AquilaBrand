@@ -7,19 +7,6 @@ import polera4 from "./assets/polera4.png";
 import { lazy } from "react";
 import { TailSpin } from "react-loader-spinner";
 
-function addProductToCart(product, color, size) {
-	const { addToCart } = useCart();
-	let filteredProduct = [];
-	if (color !== undefined && size !== undefined) {
-		filteredProduct = product[0].filter((item) => {
-			return item.COLOR_ID === color && item.SIZE_ID === size;
-		});
-	}
-	!filteredProduct
-		? "Selecciona una talla y un color"
-		: addToCart(filteredProduct);
-}
-
 function Sizes({ SIZE_NAME, SIZE_ID, setSize }) {
 	return (
 		<div>
@@ -93,6 +80,8 @@ export default function ProductPage() {
 		}
 		return filteredProduct;
 	}
+
+	console.log(filteredProduct);
 
 	return (
 		<section
