@@ -5,6 +5,7 @@ import { useCart } from "./hook/useCart";
 import Polera from "./assets/polera2.png";
 import img from "./assets/img-ejemplo.jpeg";
 import { Link } from "react-router-dom";
+import { TailSpin } from "react-loader-spinner";
 
 function Product_Card({
 	PRODUCT_ID,
@@ -27,7 +28,7 @@ function Product_Card({
 				/>
 			</Link>
 			<div className="flex flex-col justify-around h-60 w-60">
-				<Link to="/" className="text-black text-xl font-bold ">
+				<Link to="/" className="text-black text-xl font-bold uppercase">
 					<h3>{PRODUCT_NAME}</h3>
 				</Link>
 				<p className="text-black font-normal text-sm">{PRODUCT_DESCRIPTION}</p>
@@ -37,7 +38,6 @@ function Product_Card({
 				<div className="flex w-full">
 					<Link
 						to={"/product/" + PRODUCT_ID}
-						
 						className="text-center w-full ease-in-out duration-100 m-2 p-2 border-2 border-black text-white bg-black font-bold cursor-pointer hover:bg-mainColor hover:border-mainColor"
 					>
 						Comprar
@@ -91,24 +91,19 @@ function Products(props) {
 				</div>
 			</section>
 			<section className="m-4 grid grid-cols-2 justify-items-center relative pb-28">
-				{!products
-					? "Cargando..." // me lo saco completamente del culo xd
-					: products.map((product, index) => (
-							<Product_Card
-								key={product.PRODUCT_ID}
-								addToCart={() => addToCart(product)}
-								{...product}
-							/>
-					  ))}
-				{!products
-					? "Cargando..." // me lo saco completamente del culo xd
-					: products.map((product, index) => (
-							<Product_Card
-								key={product.PRODUCT_ID}
-								addToCart={() => addToCart(product)}
-								{...product}
-							/>
-					  ))}
+				{!products ? (
+					<div className=" absolute flex">
+						<TailSpin color="#e2fcef" height={80} width={80} />
+					</div> // me lo saco completamente del culo xd
+				) : (
+					products.map((product, index) => (
+						<Product_Card
+							key={product.PRODUCT_ID}
+							addToCart={() => addToCart(product)}
+							{...product}
+						/>
+					))
+				)}
 			</section>
 		</div>
 	);

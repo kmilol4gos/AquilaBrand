@@ -5,6 +5,7 @@ import polera1 from "./assets/polera.png";
 import polera2 from "./assets/polera2.png";
 import polera4 from "./assets/polera4.png";
 import { lazy } from "react";
+import { TailSpin } from "react-loader-spinner";
 
 function Sizes({ SIZE_NAME, SIZE_ID }) {
 	return (
@@ -51,7 +52,13 @@ export default function ProductPage() {
 	useEffect(() => {
 		fetchApi();
 	}, []);
-	if (!product) return "Cargando...";
+	if (!product) {
+		return (
+			<div className="relative flex justify-center items-center w-screen h-screen">
+				<TailSpin color="#e2fcef" height={80} width={80} />
+			</div>
+		);
+	}
 
 	//falta obtener el index del color y la talla seleccionada
 
@@ -60,7 +67,7 @@ export default function ProductPage() {
 	return (
 		<section
 			id="producto"
-			className="relative flex items-stretch justify-center m-8 h-[35rem] top-20 text-white"
+			className="relative flex items-stretch justify-center m-8 h-[36rem] top-20 text-white"
 		>
 			<div className="mr-10 self-center flex h-full gap-4">
 				<img
@@ -83,10 +90,10 @@ export default function ProductPage() {
 			</div>
 			<div className="h-[80%] flex flex-col justify-around m-2 w-80 font-bold self-center">
 				<section className="flex flex-col gap-2 mb-3">
-					<h1 className="text-4xl font-bold">{product[0][0].PRODUCT_NAME}</h1>
-					<span className=" text-2xl font-normal before:content-['$']">
-						{product[0][0].PRECIO}
-					</span>
+					<h1 className="text-4xl font-bold uppercase">{product[0][0].PRODUCT_NAME}</h1>
+					<p className="w-full text-sm font-normal py-2">
+						{product[0][0].PRODUCT_DESCRIPTION}
+					</p>
 				</section>
 				<section>
 					<span>Seleccionar talla</span>
@@ -100,25 +107,22 @@ export default function ProductPage() {
 					</form>
 					<span>Seleccionar color</span>
 					<form id="color" className="mb-2 ">
-						<select id="color" className="w-[70%]  bg-black p-2 ">
+						<select id="color" className="w-[60%]  bg-black p-2 ">
 							{product[1].map((color) => (
 								<Colors key={color.COLOR_ID} {...color} />
 							))}
 						</select>
 					</form>
-					<p className="w-full text-sm font-normal py-2">
-						{product[0][0].PRODUCT_DESCRIPTION}
-					</p>
 				</section>
-				<div className="flex gap-2">
+				<span className="text-xl font-bold before:content-['$']">
+					{product[0][0].PRECIO}
+				</span>
+				<div>
 					<button
 						onClick={() => addToCart(product[0][index])}
-						className="ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
+						className="w-full ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
 					>
 						Agregar al carrito
-					</button>
-					<button className="ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black">
-						Comprar
 					</button>
 				</div>
 			</div>
