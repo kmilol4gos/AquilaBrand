@@ -79,10 +79,10 @@ export default function Summary(){
 
     const transaction_info = Webpay(token);
 
-    const guardarTransaccion = guardarTrans(token);
-
-    if(!transaction_info) return 'Cargando...';
+    if(!transaction_info) return 'Cargando...'
     
+    guardarTrans(token);
+
     return(
         <div className="flex flex-col justify-center items-center">
             <div id="info-transaccion">
@@ -100,11 +100,9 @@ export default function Summary(){
                         {...item}/>
                 ))}
                 <strong>Cantidad de productos: {<Cart_Cantidad />}</strong>
-
-                <Link 
-                to="/"
-                onClick={guardarTransaccion}
-                >Volver al inicio</Link>
+                <Link to="/">
+                    Volver al inicio
+                </Link>
             </div>
         </div>
     )

@@ -93,6 +93,7 @@ export default function ProductPage() {
 	useEffect(() => {
 		fetchApi();
 	}, []);
+	
 	if (!product) {
 		return (
 			<div className="relative flex justify-center items-center w-screen h-screen">

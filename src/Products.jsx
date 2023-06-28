@@ -14,7 +14,6 @@ function Product_Card({
 	PRECIO,
 	addToCart,
 }) {
-	console.log(PRODUCT_ID);
 	return (
 		<div
 			id="Product"
@@ -50,12 +49,11 @@ function Product_Card({
 }
 
 export default function Products(props) {
-	console.log(props);
 
 	const { addToCart, cart } = useCart();
 
 	const [products, setProducts] = useState();
-	const URL = "https://aquilabrand-api.onrender.com/products";
+	const URL = "http://localhost:3000/products";
 
 	const fetchApi = async () => {
 		const response = await fetch(URL, {
@@ -73,6 +71,16 @@ export default function Products(props) {
 	useEffect(() => {
 		fetchApi();
 	}, []);
+
+	if(!products){
+		return (
+			<div className="flex justify-center items-center w-screen h-screen">
+				<TailSpin color="#000000" height={80} width={80} />
+			</div>
+		);
+	}
+
+	console.log(props);
 
 	return (
 		<div className="relative top-20 w-full">
