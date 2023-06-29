@@ -24,14 +24,6 @@ function Footer() {
 								Quienes Somos
 							</Link>
 						</li>
-						<li>
-							<Link
-								to="/"
-								className="font-normal text-lg py-2 hover:text-mainColor "
-							>
-								Contacto
-							</Link>
-						</li>
 					</ul>
 				</div>
 				<div className="flex flex-col w-52">

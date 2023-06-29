@@ -68,8 +68,11 @@ function AbautUs() {
 							aquellos que buscan ropa urbana única y con estilo.
 						</p>
 					</div>
-					<div className="w-1/2 flex flex-col justify-center items-center">
+					<div className="w-1/2 flex flex-col gap-2 justify-center items-center">
 						<img src={Aquila} alt="" className="bg-white p-2" />
+						<h2 className="font-medium text-lg">
+							Recuerda que puedes contactarnos desde nuestras redes sociales!
+						</h2>
 						<div className="flex justify-around w-1/2 py-2">
 							<a href="#">
 								<img src={WhatsApp} alt="" className="w-12" />
