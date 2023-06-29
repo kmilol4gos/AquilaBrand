@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
 	return (
-		<footer className="bottom-0 right-0 h-60 mt-24 bg-black w-full ">
+		<footer className="bottom-0 right-0 h-60 bg-black w-screen relative inline-block">
 			<section className="mx-40 h-full flex justify-between items-stretch text-white">
 				<div className="flex flex-col w-52">
 					<h3 className="text-2xl font-normal my-4">Informacion</h3>

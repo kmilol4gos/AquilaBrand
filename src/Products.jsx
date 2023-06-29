@@ -49,7 +49,6 @@ function Product_Card({
 }
 
 export default function Products(props) {
-
 	const { addToCart, cart } = useCart();
 
 	const [products, setProducts] = useState();
@@ -72,10 +71,10 @@ export default function Products(props) {
 		fetchApi();
 	}, []);
 
-	if(!products){
+	if (!products) {
 		return (
 			<div className="flex justify-center items-center w-screen h-screen">
-				<TailSpin color="#000000" height={80} width={80} />
+				<TailSpin color="#e2fcef" height={80} width={80} />
 			</div>
 		);
 	}

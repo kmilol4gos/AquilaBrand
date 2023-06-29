@@ -126,9 +126,7 @@ const Menu = () => {
 								<Link to="/info" className="hover:bg-mainColor">
 									Quienes Somos
 								</Link>
-								<Link to="/contact" className="hover:bg-mainColor">
-									Contacto
-								</Link>
+								
 							</div>
 						</li>
 					</ul>

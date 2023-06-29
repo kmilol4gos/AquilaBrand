@@ -1,9 +1,6 @@
 import "./index.css";
 import ArrowIcon from "./assets/Flecha-icon.svg";
 import Video from "./assets/video.mp4";
-import PoleraNegra from "./assets/img-ejemplo.jpeg";
-import { Link } from "react-router-dom";
-import { CartProvider } from "./context/cart_context";
 import FeaturedProducts from "./FeaturedProducts";
 
 function App() {
@@ -50,6 +47,9 @@ function App() {
 				</div>
 				<div className="absolute grid right-0 justify-items-center grid-cols-3 grid-rows-2 gap-4 h-full w-full m-2">
 					<FeaturedProducts />
+				</div>
+				<div>
+
 				</div>
 			</section>
 		</main>

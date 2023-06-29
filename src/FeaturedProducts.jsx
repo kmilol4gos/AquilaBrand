@@ -25,7 +25,7 @@ export default function FeaturedProducts() {
 
 	if (!featured)
 		return (
-			<div className="absolute flex justify-center items-center w-screen h-screen">
+			<div className="absolute flex justify-center w-screen h-screen">
 				<TailSpin color="#e2fcef" height={80} width={80} />
 			</div>
 		);

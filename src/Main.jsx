@@ -1,5 +1,4 @@
 import ReactDOM from "react-dom/client";
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
@@ -12,6 +11,7 @@ import { CartProvider } from "./context/cart_context";
 import Checkout from "./Checkout";
 import Summary from "./Summary";
 import ProductPage from "./ProductPage";
+import AboutUs from "./AboutUs";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -74,6 +74,7 @@ root.render(
 						path="/accesorios/collares"
 						element={<Products category="accesorios" section="collares" />}
 					/>
+					<Route path="/Informacion" element={<AboutUs />}></Route>
 					<Route path="/events" element={<Events />} />
 					<Route path="/checkout" element={<Checkout />} />
 					<Route path="/summary" element={<Summary />} />
