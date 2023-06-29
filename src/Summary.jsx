@@ -39,10 +39,9 @@ function guardarTrans(token){
         headers: {
             'Content-Type': 'application/json',
             token: token,
-            bolsa: JSON.stringify(cart)
-        }
+        },
+        body: JSON.stringify(cart)
     })
-    console.log(JSON.stringify(cart))
     return response;
 }
 
