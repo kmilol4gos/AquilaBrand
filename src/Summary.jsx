@@ -83,7 +83,7 @@ export default function Summary(){
     guardarTrans(token);
 
     return(
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center relative top-20">
             <div id="info-transaccion">
                 <h1>Detalle de transacción</h1>
                 <h2>Orden de compra: {transaction_info.buy_order}</h2>
