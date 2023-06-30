@@ -61,10 +61,10 @@ export default function Checkout() {
 	//no borrar el form, es necesario para redireccionar a webpay
 	return (
 		<div
-			className="flex flex-col justify-center items-center  pt-[50rem]"
+			className="flex flex-col justify-center items-center  relative top-20"
 			id="redireccion webpay"
 		>
-			<p>Chupa el pico</p>
+			{/* <p>Chupa el pico</p> */}
 			<form method="post" action={info.url}>
 				<input type="hidden" name="token_ws" value={info.token} />
 				<input type="submit" value="Ir a pagar" />
