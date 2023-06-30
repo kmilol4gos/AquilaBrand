@@ -3,6 +3,7 @@ import { useCart } from "./hook/useCart";
 import { Cart_Cantidad } from "./hook/datosCart";
 import { Link } from "react-router-dom";
 
+
 function Webpay(token){
 
     const URL = 'http://localhost:3000/checkout';
@@ -83,7 +84,7 @@ export default function Summary(){
     guardarTrans(token);
 
     return(
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center relative top-20 h-screen">
             <div id="info-transaccion">
                 <h1>Detalle de transacción</h1>
                 <h2>Orden de compra: {transaction_info.buy_order}</h2>

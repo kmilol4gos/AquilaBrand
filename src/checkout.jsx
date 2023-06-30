@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useCart } from "./hook/useCart";
-import { Cart_Amount } from "./hook/datosCart";
+import { Cart_Amount, Cart_Cantidad } from "./hook/datosCart";
 import { TailSpin } from "react-loader-spinner";
+
 
 //pagina de confirmacion de compra
 
@@ -35,7 +36,31 @@ function Webpay(order_id, session_id, amount) {
 	return retorno;
 }
 
+function Product_Card({PRODUCT_ID, PRODUCT_NAME, PRODUCT_DESCRIPTION, PRECIO, quantity, SIZE_NAME, COLOR_NAME, addToCart }){
+    return(<li key={PRODUCT_ID}>
+    <img
+        alt={PRODUCT_NAME}
+    />
+    <div id="titulo-producto">
+        <strong>{PRODUCT_NAME}</strong>
+    </div>
+    <div id="descripcion-producto">
+        <strong>{PRODUCT_DESCRIPTION}</strong>
+    </div>
+    <div id="precio-producto">
+        <strong>${PRECIO}</strong>
+    </div>
+    <div>
+        <p>Talla: {SIZE_NAME}</p>
+        <p>Color: {COLOR_NAME}</p>
+        <strong>Cantidad: {quantity}</strong>
+    </div>
+    </li>)
+}
+
 export default function Checkout() {
+
+	const { cart } = useCart();
 	const fecha = new Date();
 	const dia = fecha.getDate();
 	const mes = fecha.getMonth();
@@ -57,14 +82,22 @@ export default function Checkout() {
 			</div>
 		);
 
-	//falta hacer el diseño de la pagina de confirmacion de compra, mostrar el carro de compras y el total a pagar
-	//no borrar el form, es necesario para redireccionar a webpay
 	return (
 		<div
-			className="flex flex-col justify-center items-center  pt-[50rem]"
+			className="flex flex-col justify-center items-center  relative h-screen top-20"
 			id="redireccion webpay"
 		>
-			<p>Chupa el pico</p>
+			<div id="info-productos">
+                <h1>Detalle de productos</h1>
+                {cart.map((item) => (
+                    <Product_Card 
+                        key={item.PRODUCT_ID}
+                        {...item}/>
+                ))}
+                <strong>Cantidad de productos: {<Cart_Cantidad />}</strong>
+				<strong>Total a pagar: ${<Cart_Amount />}</strong>
+            </div>
+			<p>Seccion boton</p>
 			<form method="post" action={info.url}>
 				<input type="hidden" name="token_ws" value={info.token} />
 				<input type="submit" value="Ir a pagar" />
