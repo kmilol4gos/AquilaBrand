@@ -6,9 +6,9 @@ import FeaturedProducts from "./FeaturedProducts";
 function App() {
 	return (
 		<main className="w-full pb-36 mb-36">
-			<div className="relative w-screen h-[90vh] flex overflow-hidden justify-center items-center top-20">
-				<section className="absolute top-0 left-0 w-full h-full z-40">
-					<header className="p-16 flex flex-col items-center">
+			<div className="relative w-screen h-screen flex overflow-hidden justify-center items-center">
+				<section className="relative w-full h-full z-40  ">
+					<header className="absolute p-16 flex flex-col items-center top-20 w-full">
 						<h1 className="text-white text-5xl font-bold drop-shadow-aq">
 							AquilaBrand
 						</h1>
@@ -16,20 +16,18 @@ function App() {
 							Ropa Urbana
 						</h2>
 					</header>
-					<footer
-						id="footer-main"
-						className="absolute bottom-0 left-0 w-full h-20 flex items-center justify-center"
-					>
+					<footer className="absolute bottom-0 left-0 w-full h-20 flex items-center justify-center">
 						<a
-							href="#footer-main"
-							className="px-4 py-2 flex items-center justify-center rounded-md text-xl font-normal text-white backdrop-blur-2xl"
+							href="#ver-mas"
+							className="px-4 py-2 flex items-center justify-center rounded-md text-xl font-normal text-white backdrop-blur-2xl "
+							id="ver-mas"
 						>
 							Ver más
 							<img src={ArrowIcon} alt="Baja para ver mas" />
 						</a>
 					</footer>
 				</section>
-				<section className="w-full h-full">
+				<section className="w-full h-full absolute pt-20">
 					<video
 						src={Video}
 						muted
