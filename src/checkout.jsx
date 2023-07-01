@@ -31,7 +31,6 @@ function Webpay(order_id, session_id, amount) {
 	useEffect(() => {
 		fetchApi();
 	}, []);
-	
 
 	return retorno;
 }

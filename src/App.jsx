@@ -37,7 +37,7 @@ function App() {
 					/>
 				</section>
 			</div>
-			<section className="mt-36 relative mx-8 h-[30rem] ">
+			<section className="mt-24 relative mx-8 h-[30rem] ">
 				<div className="my-16 flex items-center justify-center">
 					<h2 className="text-white text-4xl font-bold drop-shadow-aq">
 						Productos Destacados

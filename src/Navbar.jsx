@@ -126,15 +126,12 @@ const Menu = () => {
 								<Link to="/info" className="hover:bg-mainColor">
 									Quienes Somos
 								</Link>
-								
 							</div>
 						</li>
 					</ul>
 				</nav>
 			)}
-			{isCartOpen && (
-				<Cart />
-			)}
+			{isCartOpen && <Cart />}
 		</header>
 	);
 };

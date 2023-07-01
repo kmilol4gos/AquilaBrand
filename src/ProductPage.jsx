@@ -32,7 +32,7 @@ function Sizes({ SIZE_NAME, SIZE_ID, setSize }) {
 			<label
 				key={SIZE_NAME}
 				htmlFor={SIZE_NAME}
-				className="justify-center bg-black flex items-center p-2 w-14 h-8 text-lg hover:bg-white hover:text-black ease-in-out duration-100 cursor-pointer"
+				className="justify-center bg-black flex items-center p-2 w-12 h-12 text-lg hover:bg-white hover:text-black ease-in-out duration-100 cursor-pointer"
 				onClick={() => setSize(SIZE_ID)}
 			>
 				{SIZE_NAME}
@@ -58,7 +58,7 @@ function Colors({ product, setColor }) {
 					<label
 						key={color.COLOR_NAME}
 						htmlFor={color.COLOR_NAME}
-						className="justify-center bg-black flex items-center p-2 w-14 h-8 text-lg hover:bg-white hover:text-black ease-in-out duration-100 cursor-pointer"
+						className="justify-center bg-black flex items-center p-2 h-12 text-lg hover:bg-white hover:text-black ease-in-out duration-100 cursor-pointer"
 						onClick={() => setColor(color.COLOR_ID)}
 					>
 						{color.COLOR_NAME}
