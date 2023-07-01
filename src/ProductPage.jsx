@@ -48,7 +48,7 @@ function Colors({ product, setColor }) {
 			className="flex py-2 w-12 justify-end gap-2 flex-row-reverse mb-2"
 		>
 			{product.map((color) => (
-				<div>
+				<div key={color.COLOR_NAME}>
 					<input
 						type="radio"
 						value={color.COLOR_ID}
@@ -56,7 +56,6 @@ function Colors({ product, setColor }) {
 						id={color.COLOR_NAME}
 					></input>
 					<label
-						key={color.COLOR_NAME}
 						htmlFor={color.COLOR_NAME}
 						className="justify-center bg-black flex items-center p-2 h-12 text-base hover:bg-white hover:text-black ease-in-out duration-100 cursor-pointer"
 						onClick={() => setColor(color.COLOR_ID)}
