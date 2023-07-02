@@ -8,10 +8,11 @@ import App from "./App";
 import Events from "./Events";
 import Products from "./Products";
 import { CartProvider } from "./context/cart_context";
-import Checkout from "./Checkout";
+import Checkout from "./checkout";
 import Summary from "./Summary";
 import ProductPage from "./ProductPage";
 import AboutUs from "./AboutUs";
+import NotFound from "./NotFound";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -79,6 +80,7 @@ root.render(
 					<Route path="/checkout" element={<Checkout />} />
 					<Route path="/summary" element={<Summary />} />
 					<Route path="/product/:id" element={<ProductPage />} />
+					<Route path="*" element={<NotFound />}/>
 				</Routes>
 				<Footer />
 			</CartProvider>

@@ -102,7 +102,7 @@ export default function Checkout() {
 				<strong>Cantidad de productos: {<Cart_Cantidad />}</strong>
 				<strong>Total a pagar: ${<Cart_Amount />}</strong>
 			</div>
-			<p>Seccion boton</p>
+			<p>Avanzar</p>
 			<form method="post" action={info.url}>
 				<input type="hidden" name="token_ws" value={info.token} />
 				<input type="submit" value="Ir a pagar" />

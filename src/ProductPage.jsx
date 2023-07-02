@@ -1,6 +1,6 @@
 import { useCart } from "./hook/useCart";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import polera1 from "./assets/polera.png";
 import polera2 from "./assets/polera2.png";
 import polera4 from "./assets/polera4.png";
@@ -106,6 +106,11 @@ export default function ProductPage() {
 
 	//falta obtener el index del color y la talla seleccionada
 
+	if(product[0].length === 0) {
+		return (
+			<Link to="*"/>
+		)
+	}
 	return (
 		<div className="w-screen h-screen flex justify-center items-center">
 			<section

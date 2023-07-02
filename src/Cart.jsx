@@ -4,7 +4,6 @@ import AddIcon from "./assets/Add.svg";
 import ImgProduct from "./assets/img-ejemplo.jpeg";
 import DeleteIcon from "./assets/Delete.svg";
 import { Cart_Amount, Cart_Cantidad } from "./hook/datosCart";
-import Checkout from "./Checkout";
 
 function CartProduct_Card({
 	PRODUCT_NAME,
