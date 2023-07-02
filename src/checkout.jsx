@@ -5,9 +5,12 @@ import { TailSpin } from "react-loader-spinner";
 
 //pagina de confirmacion de compra
 
-//pendiente de termino de diseño e implementacion de carro de compras
-
 //llamar a webpay luego de confirmar compra.
+
+//aca ya llega el carro definitivo para la compra.
+
+//aca se pide la informacion de la cliente.
+
 
 function Webpay(order_id, session_id, amount) {
 	const URL = "http://localhost:3000/checkout";
@@ -42,8 +45,7 @@ function Product_Card({
 	PRECIO,
 	quantity,
 	SIZE_NAME,
-	COLOR_NAME,
-	addToCart,
+	COLOR_NAME
 }) {
 	return (
 		<li key={PRODUCT_ID}>
@@ -94,6 +96,39 @@ export default function Checkout() {
 			className="flex flex-col justify-center items-center  relative h-screen top-20"
 			id="redireccion webpay"
 		>
+			<div>
+				<h1>Informacion personal</h1>
+				<form>
+					<label>
+						Nombre:
+						<input type="text" name="name" />
+					</label>
+					<label>
+						Apellido:
+						<input type="text" name="lastname" />
+					</label>
+					<label>
+						Email:
+						<input type="text" name="email" />
+					</label>
+					<label>
+						Telefono:
+						<input type="text" name="phone" />
+					</label>
+					<label>
+						Direccion:
+						<input type="text" name="address" />
+					</label>
+					<label>
+						Ciudad:
+						<input type="text" name="city" />
+					</label>
+					<label>
+						Region:
+						<input type="text" name="region" />
+					</label>
+				</form>
+			</div>
 			<div id="info-productos">
 				<h1>Detalle de productos</h1>
 				{cart.map((item) => (
