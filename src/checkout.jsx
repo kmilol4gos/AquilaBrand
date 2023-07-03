@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import { useCart } from "./hook/useCart";
 import { Cart_Amount, Cart_Cantidad } from "./hook/datosCart";
 import { TailSpin } from "react-loader-spinner";
+import PersonIcon from "./assets/PersonIcon.svg";
+import EmailIcon from "./assets/EmailIcon.svg";
+import CellIcon from "./assets/CellIcon.svg";
+import HomeIcon from "./assets/HomeIcon.svg";
 
 //pagina de confirmacion de compra
 
@@ -455,7 +459,7 @@ const App = () => {
 	return (
 		<div className="flex flex-col gap-4">
 			<select
-				className="bg-white p-2 text-black rounded-sm"
+				className="bg-white p-2 text-black rounded-sm outline-none border-none"
 				value={selectedRegion}
 				onChange={handleRegionChange}
 			>
@@ -467,7 +471,7 @@ const App = () => {
 				))}
 			</select>
 			<select
-				className="bg-white p-2 text-black rounded-sm"
+				className="bg-white p-2 text-black rounded-sm outline-none border-none"
 				value={selectedComuna}
 				onChange={handleComunaChange}
 			>
@@ -532,23 +536,23 @@ function Product_Card({
 	COLOR_NAME,
 }) {
 	return (
-		<li key={PRODUCT_ID}>
-			<img alt={PRODUCT_NAME} />
-			<div id="titulo-producto">
-				<strong>{PRODUCT_NAME}</strong>
+		<div
+			key={PRODUCT_ID}
+			className="bg-mainColor flex justify-between p-5 text-white"
+		>
+			<div className="bg-white flex items-center w-[30%]">
+				<img alt={PRODUCT_NAME} className="w-full object-cover" />
 			</div>
-			<div id="descripcion-producto">
-				<strong>{PRODUCT_DESCRIPTION}</strong>
+			<div className="flex flex-col">
+				<h4 className="font-bold text-base">{PRODUCT_NAME}</h4>
+				<span className="before:content-['$'] text-sm">{PRECIO}</span>
 			</div>
-			<div id="precio-producto">
-				<strong>${PRECIO}</strong>
+			<div className="flex flex-col">
+				<span className="text-base font-medium">Talla: {SIZE_NAME}</span>
+				<span className="text-base font-medium">Color: {COLOR_NAME}</span>
+				<span className="text-base font-medium">Cantidad: {quantity}</span>
 			</div>
-			<div>
-				<p>Talla: {SIZE_NAME}</p>
-				<p>Color: {COLOR_NAME}</p>
-				<strong>Cantidad: {quantity}</strong>
-			</div>
-		</li>
+		</div>
 	);
 }
 
@@ -577,55 +581,23 @@ export default function Checkout() {
 
 	return (
 		<div
-			className="flex justify-around items-center relative h-screen"
+			className="flex items-center justify-around relative h-screen w-screen "
 			id="redireccion webpay"
 		>
-			<div className="flex flex-col items-center">
-				<h1 className="text-3xl mb-14 relative text-white">
-					Informacion personal
-				</h1>
-				<form className="flex flex-col gap-4">
+			<div className="flex flex-col items-center relative " id="info-personal ">
+				<h1 className="text-3xl mb-14  text-white">Informacion personal</h1>
+				<form className="flex flex-col gap-4" action={info.url} method="post">
 					<div className=" rounded-sm flex items-center bg-white">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="icon icon-tabler icon-tabler-user ml-3"
-							width="32"
-							height="32"
-							viewBox="0 0 24 24"
-							strokeWidth="1.5"
-							stroke="#9B287B"
-							fill="none"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						>
-							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-							<path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-							<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-						</svg>
+						<img src={PersonIcon} alt="" className="ml-3" />
 						<input
 							type="text"
 							name="name"
 							placeholder="Nombre"
-							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none"
+							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none "
 						/>
 					</div>
-					<label className=" bg-white rounded-sm flex items-center ">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="icon icon-tabler icon-tabler-user ml-3"
-							width="32"
-							height="32"
-							viewBox="0 0 24 24"
-							strokeWidth="1.5"
-							stroke="#9B287B"
-							fill="none"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						>
-							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-							<path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-							<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-						</svg>
+					<label className=" bg-white rounded-sm flex items-center  ">
+						<img src={PersonIcon} alt="" className="ml-3" />
 						<input
 							type="text"
 							name="lastname"
@@ -634,22 +606,7 @@ export default function Checkout() {
 						/>
 					</label>
 					<label className=" rounded-sm flex items-center bg-white ">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="icon icon-tabler icon-tabler-mail ml-3"
-							width="32"
-							height="32"
-							viewBox="0 0 24 24"
-							strokeWidth="1.5"
-							stroke="#9B287B"
-							fill="none"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						>
-							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-							<path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
-							<path d="M3 7l9 6l9 -6" />
-						</svg>
+						<img src={EmailIcon} alt="" className="ml-3" />
 						<input
 							type="email"
 							name="email"
@@ -658,23 +615,7 @@ export default function Checkout() {
 						/>
 					</label>
 					<label className=" rounded-sm flex items-center bg-white">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="icon icon-tabler icon-tabler-device-mobile ml-3"
-							width="32"
-							height="32"
-							viewBox="0 0 24 24"
-							strokeWidth="1.5"
-							stroke="#9B287B"
-							fill="none"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						>
-							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-							<path d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z" />
-							<path d="M11 4h2" />
-							<path d="M12 17v.01" />
-						</svg>
+						<img src={CellIcon} alt="" className="ml-3" />
 						<input
 							type="text"
 							name="phone"
@@ -683,23 +624,7 @@ export default function Checkout() {
 						/>
 					</label>
 					<label className="rounded-sm flex items-center bg-white">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="icon icon-tabler icon-tabler-home-2 ml-3"
-							width="32"
-							height="32"
-							viewBox="0 0 24 24"
-							strokeWidth="1.5"
-							stroke="#9B287B"
-							fill="none"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						>
-							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-							<path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-							<path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-							<path d="M10 12h4v4h-4z" />
-						</svg>
+						<img src={HomeIcon} alt="" className="ml-3" />
 						<input
 							type="text"
 							name="address"
@@ -708,21 +633,36 @@ export default function Checkout() {
 						/>
 					</label>
 					<App />
+					<input type="hidden" name="token_ws" value={info.token} />
+					<input
+						type="submit"
+						value="Ir a pagar"
+						className="bg-black text-white py-2 font-bold text-lg hover:bg-white hover:text-black cursor-pointer rounded-sm"
+					/>
 				</form>
 			</div>
-			<div id="info-productos">
-				<h1>Detalle de productos</h1>
-				{cart.map((item) => (
-					<Product_Card key={item.PRODUCT_ID} {...item} />
-				))}
-				<strong>Cantidad de productos: {<Cart_Cantidad />}</strong>
-				<strong>Total a pagar: ${<Cart_Amount />}</strong>
+
+			<div
+				className="border-l-2 flex items-center flex-col justify-center text-white relative px-7"
+				id="resumen-productos"
+			>
+				<h1 className="text-3xl mb-14">Resumen de la compra</h1>
+				<div className="h-[23rem] overflow-y-auto flex flex-col gap-3">
+					{cart.map((item) => (
+						<Product_Card key={item.PRODUCT_ID} {...item} />
+					))}
+				</div>
+				<div className="flex justify-between items-center w-full">
+					<h4 className="text-xl font-bold">Productos:</h4>
+					<span className="text-base font-medium">{<Cart_Cantidad />}</span>
+				</div>
+				<div className="flex justify-between items-center w-full">
+					<h4 className="text-xl font-bold">Total:</h4>
+					<span className="before:content-['$'] text-base font-medium">
+						{<Cart_Amount />}
+					</span>
+				</div>
 			</div>
-			<p>Avanzar</p>
-			<form method="post" action={info.url}>
-				<input type="hidden" name="token_ws" value={info.token} />
-				<input type="submit" value="Ir a pagar" />
-			</form>
 		</div>
 	);
 }

@@ -36,10 +36,6 @@ function CartProduct_Card({
 							<span className="font-light text-xs">Color: {COLOR_NAME}</span>
 							<span className="font-light text-xs">Cantidad: {quantity}</span>
 						</div>
-						{/* <div className="pb-7">
-							<span className="font-light text-xs">Cantidad: {quantity}</span>
-							<button onClick={addToCart}>+</button>
-						</div> */}
 						<div>
 							<span className="font-normal text-xl before:content-['$']">
 								{PRECIO}
@@ -105,7 +101,10 @@ export default function Cart() {
 					</span>
 				</div>
 				<div className="flex justify-center w-full">
-					<Link to="/checkout" className="text-center w-full py-4 border-none bg-black text-white text-sm font-medium cursor-pointer ease-in-out duration-100 hover:text-black hover:bg-white">
+					<Link
+						to="/checkout"
+						className="text-center w-full py-4 border-none bg-black text-white text-sm font-medium cursor-pointer ease-in-out duration-100 hover:text-black hover:bg-white"
+					>
 						Finalizar Compra
 					</Link>
 				</div>
