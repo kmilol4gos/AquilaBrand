@@ -1,0 +1,5 @@
+Las imagenes seran guardadas con [nombreproducto]_[color].[formato (idealmente png)]
+
+estas tendran que ser subidas a mano, su nombre y color debera ser exacto al que aparece en la base de datos.
+
+el martes lo tendria listo e implementado.
