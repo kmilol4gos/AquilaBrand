@@ -16,6 +16,7 @@ import HomeIcon from "./assets/HomeIcon.svg";
 //aca se pide la informacion de la cliente.
 
 function GuardarDatos({
+	cart,
 	order_id,
 	session_id,
 	amount,
@@ -28,8 +29,27 @@ function GuardarDatos({
 	email,
 	telefono,
 }){
-	const { cart } = useCart();
 	console.log(cart)
+	console.log(order_id)
+	console.log(session_id)
+	console.log(amount)
+	console.log(quantity)
+	console.log(region)
+	console.log(comuna)
+	console.log(address)
+	console.log(nombre)
+	console.log(apellido)
+	console.log(email)
+	console.log(telefono)
+
+
+	const informacionCliente = ({
+
+	})
+
+	return (
+		alert("Datos guardados")
+	)
 }
 
 const App = ({selectedRegion, setSelectedRegion, selectedComuna, setSelectedComuna}) => {
@@ -222,28 +242,29 @@ export default function Checkout() {
 		Imagenes();
 	}, []);
 
+	const namehandleChange = (e) => {
+		setNombre(e.target.value);
+	};
+	const lastnamehandleChange = (e) => {
+		setApellido(e.target.value);
+	};
+	const emailhandleChange = (e) => {
+		setEmail(e.target.value);
+	};
+	const phonehandleChange = (e) => {
+		setTelefono(e.target.value);
+	};
+	const addresshandleChange = (e) => {
+		setAddress(e.target.value);
+	};
+	
+
 	if (!info || !images[0])
 		return (
 			<div className="relative flex justify-center items-center w-screen h-screen">
 				<TailSpin color="#e2fcef" height={80} width={80} />
 			</div>
 		);
-
-	/*onClick={()=>{
-							<GuardarDatos
-								order_id={order_id}
-								session_id={session_id}
-								amount={<Cart_Amount/>}
-								quantity={<Cart_Cantidad />}
-								region={selectedRegion}
-								comuna={selectedComuna}
-								address={Address}
-								nombre={nombre}
-								apellido={apellido}
-								email={email}
-								telefono={telefono}
-							/>
-						}} AGREGAR A BOTON PARA GUARDAR DATOS*/
 
 	return (
 		<div
@@ -252,13 +273,15 @@ export default function Checkout() {
 		>
 			<div className="flex flex-col items-center relative " id="info-personal ">
 				<h1 className="text-3xl mb-14  text-white">Informacion personal</h1>
-				<form className="flex flex-col gap-4" action={info.url} method="post">
+				<div
+					className="flex flex-col gap-4" 
+				>
 					<div className=" rounded-sm flex items-center bg-white">
 						<img src={PersonIcon} alt="" className="ml-3" />
 						<input
 							type="text"
 							name="name"
-							onChange={(e) => setNombre(e.target.value)}
+							onChange={namehandleChange}
 							placeholder="Nombre"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none "
 						/>
@@ -268,9 +291,10 @@ export default function Checkout() {
 						<input
 							type="text"
 							name="lastname"
-							onChange={(e) => setApellido(e.target.value)}
+							onChange={lastnamehandleChange}
 							placeholder="Apellido"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none"
+							required
 						/>
 					</label>
 					<label className=" rounded-sm flex items-center bg-white ">
@@ -278,9 +302,10 @@ export default function Checkout() {
 						<input
 							type="email"
 							name="email"
-							onChange={(e) => setEmail(e.target.value)}
+							onChange={emailhandleChange}
 							placeholder="Correo"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none"
+							required
 						/>
 					</label>
 					<label className=" rounded-sm flex items-center bg-white">
@@ -288,9 +313,10 @@ export default function Checkout() {
 						<input
 							type="text"
 							name="phone"
-							onChange={(e) => setTelefono(e.target.value)}
+							onChange={phonehandleChange}
 							placeholder="Celular"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor text-black outline-none border-none"
+							required
 						/>
 					</label>
 					<label className="rounded-sm flex items-center bg-white">
@@ -299,8 +325,9 @@ export default function Checkout() {
 							type="text"
 							name="address"
 							placeholder="Direccion"
-							onChange={(e) => {setAddress(e.target.value)}}
+							onChange={addresshandleChange}
 							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none"
+							required
 						/>
 					</label>
 					<App 
@@ -309,13 +336,12 @@ export default function Checkout() {
 						selectedComuna={selectedComuna}
 						selectedRegion={selectedRegion}
 					/>
-					<input type="hidden" name="token_ws" value={info.token} />
-					<input
-						type="submit"
-						value="Ir a pagar"
+					<button
+						onClick={() => {GuardarDatos( cart, order_id, session_id, <Cart_Amount/>, <Cart_Cantidad/>, selectedRegion, selectedComuna, Address, nombre, apellido, email, telefono)}}
+						value="Confirmar Datos"
 						className="bg-black text-white py-2 font-bold text-lg hover:bg-white hover:text-black cursor-pointer rounded-sm"
-					/>
-				</form>
+					>Confirmar Datos</button>
+				</div>
 			</div>
 
 			<div
@@ -342,6 +368,15 @@ export default function Checkout() {
 						{<Cart_Amount />}
 					</span>
 				</div>
+				<form className="flex flex-col gap-4" action={info.url} method="post">
+				<input type="hidden" name="token_ws" value={info.token} />
+					<input
+						type="submit"
+						value="Ir a pagar"
+						className="bg-black text-white py-2 font-bold text-lg hover:bg-white hover:text-black cursor-pointer rounded-sm"
+					/>
+				</form>
+				
 			</div>
 		</div>
 	);
