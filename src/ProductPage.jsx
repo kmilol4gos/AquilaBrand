@@ -25,6 +25,48 @@ function AgregarAlCarro({ product, color, size, addToCart }) {
 	);
 }
 
+function MostrarImagenes({color, images, PRODUCT_NAME}) {
+
+	let ImagePrincipal;
+	let image2;
+	let image3;
+	if(color === undefined){
+		ImagePrincipal = images[0].IMAGE;
+		image2 = images[0].IMAGE_2;
+		image3 = images[0].IMAGE_3;
+	}
+	const filterImages = images.filter((item) => item.COLOR_ID === color);
+	if(!filterImages[0]){
+	}
+	else{
+		ImagePrincipal = filterImages[0].IMAGE;
+		image2 = filterImages[0].IMAGE_2;
+		image3 = filterImages[0].IMAGE_3;
+	}
+	return(
+		<div className="mr-10 self-center flex h-full gap-4">
+			<img
+				src={ImagePrincipal}
+				alt=""
+				className="self-center w-full h-full object-cover rounded-lg"
+			/>
+			<div className="flex flex-col justify-between">
+				<img
+					src={image2}
+					alt=""
+					className="w-60 h-60 object-cover rounded-lg"
+				/>
+				<img
+					src={image3}
+					alt=""
+					className="w-60 h-60 object-cover rounded-lg"
+				/>
+			</div>
+		</div>
+	)
+}
+
+
 function Sizes({ SIZE_NAME, SIZE_ID, setSize }) {
 	return (
 		<div>
@@ -92,11 +134,29 @@ export default function ProductPage() {
 		setProduct(responseJSON);
 	};
 
+	const [images, setImages] = useState([]);
+
+	const URLIMG = "http://localhost:3000/images";
+
+	const Imagenes = async () => {
+		const response = await fetch(URLIMG, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				product: id,
+			},
+
+		});
+		const responseJSON = await response.json();
+		setImages(responseJSON);
+	};
+
 	useEffect(() => {
 		fetchApi();
+		Imagenes();
 	}, []);
 
-	if (!product) {
+	if (!product || !images[0]) {
 		return (
 			<div className="relative flex justify-center items-center w-screen h-screen">
 				<TailSpin color="#e2fcef" height={80} width={80} />
@@ -104,38 +164,23 @@ export default function ProductPage() {
 		);
 	}
 
-	//falta obtener el index del color y la talla seleccionada
-
 	if(product[0].length === 0) {
 		return (
 			<Link to="*"/>
 		)
 	}
+
 	return (
 		<div className="w-screen h-screen flex justify-center items-center">
 			<section
 				id="producto"
 				className="relative flex items-stretch justify-center h-[36rem] text-white"
 			>
-				<div className="mr-10 self-center flex h-full gap-4">
-					<img
-						src={polera1}
-						alt=""
-						className="self-center w-full h-full object-cover rounded-lg"
-					/>
-					<div className="flex flex-col justify-between">
-						<img
-							src={polera2}
-							alt=""
-							className="w-60 h-60 object-cover rounded-lg"
-						/>
-						<img
-							src={polera4}
-							alt=""
-							className="w-60 h-60 object-cover rounded-lg"
-						/>
-					</div>
-				</div>
+				<MostrarImagenes 
+					color={color} 
+					images={images}
+					PRODUCT_NAME={product[0][0].PRODUCT_NAME}
+				/>
 				<div className="h-[80%] flex flex-col justify-around m-2 w-80 font-bold self-center">
 					<section className="flex flex-col gap-2 mb-3">
 						<h1 className="text-4xl font-bold uppercase">

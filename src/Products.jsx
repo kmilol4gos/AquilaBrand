@@ -13,7 +13,16 @@ function Product_Card({
 	PRODUCT_DESCRIPTION,
 	PRECIO,
 	addToCart,
+	image
 }) {
+	let ImagePrincipal;
+	const filterImage = image.filter((item) => item.PRODUCT_ID === PRODUCT_ID);
+	if(!filterImage[0]){
+		ImagePrincipal = {Polera};
+	}
+	else{
+		ImagePrincipal = filterImage[0].IMAGE;
+	}
 	return (
 		<div
 			id="Product"
@@ -22,7 +31,7 @@ function Product_Card({
 		>
 			<Link to="/" className="">
 				<img
-					src={Polera}
+					src={ImagePrincipal}
 					alt={PRODUCT_NAME}
 					className="object-cover box-content min-w-[12rem] max-w-[12rem] min-h-[13rem] max-h-[13rem] ml-[-60px] mr-[30px] rounded-3xl shadow-xl"
 				/>
@@ -52,6 +61,7 @@ export default function Products(props) {
 	const { addToCart, cart } = useCart();
 
 	const [products, setProducts] = useState();
+
 	const URL = "http://localhost:3000/products";
 
 	const fetchApi = async () => {
@@ -67,19 +77,37 @@ export default function Products(props) {
 		setProducts(responseJSON);
 	};
 
+	const [images, setImages] = useState([]);
+
+	const URLIMG = "http://localhost:3000/images";
+
+	const Imagenes = async () => {
+		fetch(URLIMG, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				category: props.category,
+				section: props.section,
+			},
+
+		}).then(response => response.json())
+		.then(data => {
+			setImages(data);
+		})
+	};
+
 	useEffect(() => {
 		fetchApi();
+		Imagenes()
 	}, []);
 
-	if (!products) {
+	if (!products || !images) {
 		return (
 			<div className="flex justify-center items-center w-screen h-screen">
 				<TailSpin color="#e2fcef" height={80} width={80} />
 			</div>
 		);
 	}
-
-	console.log(props);
 
 	return (
 		<div className="relative top-20 w-full">
@@ -104,13 +132,17 @@ export default function Products(props) {
 						<TailSpin color="#e2fcef" height={80} width={80} />
 					</div> // me lo saco completamente del culo xd
 				) : (
-					products.map((product, index) => (
-						<Product_Card
+					products.map((product, index) => {
+						return (
+							<Product_Card
 							key={product.PRODUCT_ID}
 							addToCart={() => addToCart(product)}
 							{...product}
+							image={images}
 						/>
-					))
+						)
+						
+					})
 				)}
 			</section>
 		</div>

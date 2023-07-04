@@ -1,4 +1,5 @@
 import { useCart } from "./hook/useCart";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AddIcon from "./assets/Add.svg";
 import ImgProduct from "./assets/img-ejemplo.jpeg";
@@ -7,20 +8,33 @@ import { Cart_Amount, Cart_Cantidad } from "./hook/datosCart";
 
 function CartProduct_Card({
 	PRODUCT_NAME,
+	PRODUCT_ID,
 	SIZE_NAME,
 	COLOR_NAME,
 	PRECIO,
 	quantity,
 	addToCart,
 	removeFromCart,
-}) {
+	images
+}) 
+	{
+
+	let ImagePrincipal = [];
+	const filterImages = images.filter((item) => 
+		item.COLOR_NAME === COLOR_NAME && item.PRODUCT_ID === PRODUCT_ID );
+		if(!filterImages[0]){
+	}
+	else{
+		ImagePrincipal = filterImages[0].IMAGE;
+	}
+	
 	return (
 		<div className="my-2 flex flex-col justify-center bg-mainColor">
 			<div className="flex w-[90%] items-stretch pt-4 pb-6" id="card-product">
 				<div className="w-[30%] flex justify-center items-center mx-2">
 					<Link to="/product/idproducto">
 						<img
-							src={ImgProduct}
+							src={ImagePrincipal}
 							alt=""
 							className="w-full object-cover border-none"
 						/>
@@ -66,7 +80,32 @@ export default function Cart() {
 		calcularCantidad,
 	} = useCart();
 
-	const carrito = cart;
+	const [images, setImages] = useState([]);
+
+	const URLIMG = "http://localhost:3000/images";
+
+	const Imagenes = async () => {
+		const response = await fetch(URLIMG, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const responseJSON = await response.json();
+		setImages(responseJSON);
+	};
+
+	useEffect(() => {
+		Imagenes();
+	}, []);
+
+	if(!images){
+		return (
+			<div className="relative flex justify-center items-center w-screen h-screen">
+				<TailSpin color="#e2fcef" height={80} width={80} />
+			</div>
+		)
+	}
 
 	return (
 		<nav className="z-40 top-0 fixed right-0 h-screen flex flex-col w-[30rem]">
@@ -83,6 +122,7 @@ export default function Cart() {
 									addToCart={() => addToCart(product)}
 									removeFromCart={() => removeFromCart(product)}
 									{...product}
+									images={images}
 								/>
 							))}
 						</div>

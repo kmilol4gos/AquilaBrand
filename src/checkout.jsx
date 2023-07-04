@@ -15,9 +15,26 @@ import HomeIcon from "./assets/HomeIcon.svg";
 
 //aca se pide la informacion de la cliente.
 
-const App = () => {
-	const [selectedRegion, setSelectedRegion] = useState("");
-	const [selectedComuna, setSelectedComuna] = useState("");
+function GuardarDatos({
+	order_id,
+	session_id,
+	amount,
+	quantity,
+	region,
+	comuna,
+	address,
+	nombre,
+	apellido,
+	email,
+	telefono,
+}){
+	const { cart } = useCart();
+	console.log(cart)
+}
+
+const App = ({selectedRegion, setSelectedRegion, selectedComuna, setSelectedComuna}) => {
+	//const [selectedRegion, setSelectedRegion] = useState("");
+	//const [selectedComuna, setSelectedComuna] = useState("");
 
 	const [comunas, setComunas] = useState([]);
 	const [regiones, setRegiones] = useState([]);
@@ -39,7 +56,7 @@ const App = () => {
 	const handleRegionChange = (e) => {
 		const selectedRegion = e.target.value;
 		setSelectedRegion(selectedRegion);
-		setSelectedComuna(""); // Reset selected comuna
+		setSelectedComuna(""); 
 	};
 
 	const handleComunaChange = (e) => {
@@ -130,14 +147,24 @@ function Product_Card({
 	quantity,
 	SIZE_NAME,
 	COLOR_NAME,
+	images
 }) {
+
+	let ImagePrincipal = [];
+	const filterImages = images.filter((item) => 
+		item.COLOR_NAME === COLOR_NAME && item.PRODUCT_ID === PRODUCT_ID );
+		if(!filterImages[0]){
+	}
+	else{
+		ImagePrincipal = filterImages[0].IMAGE;
+	}
 	return (
 		<div
 			key={PRODUCT_NAME}
 			className="bg-mainColor flex justify-between p-5 text-white"
 		>
-			<div className="bg-white flex items-center w-[30%]">
-				<img alt={PRODUCT_NAME} className="w-full object-cover" />
+			<div className="bg-white flex items-center w-[15%]">
+				<img alt={PRODUCT_NAME} src={ImagePrincipal} className="w-full object-cover" />
 			</div>
 			<div className="flex flex-col">
 				<h4 className="font-bold text-base">{PRODUCT_NAME}</h4>
@@ -168,12 +195,55 @@ export default function Checkout() {
 
 	const info = Webpay(order_id, session_id, Cart_Amount());
 
-	if (!info)
+	const [selectedRegion, setSelectedRegion] = useState("");
+	const [selectedComuna, setSelectedComuna] = useState("");
+	const [Address, setAddress] = useState("");
+	const [nombre, setNombre] = useState("");
+	const [apellido, setApellido] = useState("");
+	const [email, setEmail] = useState("");
+	const [telefono, setTelefono] = useState("");
+
+	const [images, setImages] = useState([]);
+
+	const URLIMG = "http://localhost:3000/images";
+
+	const Imagenes = async () => {
+		const response = await fetch(URLIMG, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const responseJSON = await response.json();
+		setImages(responseJSON);
+	};
+
+	useEffect(() => {
+		Imagenes();
+	}, []);
+
+	if (!info || !images[0])
 		return (
 			<div className="relative flex justify-center items-center w-screen h-screen">
 				<TailSpin color="#e2fcef" height={80} width={80} />
 			</div>
 		);
+
+	/*onClick={()=>{
+							<GuardarDatos
+								order_id={order_id}
+								session_id={session_id}
+								amount={<Cart_Amount/>}
+								quantity={<Cart_Cantidad />}
+								region={selectedRegion}
+								comuna={selectedComuna}
+								address={Address}
+								nombre={nombre}
+								apellido={apellido}
+								email={email}
+								telefono={telefono}
+							/>
+						}} AGREGAR A BOTON PARA GUARDAR DATOS*/
 
 	return (
 		<div
@@ -188,6 +258,7 @@ export default function Checkout() {
 						<input
 							type="text"
 							name="name"
+							onChange={(e) => setNombre(e.target.value)}
 							placeholder="Nombre"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none "
 						/>
@@ -197,6 +268,7 @@ export default function Checkout() {
 						<input
 							type="text"
 							name="lastname"
+							onChange={(e) => setApellido(e.target.value)}
 							placeholder="Apellido"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none"
 						/>
@@ -206,6 +278,7 @@ export default function Checkout() {
 						<input
 							type="email"
 							name="email"
+							onChange={(e) => setEmail(e.target.value)}
 							placeholder="Correo"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none"
 						/>
@@ -215,6 +288,7 @@ export default function Checkout() {
 						<input
 							type="text"
 							name="phone"
+							onChange={(e) => setTelefono(e.target.value)}
 							placeholder="Celular"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor text-black outline-none border-none"
 						/>
@@ -225,10 +299,16 @@ export default function Checkout() {
 							type="text"
 							name="address"
 							placeholder="Direccion"
+							onChange={(e) => {setAddress(e.target.value)}}
 							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none"
 						/>
 					</label>
-					<App />
+					<App 
+						setSelectedRegion={setSelectedRegion}
+						setSelectedComuna={setSelectedComuna}
+						selectedComuna={selectedComuna}
+						selectedRegion={selectedRegion}
+					/>
 					<input type="hidden" name="token_ws" value={info.token} />
 					<input
 						type="submit"
@@ -245,7 +325,11 @@ export default function Checkout() {
 				<h1 className="text-3xl mb-14">Resumen de la compra</h1>
 				<div className="h-[23rem] overflow-y-auto flex flex-col gap-3">
 					{cart.map((item) => (
-						<Product_Card key={item.PRODUCT_ID} {...item} />
+						<Product_Card 
+							key={item.PRODUCT_NAME} 
+							{...item}
+							images={images}
+						/>
 					))}
 				</div>
 				<div className="flex justify-between items-center w-full">
