@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "./hook/useCart";
 import { Cart_Cantidad } from "./hook/datosCart";
 import { Link } from "react-router-dom";
+import { TailSpin } from "react-loader-spinner";
 
 function Webpay(token) {
 	const URL = "http://localhost:3000/checkout";
@@ -84,8 +85,6 @@ function Product_Card({
 
 export default function Summary() {
 
-	const { cart } = useCart();
-
 	const queryString = window.location.search;
 
 	const urlParams = new URLSearchParams(queryString);
@@ -95,14 +94,14 @@ export default function Summary() {
 
 	const transactionData = obtenerDatos(token);
 
-	if (!transaction_info || !transactionData) return "Cargando...";
-
-	console.log(transactionData)
+	if (!transaction_info || !transactionData) return (
+		<div className="relative flex justify-center items-center w-screen h-screen">
+				<TailSpin color="#e2fcef" height={80} width={80} />
+		</div>
+	);
 
 	const info = JSON.parse(transactionData[0]['INFO']);
 	const infoProductos = info[0]['detalle_productos'];
-
-	console.log(infoProductos);
 
 	let count = 0;
 
