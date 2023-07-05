@@ -101,7 +101,7 @@ export default function Products(props) {
 		Imagenes()
 	}, []);
 
-	if (!products || !images) {
+	if (!products || !images[0]) {
 		return (
 			<div className="flex justify-center items-center w-screen h-screen">
 				<TailSpin color="#e2fcef" height={80} width={80} />

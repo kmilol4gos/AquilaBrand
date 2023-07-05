@@ -27,20 +27,29 @@ function Webpay(token) {
 	return transaction_info;
 }
 
-function guardarTrans(token) {
-	const { cart } = useCart();
+function obtenerDatos(token) {
 
 	const URL = "http://localhost:3000/transactions";
 
-	const response = fetch(URL, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			token: token,
-		},
-		body: JSON.stringify(cart),
-	});
-	return response;
+	const [transactionData, setTransactionData] = useState();
+
+	const fetchApi = async () => {
+		const response = await fetch(URL, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				token: token,
+			},
+		});
+		const responseJSON = await response.json();
+		setTransactionData(responseJSON);
+	}
+
+	useEffect(() => {
+		fetchApi();
+	}, []);
+
+	return transactionData;
 }
 
 function Product_Card({
@@ -51,7 +60,6 @@ function Product_Card({
 	quantity,
 	SIZE_NAME,
 	COLOR_NAME,
-	addToCart,
 }) {
 	return (
 		<li key={PRODUCT_ID}>
@@ -75,6 +83,7 @@ function Product_Card({
 }
 
 export default function Summary() {
+
 	const { cart } = useCart();
 
 	const queryString = window.location.search;
@@ -84,9 +93,22 @@ export default function Summary() {
 
 	const transaction_info = Webpay(token);
 
-	if (!transaction_info) return "Cargando...";
+	const transactionData = obtenerDatos(token);
 
-	guardarTrans(token);
+	if (!transaction_info || !transactionData) return "Cargando...";
+
+	console.log(transactionData)
+
+	const info = JSON.parse(transactionData[0]['INFO']);
+	const infoProductos = info[0]['detalle_productos'];
+
+	console.log(infoProductos);
+
+	let count = 0;
+
+	infoProductos.map((item) => (
+		count++
+	))
 
 	return (
 		<div className="flex flex-col justify-center items-center relative top-20 h-screen">
@@ -99,10 +121,10 @@ export default function Summary() {
 			</div>
 			<div id="info-productos">
 				<h1>Detalle de productos</h1>
-				{cart.map((item) => (
-					<Product_Card key={item.PRODUCT_ID} {...item} />
+				{infoProductos.map((item) => (
+					<Product_Card key={item.PRODUCT_ID+item.PRODUCT_NAME+item.COLOR_NAME} {...item} />
 				))}
-				<strong>Cantidad de productos: {<Cart_Cantidad />}</strong>
+				<strong>Cantidad de productos: {count}</strong>
 				<Link to="/">Volver al inicio</Link>
 			</div>
 		</div>

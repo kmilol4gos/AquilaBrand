@@ -15,7 +15,7 @@ import HomeIcon from "./assets/HomeIcon.svg";
 
 //aca se pide la informacion de la cliente.
 
-function GuardarDatos({
+function GuardarDatos(
 	cart,
 	order_id,
 	session_id,
@@ -28,7 +28,8 @@ function GuardarDatos({
 	apellido,
 	email,
 	telefono,
-}){
+	token
+){
 	console.log(cart)
 	console.log(order_id)
 	console.log(session_id)
@@ -41,11 +42,41 @@ function GuardarDatos({
 	console.log(apellido)
 	console.log(email)
 	console.log(telefono)
+	console.log(token)
 
 
 	const informacionCliente = ({
-
+		nombre: nombre+" "+apellido,
+		email: email,
+		telefono: telefono,
+		direccion: address+", "+comuna+", "+region,
 	})
+
+	const informacionCompra = ([{
+		"orden": order_id,
+		"sesion": session_id,
+		"monto": amount,
+		"cantidad": quantity,
+		"detalle_productos": cart
+	}])
+
+	console.log(JSON.stringify(informacionCompra))
+	
+	
+	const URL = "http://localhost:3000/transactions";
+
+	const response = fetch(URL, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			token: token,
+		},
+		body: JSON.stringify({
+			cliente: informacionCliente,
+			bolsa: informacionCompra
+		})
+	});
+	response
 
 	return (
 		alert("Datos guardados")
@@ -180,7 +211,7 @@ function Product_Card({
 	}
 	return (
 		<div
-			key={PRODUCT_NAME}
+			key={PRODUCT_NAME+COLOR_NAME+SIZE_NAME}
 			className="bg-mainColor flex justify-between p-5 text-white"
 		>
 			<div className="bg-white flex items-center w-[15%]">
@@ -208,6 +239,9 @@ export default function Checkout() {
 	const hora = fecha.getHours();
 	const minuto = fecha.getMinutes();
 	const segundo = fecha.getSeconds();
+
+	const amount = Cart_Amount();
+	const quantity = Cart_Cantidad();
 
 	const order_id = "Aquila_" + dia + mes + año + hora + minuto + segundo;
 	const session_id =
@@ -258,13 +292,13 @@ export default function Checkout() {
 		setAddress(e.target.value);
 	};
 	
-
 	if (!info || !images[0])
 		return (
 			<div className="relative flex justify-center items-center w-screen h-screen">
 				<TailSpin color="#e2fcef" height={80} width={80} />
 			</div>
 		);
+
 
 	return (
 		<div
@@ -337,7 +371,7 @@ export default function Checkout() {
 						selectedRegion={selectedRegion}
 					/>
 					<button
-						onClick={() => {GuardarDatos( cart, order_id, session_id, <Cart_Amount/>, <Cart_Cantidad/>, selectedRegion, selectedComuna, Address, nombre, apellido, email, telefono)}}
+						onClick={() => {GuardarDatos( cart, order_id, session_id, amount, quantity, selectedRegion, selectedComuna, Address, nombre, apellido, email, telefono, info.token)}}
 						value="Confirmar Datos"
 						className="bg-black text-white py-2 font-bold text-lg hover:bg-white hover:text-black cursor-pointer rounded-sm"
 					>Confirmar Datos</button>
@@ -352,7 +386,7 @@ export default function Checkout() {
 				<div className="h-[23rem] overflow-y-auto flex flex-col gap-3">
 					{cart.map((item) => (
 						<Product_Card 
-							key={item.PRODUCT_NAME} 
+							key={item.PRODUCT_NAME+item.COLOR_NAME+item.SIZE_NAME} 
 							{...item}
 							images={images}
 						/>
@@ -376,7 +410,6 @@ export default function Checkout() {
 						className="bg-black text-white py-2 font-bold text-lg hover:bg-white hover:text-black cursor-pointer rounded-sm"
 					/>
 				</form>
-				
 			</div>
 		</div>
 	);
