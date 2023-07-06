@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom/client";
-import { Route, Routes } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
-import "./index.css";
+import { useEffect } from "react";
+import { Route, Routes, BrowserRouter, useLocation } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
 import App from "./App";
@@ -13,77 +12,39 @@ import Summary from "./Summary";
 import ProductPage from "./ProductPage";
 import AboutUs from "./AboutUs";
 import NotFound from "./NotFound";
+import "./index.css";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+function ScrollToTop() {
+	const { pathname } = useLocation();
 
-root.render(
-	<>
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [pathname]);
+
+	return null;
+}
+
+function Main() {
+	return (
 		<BrowserRouter>
+			<ScrollToTop />
 			<CartProvider>
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<App />} />;
-					<Route
-						path="/ropa"
-						element={<Products category="ropa" section="all" />}
-					/>
-					<Route
-						path="/ropa/poleras"
-						element={<Products category="ropa" section="poleras" />}
-					/>
-					<Route
-						path="/ropa/pantalones"
-						element={<Products category="ropa" section="pantalones" />}
-					/>
-					<Route
-						path="/ropa/polerones"
-						element={<Products category="ropa" section="polerones" />}
-					/>
-					<Route
-						path="/ropa/faldas"
-						element={<Products category="ropa" section="faldas" />}
-					/>
-					<Route
-						path="/ropa/gorros"
-						element={<Products category="ropa" section="gorros" />}
-					/>
-					<Route
-						path="/skate"
-						element={<Products category="skate" section="all" />}
-					/>
-					<Route
-						path="/skate/ruedas"
-						element={<Products category="skate" section="ruedas" />}
-					/>
-					<Route
-						path="/skate/tablas"
-						element={<Products category="skate" section="tablas" />}
-					/>
-					<Route
-						path="/accesorios"
-						element={<Products category="accesorios" section="all" />}
-					/>
-					<Route
-						path="/accesorios/bolsos"
-						element={<Products category="accesorios" section="bolsos" />}
-					/>
-					<Route
-						path="/accesorios/pulseras"
-						element={<Products category="accesorios" section="pulseras" />}
-					/>
-					<Route
-						path="/accesorios/collares"
-						element={<Products category="accesorios" section="collares" />}
-					/>
+					<Route path="/:category/:section" element={<Products />} />
 					<Route path="/Informacion" element={<AboutUs />}></Route>
 					<Route path="/events" element={<Events />} />
 					<Route path="/checkout" element={<Checkout />} />
 					<Route path="/summary" element={<Summary />} />
 					<Route path="/product/:id" element={<ProductPage />} />
-					<Route path="*" element={<NotFound />}/>
+					<Route path="*" element={<NotFound />} />
 				</Routes>
 				<Footer />
 			</CartProvider>
 		</BrowserRouter>
-	</>
-);
+	);
+}
+export default Main;
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Main />);
