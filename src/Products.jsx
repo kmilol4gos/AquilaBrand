@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useCart } from "./hook/useCart";
 import Polera from "./assets/polera2.png";
 import img from "./assets/img-ejemplo.jpeg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
 
 function Product_Card({
@@ -57,7 +57,9 @@ function Product_Card({
 	);
 }
 
-export default function Products(props) {
+export default function Products() {
+
+	const { category, section } = useParams();
 	const { addToCart, cart } = useCart();
 
 	const [products, setProducts] = useState();
@@ -69,8 +71,8 @@ export default function Products(props) {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				category: props.category,
-				section: props.section,
+				category: category,
+				section: section,
 			},
 		});
 		const responseJSON = await response.json();
@@ -86,8 +88,8 @@ export default function Products(props) {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				category: props.category,
-				section: props.section,
+				category: category,
+				section: section,
 			},
 
 		}).then(response => response.json())
@@ -98,7 +100,7 @@ export default function Products(props) {
 
 	useEffect(() => {
 		fetchApi();
-	}, [props]);
+	}, [category, section]);
 
 	useEffect(() => {
 		Imagenes();
@@ -123,7 +125,7 @@ export default function Products(props) {
 								Nuestra Coleccion
 							</h2>
 							<span className="drop-shadow-aq text-white font-medium text-3xl m-2 uppercase">
-								{props.section === "all" ? props.category : props.category+"/"+props.section}
+								{section === "all" ? pcategory : category+"/"+section}
 							</span>
 						</div>
 					</div>

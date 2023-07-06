@@ -71,12 +71,15 @@ export default function FeaturedProducts() {
 		<div
 			key={product.PRODUCT_ID}
 			className="flex flex-col rounded-lg bg-white md:max-w-xl md:flex-row w-full"
-		>
+		>	
 			<ProductImage image={images} PRODUCT_ID={product.PRODUCT_ID}/>
+			
 			<div className="flex flex-col justify-evenly p-6 w-full">
-				<h1 className="mb-2 text-xl font-bold text-black uppercase">
-					{product.PRODUCT_NAME}
-				</h1>
+				<Link to={"/product/" + product.PRODUCT_ID}>
+					<h1 className="mb-2 text-xl font-bold text-black uppercase">
+						{product.PRODUCT_NAME}
+					</h1>
+				</Link>
 				<p className="mb-4 text-base text-black">
 					{product.PRODUCT_DESCRIPTION}
 				</p>
