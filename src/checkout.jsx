@@ -30,7 +30,6 @@ function GuardarDatos(
 	telefono,
 	token
 ) {
-
 	const informacionCliente = {
 		nombre: nombre + " " + apellido,
 		email: email,
@@ -55,7 +54,7 @@ function GuardarDatos(
 		headers: {
 			"Content-Type": "application/json",
 			token: token,
-			estado: "pendiente"
+			estado: "pendiente",
 		},
 		body: JSON.stringify({
 			cliente: informacionCliente,
@@ -73,7 +72,6 @@ const App = ({
 	selectedComuna,
 	setSelectedComuna,
 }) => {
-
 	const [comunas, setComunas] = useState([]);
 	const [regiones, setRegiones] = useState([]);
 
@@ -290,6 +288,7 @@ export default function Checkout() {
 						<input
 							type="text"
 							name="name"
+							required
 							onChange={namehandleChange}
 							placeholder="Nombre"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none "
@@ -311,10 +310,10 @@ export default function Checkout() {
 						<input
 							type="email"
 							name="email"
+							required
 							onChange={emailhandleChange}
 							placeholder="Correo"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none"
-							required
 						/>
 					</label>
 					<label className=" rounded-sm flex items-center bg-white">
@@ -322,10 +321,10 @@ export default function Checkout() {
 						<input
 							type="text"
 							name="phone"
+							required
 							onChange={phonehandleChange}
 							placeholder="Celular"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor text-black outline-none border-none"
-							required
 						/>
 					</label>
 					<label className="rounded-sm flex items-center bg-white">

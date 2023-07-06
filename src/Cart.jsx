@@ -1,10 +1,11 @@
 import { useCart } from "./hook/useCart";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AddIcon from "./assets/Add.svg";
-import ImgProduct from "./assets/img-ejemplo.jpeg";
-import DeleteIcon from "./assets/Delete.svg";
+import { TailSpin } from "react-loader-spinner";
+import { motion } from "framer-motion";
 import { Cart_Amount, Cart_Cantidad } from "./hook/datosCart";
+import AddIcon from "./assets/Add.svg";
+import DeleteIcon from "./assets/Delete.svg";
 
 function CartProduct_Card({
 	PRODUCT_NAME,
@@ -15,19 +16,17 @@ function CartProduct_Card({
 	quantity,
 	addToCart,
 	removeFromCart,
-	images
-}) 
-	{
-
+	images,
+}) {
 	let ImagePrincipal = [];
-	const filterImages = images.filter((item) => 
-		item.COLOR_NAME === COLOR_NAME && item.PRODUCT_ID === PRODUCT_ID );
-		if(!filterImages[0]){
-	}
-	else{
+	const filterImages = images.filter(
+		(item) => item.COLOR_NAME === COLOR_NAME && item.PRODUCT_ID === PRODUCT_ID
+	);
+	if (!filterImages[0]) {
+	} else {
 		ImagePrincipal = filterImages[0].IMAGE;
 	}
-	
+
 	return (
 		<div className="my-2 flex flex-col justify-center bg-mainColor">
 			<div className="flex w-[90%] items-stretch pt-4 pb-6" id="card-product">
@@ -99,16 +98,22 @@ export default function Cart() {
 		Imagenes();
 	}, []);
 
-	if(!images){
+	if (!images) {
 		return (
 			<div className="relative flex justify-center items-center w-screen h-screen">
 				<TailSpin color="#e2fcef" height={80} width={80} />
 			</div>
-		)
+		);
 	}
 
 	return (
-		<nav className="z-40 top-0 fixed right-0 h-screen flex flex-col w-[30rem]">
+		<motion.nav
+			initial={{ opacity: 0, x: 20 }}
+			animate={{ opacity: 1, x: 0 }}
+			exit={{ opacity: 0, x: -20 }}
+			transition={{ duration: 0.3 }}
+			className="z-40 top-0 fixed right-0 h-screen flex flex-col w-[30rem]"
+		>
 			<div className="w-full top-20 h-full relative bg-black">
 				<div className="flex justify-center p-4 border-b-2 border-solid border-white">
 					<h3 className="text-white px-6 text-2xl font-bold">Carrito</h3>
@@ -118,7 +123,9 @@ export default function Cart() {
 						<div className="h-[85%]">
 							{cart.map((product) => (
 								<CartProduct_Card
-									key={product.PRODUCT_ID+product.COLOR_NAME+product.SIZE_NAME}
+									key={
+										product.PRODUCT_ID + product.COLOR_NAME + product.SIZE_NAME
+									}
 									addToCart={() => addToCart(product)}
 									removeFromCart={() => removeFromCart(product)}
 									{...product}
@@ -149,6 +156,6 @@ export default function Cart() {
 					</Link>
 				</div>
 			</div>
-		</nav>
+		</motion.nav>
 	);
 }
