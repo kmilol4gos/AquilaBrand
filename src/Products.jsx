@@ -60,9 +60,11 @@ function Product_Card({
 export default function Products() {
 
 	const { category, section } = useParams();
+
 	const { addToCart, cart } = useCart();
 
 	const [products, setProducts] = useState();
+	
 
 	const URL = "http://localhost:3000/products";
 

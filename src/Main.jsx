@@ -23,58 +23,8 @@ root.render(
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<App />} />;
-					<Route
-						path="/ropa"
-						element={<Products category="ropa" section="all" />}
-					/>
-					<Route
-						path="/ropa/poleras"
-						element={<Products category="ropa" section="poleras" />}
-					/>
-					<Route
-						path="/ropa/pantalones"
-						element={<Products category="ropa" section="pantalones" />}
-					/>
-					<Route
-						path="/ropa/polerones"
-						element={<Products category="ropa" section="polerones" />}
-					/>
-					<Route
-						path="/ropa/faldas"
-						element={<Products category="ropa" section="faldas" />}
-					/>
-					<Route
-						path="/ropa/gorros"
-						element={<Products category="ropa" section="gorros" />}
-					/>
-					<Route
-						path="/skate"
-						element={<Products category="skate" section="all" />}
-					/>
-					<Route
-						path="/skate/ruedas"
-						element={<Products category="skate" section="ruedas" />}
-					/>
-					<Route
-						path="/skate/tablas"
-						element={<Products category="skate" section="tablas" />}
-					/>
-					<Route
-						path="/accesorios"
-						element={<Products category="accesorios" section="all" />}
-					/>
-					<Route
-						path="/accesorios/bolsos"
-						element={<Products category="accesorios" section="bolsos" />}
-					/>
-					<Route
-						path="/accesorios/pulseras"
-						element={<Products category="accesorios" section="pulseras" />}
-					/>
-					<Route
-						path="/accesorios/collares"
-						element={<Products category="accesorios" section="collares" />}
-					/>
+					<Route path="/:category" element={<Products />} />
+					<Route path="/:category/:section" element={<Products />} />
 					<Route path="/Informacion" element={<AboutUs />}></Route>
 					<Route path="/events" element={<Events />} />
 					<Route path="/checkout" element={<Checkout />} />
