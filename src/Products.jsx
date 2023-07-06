@@ -98,7 +98,10 @@ export default function Products(props) {
 
 	useEffect(() => {
 		fetchApi();
-		Imagenes()
+	}, [props]);
+
+	useEffect(() => {
+		Imagenes();
 	}, []);
 
 	if (!products || !images[0]) {
@@ -119,8 +122,8 @@ export default function Products(props) {
 							<h2 className="drop-shadow-aq text-white text-4xl font-bold m-2">
 								Nuestra Coleccion
 							</h2>
-							<span className="drop-shadow-aq text-white font-medium text-3xl m-2 ">
-								Poleras/Polerones
+							<span className="drop-shadow-aq text-white font-medium text-3xl m-2 uppercase">
+								{props.section === "all" ? props.category : props.category+"/"+props.section}
 							</span>
 						</div>
 					</div>

@@ -106,7 +106,7 @@ export default function Summary() {
 	let count = 0;
 
 	infoProductos.map((item) => (
-		count++
+		count = count + item.quantity
 	))
 
 	return (

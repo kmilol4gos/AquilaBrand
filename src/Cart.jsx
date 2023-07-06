@@ -118,7 +118,7 @@ export default function Cart() {
 						<div className="h-[85%]">
 							{cart.map((product) => (
 								<CartProduct_Card
-									key={product.PRODUCT_ID}
+									key={product.PRODUCT_ID+product.COLOR_NAME+product.SIZE_NAME}
 									addToCart={() => addToCart(product)}
 									removeFromCart={() => removeFromCart(product)}
 									{...product}
