@@ -30,19 +30,6 @@ function GuardarDatos(
 	telefono,
 	token
 ) {
-	console.log(cart);
-	console.log(order_id);
-	console.log(session_id);
-	console.log(amount);
-	console.log(quantity);
-	console.log(region);
-	console.log(comuna);
-	console.log(address);
-	console.log(nombre);
-	console.log(apellido);
-	console.log(email);
-	console.log(telefono);
-	console.log(token);
 
 	const informacionCliente = {
 		nombre: nombre + " " + apellido,
@@ -61,8 +48,6 @@ function GuardarDatos(
 		},
 	];
 
-	console.log(JSON.stringify(informacionCompra));
-
 	const URL = "http://localhost:3000/transactions";
 
 	const response = fetch(URL, {
@@ -70,6 +55,7 @@ function GuardarDatos(
 		headers: {
 			"Content-Type": "application/json",
 			token: token,
+			estado: "pendiente"
 		},
 		body: JSON.stringify({
 			cliente: informacionCliente,
@@ -87,8 +73,6 @@ const App = ({
 	selectedComuna,
 	setSelectedComuna,
 }) => {
-	//const [selectedRegion, setSelectedRegion] = useState("");
-	//const [selectedComuna, setSelectedComuna] = useState("");
 
 	const [comunas, setComunas] = useState([]);
 	const [regiones, setRegiones] = useState([]);
@@ -148,17 +132,6 @@ const App = ({
 					</option>
 				))}
 			</select>
-			{/* <button
-				onClick={() => {
-					if (!selectedRegion) {
-						alert("Seleccione Región");
-					} else if (!selectedComuna) {
-						alert("Seleccione Comuna");
-					}
-				}}
-			>
-				Validar selección
-			</button> */}
 		</div>
 	);
 };
