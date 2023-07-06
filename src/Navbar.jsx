@@ -76,7 +76,7 @@ const Menu = () => {
 					[&>li>div>a]:text-s [&>li>div>a]:w-36 [&>li>div>a]:p-1 [&>li>div>a]:my-1 [&>li>div>a]:px-3 [&>li>div>a]:rounded"
 					>
 						<li>
-							<Link to="/Ropa">Ropa</Link>
+							<Link to="/ropa">Ropa</Link>
 							<div>
 								<Link to="/ropa/poleras" className="hover:bg-mainColor">
 									Poleras

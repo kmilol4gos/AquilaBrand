@@ -32,6 +32,7 @@ function Main() {
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<App />} />;
+					<Route path="/:category" element={<Products />} />
 					<Route path="/:category/:section" element={<Products />} />
 					<Route path="/Informacion" element={<AboutUs />}></Route>
 					<Route path="/events" element={<Events />} />
