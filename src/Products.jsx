@@ -125,7 +125,7 @@ export default function Products() {
 								Nuestra Coleccion
 							</h2>
 							<span className="drop-shadow-aq text-white font-medium text-3xl m-2 uppercase">
-								{section === "all" ? pcategory : category+"/"+section}
+								{section === undefined ? category : category+"/"+section}
 							</span>
 						</div>
 					</div>
