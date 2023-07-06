@@ -29,40 +29,40 @@ function GuardarDatos(
 	email,
 	telefono,
 	token
-){
-	console.log(cart)
-	console.log(order_id)
-	console.log(session_id)
-	console.log(amount)
-	console.log(quantity)
-	console.log(region)
-	console.log(comuna)
-	console.log(address)
-	console.log(nombre)
-	console.log(apellido)
-	console.log(email)
-	console.log(telefono)
-	console.log(token)
+) {
+	console.log(cart);
+	console.log(order_id);
+	console.log(session_id);
+	console.log(amount);
+	console.log(quantity);
+	console.log(region);
+	console.log(comuna);
+	console.log(address);
+	console.log(nombre);
+	console.log(apellido);
+	console.log(email);
+	console.log(telefono);
+	console.log(token);
 
-
-	const informacionCliente = ({
-		nombre: nombre+" "+apellido,
+	const informacionCliente = {
+		nombre: nombre + " " + apellido,
 		email: email,
 		telefono: telefono,
-		direccion: address+", "+comuna+", "+region,
-	})
+		direccion: address + ", " + comuna + ", " + region,
+	};
 
-	const informacionCompra = ([{
-		"orden": order_id,
-		"sesion": session_id,
-		"monto": amount,
-		"cantidad": quantity,
-		"detalle_productos": cart
-	}])
+	const informacionCompra = [
+		{
+			orden: order_id,
+			sesion: session_id,
+			monto: amount,
+			cantidad: quantity,
+			detalle_productos: cart,
+		},
+	];
 
-	console.log(JSON.stringify(informacionCompra))
-	
-	
+	console.log(JSON.stringify(informacionCompra));
+
 	const URL = "http://localhost:3000/transactions";
 
 	const response = fetch(URL, {
@@ -73,17 +73,20 @@ function GuardarDatos(
 		},
 		body: JSON.stringify({
 			cliente: informacionCliente,
-			bolsa: informacionCompra
-		})
+			bolsa: informacionCompra,
+		}),
 	});
-	response
+	response;
 
-	return (
-		alert("Datos guardados")
-	)
+	return alert("Datos guardados");
 }
 
-const App = ({selectedRegion, setSelectedRegion, selectedComuna, setSelectedComuna}) => {
+const App = ({
+	selectedRegion,
+	setSelectedRegion,
+	selectedComuna,
+	setSelectedComuna,
+}) => {
 	//const [selectedRegion, setSelectedRegion] = useState("");
 	//const [selectedComuna, setSelectedComuna] = useState("");
 
@@ -91,9 +94,7 @@ const App = ({selectedRegion, setSelectedRegion, selectedComuna, setSelectedComu
 	const [regiones, setRegiones] = useState([]);
 
 	const fetchApi = async () => {
-		const response = await fetch(
-			"http://localhost:3000/region"
-		);
+		const response = await fetch("http://localhost:3000/region");
 		const data = await response.json();
 		setRegiones(data[1]);
 		setComunas(data[0]);
@@ -103,11 +104,10 @@ const App = ({selectedRegion, setSelectedRegion, selectedComuna, setSelectedComu
 		fetchApi();
 	}, []);
 
-
 	const handleRegionChange = (e) => {
 		const selectedRegion = e.target.value;
 		setSelectedRegion(selectedRegion);
-		setSelectedComuna(""); 
+		setSelectedComuna("");
 	};
 
 	const handleComunaChange = (e) => {
@@ -117,10 +117,10 @@ const App = ({selectedRegion, setSelectedRegion, selectedComuna, setSelectedComu
 
 	let newState = [];
 
-	if(!regiones){
-		return <h1>Cargando...</h1>
+	if (!regiones) {
+		return <h1>Cargando...</h1>;
 	}
-	newState = comunas.filter((item) => item.REGION_NOMBRE === selectedRegion)
+	newState = comunas.filter((item) => item.REGION_NOMBRE === selectedRegion);
 
 	return (
 		<div className="flex flex-col gap-4">
@@ -142,12 +142,11 @@ const App = ({selectedRegion, setSelectedRegion, selectedComuna, setSelectedComu
 				onChange={handleComunaChange}
 			>
 				<option value="">Seleccione comuna</option>
-				{
-					newState.map((comuna) => (
-						<option key={comuna.COMUNA_NOMBRE} value={comuna.COMUNA_NOMBRE}>
-							{comuna.COMUNA_NOMBRE}
-						</option>
-					))}
+				{newState.map((comuna) => (
+					<option key={comuna.COMUNA_NOMBRE} value={comuna.COMUNA_NOMBRE}>
+						{comuna.COMUNA_NOMBRE}
+					</option>
+				))}
 			</select>
 			{/* <button
 				onClick={() => {
@@ -198,24 +197,27 @@ function Product_Card({
 	quantity,
 	SIZE_NAME,
 	COLOR_NAME,
-	images
+	images,
 }) {
-
 	let ImagePrincipal = [];
-	const filterImages = images.filter((item) => 
-		item.COLOR_NAME === COLOR_NAME && item.PRODUCT_ID === PRODUCT_ID );
-		if(!filterImages[0]){
-	}
-	else{
+	const filterImages = images.filter(
+		(item) => item.COLOR_NAME === COLOR_NAME && item.PRODUCT_ID === PRODUCT_ID
+	);
+	if (!filterImages[0]) {
+	} else {
 		ImagePrincipal = filterImages[0].IMAGE;
 	}
 	return (
 		<div
-			key={PRODUCT_NAME+COLOR_NAME+SIZE_NAME}
-			className="bg-mainColor flex justify-between p-5 text-white"
+			key={PRODUCT_NAME + COLOR_NAME + SIZE_NAME}
+			className="w-full flex gap-3 bg-mainColor p-3"
 		>
-			<div className="bg-white flex items-center w-[15%]">
-				<img alt={PRODUCT_NAME} src={ImagePrincipal} className="w-full object-cover" />
+			<div className="flex items-center w-20 h-full">
+				<img
+					alt={PRODUCT_NAME}
+					src={ImagePrincipal}
+					className="w-full h-full object-cover"
+				/>
 			</div>
 			<div className="flex flex-col">
 				<h4 className="font-bold text-base">{PRODUCT_NAME}</h4>
@@ -291,7 +293,7 @@ export default function Checkout() {
 	const addresshandleChange = (e) => {
 		setAddress(e.target.value);
 	};
-	
+
 	if (!info || !images[0])
 		return (
 			<div className="relative flex justify-center items-center w-screen h-screen">
@@ -299,17 +301,17 @@ export default function Checkout() {
 			</div>
 		);
 
-
 	return (
 		<div
-			className="flex items-center justify-around relative h-screen w-screen "
+			className="flex items-center justify-around relative h-screen w-screen mb-20"
 			id="redireccion webpay"
 		>
-			<div className="flex flex-col items-center relative " id="info-personal ">
+			<div
+				className="flex flex-col justify-center items-center h-full relative"
+				id="info-personal "
+			>
 				<h1 className="text-3xl mb-14  text-white">Informacion personal</h1>
-				<div
-					className="flex flex-col gap-4" 
-				>
+				<div className="flex flex-col gap-4">
 					<div className=" rounded-sm flex items-center bg-white">
 						<img src={PersonIcon} alt="" className="ml-3" />
 						<input
@@ -364,29 +366,47 @@ export default function Checkout() {
 							required
 						/>
 					</label>
-					<App 
+					<App
 						setSelectedRegion={setSelectedRegion}
 						setSelectedComuna={setSelectedComuna}
 						selectedComuna={selectedComuna}
 						selectedRegion={selectedRegion}
 					/>
 					<button
-						onClick={() => {GuardarDatos( cart, order_id, session_id, amount, quantity, selectedRegion, selectedComuna, Address, nombre, apellido, email, telefono, info.token)}}
+						onClick={() => {
+							GuardarDatos(
+								cart,
+								order_id,
+								session_id,
+								amount,
+								quantity,
+								selectedRegion,
+								selectedComuna,
+								Address,
+								nombre,
+								apellido,
+								email,
+								telefono,
+								info.token
+							);
+						}}
 						value="Confirmar Datos"
-						className="bg-black text-white py-2 font-bold text-lg hover:bg-white hover:text-black cursor-pointer rounded-sm"
-					>Confirmar Datos</button>
+						className="bg-black  text-white py-2 font-bold text-lg hover:bg-white hover:text-black cursor-pointer rounded-sm"
+					>
+						Ir a pagar
+					</button>
 				</div>
 			</div>
 
 			<div
-				className="border-l-2 flex items-center flex-col justify-center text-white relative px-7"
+				className="flex flex-col justify-center items-center h-full relative text-white"
 				id="resumen-productos"
 			>
 				<h1 className="text-3xl mb-14">Resumen de la compra</h1>
-				<div className="h-[23rem] overflow-y-auto flex flex-col gap-3">
+				<div className="h-[20.5rem] overflow-y-auto flex flex-col items-center gap-3">
 					{cart.map((item) => (
-						<Product_Card 
-							key={item.PRODUCT_NAME+item.COLOR_NAME+item.SIZE_NAME} 
+						<Product_Card
+							key={item.PRODUCT_NAME + item.COLOR_NAME + item.SIZE_NAME}
 							{...item}
 							images={images}
 						/>
@@ -402,12 +422,12 @@ export default function Checkout() {
 						{<Cart_Amount />}
 					</span>
 				</div>
-				<form className="flex flex-col gap-4" action={info.url} method="post">
-				<input type="hidden" name="token_ws" value={info.token} />
+				<form className="w-full" action={info.url} method="post">
+					<input type="hidden" name="token_ws" value={info.token} />
 					<input
 						type="submit"
 						value="Ir a pagar"
-						className="bg-black text-white py-2 font-bold text-lg hover:bg-white hover:text-black cursor-pointer rounded-sm"
+						className="bg-black text-white w-full py-2 font-bold text-lg hover:bg-white hover:text-black cursor-pointer rounded-sm"
 					/>
 				</form>
 			</div>
