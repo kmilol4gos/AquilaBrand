@@ -3,6 +3,7 @@ import ArrowIcon from "./assets/Flecha-icon.svg";
 import Video from "./assets/video.mp4";
 import FeaturedProducts from "./FeaturedProducts";
 import { motion } from "framer-motion";
+import Events from "./Events";
 
 function App() {
 	return (
@@ -52,7 +53,15 @@ function App() {
 				<div className="relative grid justify-items-center grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 h-full w-full ">
 					<FeaturedProducts />
 				</div>
-				<div></div>
+			</section>
+
+			<section className="relative mt-24">
+				<div>
+					<h2 className="text-center my-16 text-white text-4xl font-bold drop-shadow-aq">
+						Próximos Eventos
+					</h2>
+				</div>
+				<Events />
 			</section>
 		</main>
 	);
