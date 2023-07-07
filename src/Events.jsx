@@ -1,10 +1,44 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { TailSpin } from "react-loader-spinner";
+
+function MostrarEvento(
+	events,
+	currentEventIndex,
+) {
+	return(
+	<motion.div
+		key={events[currentEventIndex].EVENT_ID}
+		className="w-[80%] flex justify-center h-[30rem] relative"
+	>
+		<img
+			src=""
+			alt={events[currentEventIndex].EVENT_NAME}
+			className="w-full h-full object-cover bg-mainColor"
+		/>
+		<section
+			id="titulo-evento"
+			className="absolute w-full bottom-0 flex flex-col backdrop-blur-md text-white h-auto justify-around"
+		>
+			<h1 className="font-bold text-2xl p-2 uppercase">
+				{events[currentEventIndex].EVENT_NAME}
+			</h1>
+			<p className="font-bold text-base p-2">
+				{events[currentEventIndex].EVENT_DESCRIPTION}
+			</p>
+			<p> {events[currentEventIndex].EVENT_ADDRESS}</p>
+			<p> {events[currentEventIndex].EVENT_DATE}</p>
+			<p> {events[currentEventIndex].EVENT_TIME}</p>
+		</section>
+	</motion.div>
+	)
+}
 
 function Events() {
 	const URL = "http://localhost:3000/event";
 
 	const [events, setEvents] = useState();
+	const [currentEventIndex, setCurrentEventIndex] = useState(0);
 
 	const fetchApi = async () => {
 		const response = await fetch(URL, {
@@ -21,7 +55,14 @@ function Events() {
 		fetchApi();
 	}, []);
 
-	const [currentEventIndex, setCurrentEventIndex] = useState(0);
+	if (!events) {
+		return (
+			<div className="flex justify-center items-center w-screen h-screen">
+				<TailSpin color="#e2fcef" height={80} width={80} />
+			</div>
+		);
+	}
+
 	const handlePrevClick = () => {
 		setCurrentEventIndex((prevIndex) =>
 			prevIndex === 0 ? events.length - 1 : prevIndex - 1
@@ -33,39 +74,25 @@ function Events() {
 		);
 	};
 
+	console.log(events)
+	console.log(currentEventIndex)
+	console.log(events[currentEventIndex])
+
 	return (
-		<div id="event-card" className="text-white">
+		<div id="event-card" className="text-white top-20 relative">
 			<div className="flex">
+				<button
+					className="w-1/2 h-10 bg-mainColor "
+					onClick={handlePrevClick}
+				>PREV</button>
 				{!events
 					? "Cargando..."
-					: events.map((event, index) => {
-							return (
-								<motion.div
-									key={event.EVENT_ID}
-									className="w-[80%] flex justify-center h-[30rem] relative"
-								>
-									<img
-										src=""
-										alt={event.EVENT_NAME}
-										className="w-full h-full object-cover bg-mainColor"
-									/>
-									<section
-										id="titulo-evento"
-										className="absolute w-full bottom-0 flex flex-col backdrop-blur-md text-white h-auto justify-around"
-									>
-										<h1 className="font-bold text-2xl p-2 uppercase">
-											{event.EVENT_NAME}
-										</h1>
-										<p className="font-bold text-base p-2">
-											{event.EVENT_DESCRIPTION}
-										</p>
-										<p> {event.EVENT_ADDRESS}</p>
-										<p> {event.EVENT_DATE}</p>
-										<p> {event.EVENT_TIME}</p>
-									</section>
-								</motion.div>
-							);
-					  })}
+					: MostrarEvento(events,currentEventIndex)
+				}
+				<button
+					className="w-1/2 h-10 bg-mainColor"
+					onClick={handleNextClick}
+				>SIG</button>
 			</div>
 		</div>
 	);
