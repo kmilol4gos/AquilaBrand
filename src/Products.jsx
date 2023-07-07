@@ -98,11 +98,8 @@ export default function Products() {
 
 	useEffect(() => {
 		fetchApi();
-	}, [category, section]);
-
-	useEffect(() => {
 		Imagenes();
-	}, []);
+	}, [category, section]);
 
 	if (!products || !images[0]) {
 		return (
