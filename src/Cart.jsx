@@ -35,7 +35,7 @@ function CartProduct_Card({
 						<img
 							src={ImagePrincipal}
 							alt=""
-							className="w-full object-cover border-none"
+							className="w-full h-full object-cover border-none"
 						/>
 					</Link>
 				</div>

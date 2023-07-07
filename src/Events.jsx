@@ -1,52 +1,74 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 function Events() {
-    const URL = "http://localhost:3000/event";
+	const URL = "http://localhost:3000/event";
 
-    const [events, setEvents] = useState();
+	const [events, setEvents] = useState();
 
-    const fetchApi = async () => {
-        const response = await fetch(URL, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        const responseJSON = await response.json();
-        setEvents(responseJSON);
-    };
+	const fetchApi = async () => {
+		const response = await fetch(URL, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const responseJSON = await response.json();
+		setEvents(responseJSON);
+	};
 
-    useEffect(() => {
-        fetchApi();
-    }, []);
+	useEffect(() => {
+		fetchApi();
+	}, []);
 
-    return (
-        <div id="event-card">
-            <ul>
-                {!events ? ( "Cargando..." ) : 
-                events.map((event, index) => {
-                    return (
-                        <li key={event.EVENT_ID}>
-                            <img src="" alt={event.EVENT_NAME} />
-                            <div id="titulo-evento">
-                                <strong>{event.EVENT_NAME}</strong>
-                            </div>
-                            <div id="direccion-evento">
-                                <strong>{event.EVENT_ADDRESS}</strong>
-                            </div>
-                            <div id="descripcion-evento">
-                                <strong>{event.EVENT_DESCRIPTION}</strong>
-                            </div>
-                            <div id="fecha-evento">
-                                <strong>{event.EVENT_DATE}</strong>
-                                <strong>{event.EVENT_TIME}</strong>
-                            </div>
-                        </li>);
-                    })
-                }
-            </ul>
-        </div>
-    )
+	const [currentEventIndex, setCurrentEventIndex] = useState(0);
+	const handlePrevClick = () => {
+		setCurrentEventIndex((prevIndex) =>
+			prevIndex === 0 ? events.length - 1 : prevIndex - 1
+		);
+	};
+	const handleNextClick = () => {
+		setCurrentEventIndex((prevIndex) =>
+			prevIndex === events.length - 1 ? 0 : prevIndex + 1
+		);
+	};
+
+	return (
+		<div id="event-card" className="text-white">
+			<div className="flex">
+				{!events
+					? "Cargando..."
+					: events.map((event, index) => {
+							return (
+								<motion.div
+									key={event.EVENT_ID}
+									className="w-[80%] flex justify-center h-[30rem] relative"
+								>
+									<img
+										src=""
+										alt={event.EVENT_NAME}
+										className="w-full h-full object-cover bg-mainColor"
+									/>
+									<section
+										id="titulo-evento"
+										className="absolute w-full bottom-0 flex flex-col backdrop-blur-md text-white h-auto justify-around"
+									>
+										<h1 className="font-bold text-2xl p-2 uppercase">
+											{event.EVENT_NAME}
+										</h1>
+										<p className="font-bold text-base p-2">
+											{event.EVENT_DESCRIPTION}
+										</p>
+										<p> {event.EVENT_ADDRESS}</p>
+										<p> {event.EVENT_DATE}</p>
+										<p> {event.EVENT_TIME}</p>
+									</section>
+								</motion.div>
+							);
+					  })}
+			</div>
+		</div>
+	);
 }
 
 export default Events;

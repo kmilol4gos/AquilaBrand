@@ -5,21 +5,28 @@ import ArrowDown from "./assets/Flecha-icon.svg";
 import Aquila from "./assets/Logo_Aguila.png";
 import WhatsApp from "./assets/WhatsApp-icon-w.svg";
 import Instagram from "./assets/Instagram-icon-w.svg";
+import Eventos from "./Events.jsx";
 
 function AbautUs() {
 	return (
 		<section className="relative w-screen bg-black inline-block">
 			<section
-				className="relative top-20 w-full h-full  flex flex-col gap-5 items-center pb-32"
+				className="relative top-20 w-full h-full flex flex-col gap-5 items-center pb-32"
 				id="eventos"
 			>
 				<h1 className="text-white p-10 uppercase font-bold text-3xl">
 					Eventos
 				</h1>
-				<div className="w-full flex justify-center items-center">
+				<div className="flex ">
 					<button>
 						<img src={ArrowLeft} alt="" />
 					</button>
+					<Eventos />
+					<button>
+						<img src={ArrowRight} alt="" />
+					</button>
+				</div>
+				{/* <div className="w-full flex justify-center items-center">
 					<section className="w-[80%] flex justify-center h-[30rem] relative">
 						<img src={Evento} alt="" className="w-full h-full object-cover" />
 						<div className="absolute w-full bottom-0 flex flex-col backdrop-blur-md text-white h-auto justify-around">
@@ -33,10 +40,7 @@ function AbautUs() {
 							<p className="font-bold text-base p-2">Fecha: 27/05/2024</p>
 						</div>
 					</section>
-					<button>
-						<img src={ArrowRight} alt="" />
-					</button>
-				</div>
+				</div> */}
 				<strong className="text-2xl uppercase text-white p-3">
 					Mantente atento a los proximos eventos que puedan surgir!
 				</strong>

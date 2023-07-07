@@ -175,6 +175,7 @@ function Product_Card({
 		(item) => item.COLOR_NAME === COLOR_NAME && item.PRODUCT_ID === PRODUCT_ID
 	);
 	if (!filterImages[0]) {
+		
 	} else {
 		ImagePrincipal = filterImages[0].IMAGE;
 	}
