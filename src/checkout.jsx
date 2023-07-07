@@ -63,7 +63,11 @@ function GuardarDatos(
 	});
 	response;
 
-	return alert("Datos guardados");
+	alert("Datos guardados");
+
+	let formulario = document.getElementById("pago");
+
+	formulario.submit();
 }
 
 const App = ({
@@ -324,7 +328,7 @@ export default function Checkout() {
 							name="phone"
 							required
 							onChange={phonehandleChange}
-							placeholder="Celular"
+							placeholder="Celular ej: 912345678"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor text-black outline-none border-none"
 						/>
 					</label>
@@ -395,13 +399,9 @@ export default function Checkout() {
 						{<Cart_Amount />}
 					</span>
 				</div>
-				<form className="w-full" action={info.url} method="post">
+				<form id="pago"className="w-full" action={info.url} method="post">
 					<input type="hidden" name="token_ws" value={info.token} />
-					<input
-						type="submit"
-						value="Ir a pagar"
-						className="bg-black text-white w-full py-2 font-bold text-lg hover:bg-white hover:text-black cursor-pointer rounded-sm"
-					/>
+					
 				</form>
 			</div>
 		</div>
