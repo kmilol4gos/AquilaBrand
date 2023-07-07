@@ -2,6 +2,7 @@ import "./index.css";
 import ArrowIcon from "./assets/Flecha-icon.svg";
 import Video from "./assets/video.mp4";
 import FeaturedProducts from "./FeaturedProducts";
+import { motion } from "framer-motion";
 
 function App() {
 	return (
@@ -19,11 +20,16 @@ function App() {
 					<footer className="absolute bottom-0 left-0 w-full h-20 flex items-center justify-center">
 						<a
 							href="#ver-mas"
-							className="px-4 py-2 flex items-center justify-center rounded-md text-xl font-normal text-white backdrop-blur-2xl "
+							className="px-4 py-2 gap-2 flex items-center justify-center rounded-md text-xl font-normal text-white backdrop-blur-2xl "
 							id="ver-mas"
 						>
 							Ver más
-							<img src={ArrowIcon} alt="Baja para ver mas" />
+							<motion.img
+								animate={{ y: [0, 5, 0] }}
+								transition={{ duration: 1.5, repeat: Infinity }}
+								src={ArrowIcon}
+								alt="Baja para ver mas"
+							/>
 						</a>
 					</footer>
 				</section>

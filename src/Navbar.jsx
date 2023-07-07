@@ -11,13 +11,16 @@ import Cart from "./Cart";
 const Menu = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isCartOpen, setIsCartOpen] = useState(false);
-
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
 	const toggleCart = () => {
 		setIsCartOpen(!isCartOpen);
 	};
+	const handleItemClick = () => {
+		setIsOpen(false);
+	};
+
 
 	return (
 		<header className="w-screen fixed top-0 z-50">
@@ -108,16 +111,32 @@ const Menu = () => {
 						<li>
 							<Link to="/ropa">Ropa</Link>
 							<div>
-								<Link to="/ropa/poleras" className="hover:bg-mainColor">
+								<Link
+									to="/ropa/poleras"
+									className="hover:bg-mainColor"
+									onClick={handleItemClick}
+								>
 									Poleras
 								</Link>
-								<Link to="/ropa/pantalones" className="hover:bg-mainColor">
+								<Link
+									to="/ropa/pantalones"
+									className="hover:bg-mainColor"
+									onClick={handleItemClick}
+								>
 									Pantalones
 								</Link>
-								<Link to="/ropa/polerones" className="hover:bg-mainColor">
+								<Link
+									to="/ropa/polerones"
+									className="hover:bg-mainColor"
+									onClick={handleItemClick}
+								>
 									Polerones
 								</Link>
-								<Link to="/ropa/faldas" className="hover:bg-mainColor">
+								<Link
+									to="/ropa/faldas"
+									className="hover:bg-mainColor"
+									onClick={handleItemClick}
+								>
 									Faldas
 								</Link>
 							</div>
@@ -125,10 +144,18 @@ const Menu = () => {
 						<li>
 							<Link to="/skate">Skate</Link>
 							<div>
-								<Link to="/skate/ruedas" className="hover:bg-mainColor">
+								<Link
+									to="/skate/ruedas"
+									className="hover:bg-mainColor"
+									onClick={handleItemClick}
+								>
 									Ruedas
 								</Link>
-								<Link to="/skate/tablas" className="hover:bg-mainColor">
+								<Link
+									to="/skate/tablas"
+									className="hover:bg-mainColor"
+									onClick={handleItemClick}
+								>
 									Tablas
 								</Link>
 							</div>
@@ -136,13 +163,25 @@ const Menu = () => {
 						<li>
 							<Link to="/accesorios">Accesorios</Link>
 							<div>
-								<Link to="/accesorios/bolsos" className="hover:bg-mainColor">
+								<Link
+									to="/accesorios/bolsos"
+									className="hover:bg-mainColor"
+									onClick={handleItemClick}
+								>
 									Bolsos
 								</Link>
-								<Link to="/accesorios/pulseras" className="hover:bg-mainColor">
+								<Link
+									to="/accesorios/pulseras"
+									className="hover:bg-mainColor"
+									onClick={handleItemClick}
+								>
 									Pulseras
 								</Link>
-								<Link to="/accesorios/collares" className="hover:bg-mainColor">
+								<Link
+									to="/accesorios/collares"
+									className="hover:bg-mainColor"
+									onClick={handleItemClick}
+								>
 									Collares
 								</Link>
 							</div>
@@ -150,10 +189,18 @@ const Menu = () => {
 						<li>
 							<Link to="Informacion">Informacion</Link>
 							<div>
-								<Link to="/events" className="hover:bg-mainColor">
+								<Link
+									to="/events"
+									className="hover:bg-mainColor"
+									onClick={handleItemClick}
+								>
 									Eventos
 								</Link>
-								<Link to="/info" className="hover:bg-mainColor">
+								<Link
+									to="/info"
+									className="hover:bg-mainColor"
+									onClick={handleItemClick}
+								>
 									Quienes Somos
 								</Link>
 							</div>
