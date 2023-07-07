@@ -55,9 +55,9 @@ function AbautUs() {
 				</div>
 			</section>
 			<section className="relative w-screen mt-36 pb-36">
-				<section className="flex justify-around items-center  w-full text-white gap-4">
-					<div className="w-1/2 flex flex-col items-center gap-12">
-						<h1 className="font-bold text-3xl p-2">Quienes Somos?</h1>
+				<section className="flex flex-col justify-around items-center  w-full text-white gap-4">
+					<div className="md:w-1/2 w-full flex flex-col items-center gap-12">
+						<h1 className="text-center font-bold text-3xl p-2">Quienes Somos?</h1>
 						<p className="font-medium text-xl w-2/3 text-center">
 							AquilaBrand es una pequeña empresa de ropa urbana contemporánea
 							que se destaca por sus diseños innovadores y materiales de alta
@@ -72,7 +72,7 @@ function AbautUs() {
 							aquellos que buscan ropa urbana única y con estilo.
 						</p>
 					</div>
-					<div className="w-1/2 flex flex-col gap-2 justify-center items-center">
+					<div className="md:w-1/2 w-full flex flex-col gap-2 justify-center items-center">
 						<img src={Aquila} alt="" className="bg-white p-2" />
 						<h2 className="font-medium text-lg">
 							Recuerda que puedes contactarnos desde nuestras redes sociales!

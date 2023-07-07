@@ -20,8 +20,8 @@ const Menu = () => {
 	};
 
 	return (
-		<header className="w-full fixed top-0 z-50">
-			<nav className="w-full h-20 flex items-center bg-mainColor z-50 justify-between shadow-lg relative">
+		<header className="w-screen fixed top-0 z-50">
+			<nav className="w-screen h-20 flex items-center bg-mainColor z-50 justify-between shadow-lg relative">
 				<picture className="order-5">
 					<Link to="/">
 						<img
@@ -39,7 +39,7 @@ const Menu = () => {
 						<img src={IconMenu} alt="" />
 					</button>
 				</div>
-				<picture className="order-3">
+				<picture className="order-3 hidden md:block">
 					<a
 						href="https://www.instagram.com/?hl=es"
 						target="_blank"
@@ -48,7 +48,7 @@ const Menu = () => {
 						<img src={Instagram} alt="" />
 					</a>
 				</picture>
-				<picture className="order-5">
+				<picture className="order-5 hidden md:block">
 					<a href="https://www.google.cl" rel="noreferrer" target="_blank">
 						<img src={WhatsApp} alt="" />
 					</a>
@@ -76,8 +76,30 @@ const Menu = () => {
 					id="dropdown-menu"
 					className="fixed top-20 z-50 block w-full overflow-hidden rounded-bl-xl rounded-br-xl bg-black text-white"
 				>
+					<ul className="w-screen h-[28rem] flex flex-col justify-around gap-4 md:hidden">
+						<li className="w-full text-center flex">
+							<Link to="/ropa" className=" w-full text-4xl font-bold ">
+								Ropa
+							</Link>
+						</li>
+						<li className="w-full flex text-center">
+							<Link to="/skate" className=" w-full text-4xl font-bold ">
+								Skate
+							</Link>
+						</li>
+						<li className="w-full flex text-center">
+							<Link to="/accesorios" className=" w-full text-4xl font-bold ">
+								Accesorios
+							</Link>
+						</li>
+						<li className="w-full flex text-center">
+							<Link to="/Informacion" className=" w-full text-4xl font-bold ">
+								Informacion
+							</Link>
+						</li>
+					</ul>
 					<ul
-						className="flex w-full list-none justify-around
+						className="w-full list-none justify-around hidden md:flex
 					[&>li]:mx-3 [&>li]:h-full [&>li]:w-72 [&>li]:flex [&>li]:flex-col [&>li]:items-center
 					[&>li>a]:inline-block [&>li>a]:pt-3 [&>li>a]:pb-1 [&>li>a]:text-xl [&>li>a]:font-bold [&>li>a]:self-center [&>li>a]:w-36
 					[&>li>div]:flex [&>li>div]:flex-col [&>li>div]:justify-center [&>li>div]:my-2

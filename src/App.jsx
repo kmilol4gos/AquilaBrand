@@ -6,7 +6,7 @@ import FeaturedProducts from "./FeaturedProducts";
 function App() {
 	return (
 		<main className="w-full pb-36 mb-36">
-			<div className="relative w-screen h-screen flex overflow-hidden justify-center items-center">
+			<div className="relative w-screen h-screen flex justify-center items-center">
 				<section className="relative w-full h-full z-40  ">
 					<header className="absolute p-16 flex flex-col items-center top-20 w-full">
 						<h1 className="text-white text-5xl font-bold drop-shadow-aq">
@@ -37,13 +37,13 @@ function App() {
 					/>
 				</section>
 			</div>
-			<section className="mt-24 relative mx-8 h-[30rem] ">
+			<section className="mt-24 relative mx-8">
 				<div className="my-16 flex items-center justify-center">
-					<h2 className="text-white text-4xl font-bold drop-shadow-aq">
+					<h2 className="text-center text-white text-4xl font-bold drop-shadow-aq">
 						Productos Destacados
 					</h2>
 				</div>
-				<div className="absolute grid right-0 justify-items-center grid-cols-3 grid-rows-2 gap-4 h-full w-full m-2">
+				<div className="relative grid justify-items-center grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 h-full w-full ">
 					<FeaturedProducts />
 				</div>
 				<div></div>

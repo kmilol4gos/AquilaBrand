@@ -112,13 +112,15 @@ export default function Cart() {
 			animate={{ opacity: 1, x: 0 }}
 			exit={{ opacity: 0, x: -20 }}
 			transition={{ duration: 0.3 }}
-			className="z-40 top-0 fixed right-0 h-screen flex flex-col w-[30rem]"
+			className="z-40 top-0 fixed right-0 h-screen flex flex-col w-full md:w-[30rem]"
 		>
 			<div className="w-full top-20 h-full relative bg-black">
 				<div className="flex justify-center p-4 border-b-2 border-solid border-white">
-					<h3 className="text-white px-6 text-2xl font-bold">Carrito</h3>
+					<h3 className="text-white text-center px-6 text-2xl font-bold">
+						Carrito
+					</h3>
 				</div>
-				<div className="relative overflow-y-auto h-[64%]">
+				<div className="relative overflow-y-auto h-[66%] md:h-[64]">
 					<div className="flex flex-col">
 						<div className="h-[85%]">
 							{cart.map((product) => (
@@ -136,7 +138,7 @@ export default function Cart() {
 					</div>
 				</div>
 			</div>
-			<div className="border-t-2 border-solid border-white absolute w-full bottom-0 z-50 text-white bg-mainColor">
+			<div className="border-t-2 border-solid border-white absolute w-full md:h-auto bottom-0 z-50 text-white bg-mainColor">
 				<div className="flex justify-between items-center px-6 m-2">
 					<h4>Productos</h4>
 					<span className="text-sm font-medium">{<Cart_Cantidad />}</span>
@@ -150,7 +152,7 @@ export default function Cart() {
 				<div className="flex justify-center w-full">
 					<Link
 						to="/checkout"
-						className="text-center w-full py-4 border-none bg-black text-white text-sm font-medium cursor-pointer ease-in-out duration-100 hover:text-black hover:bg-white"
+						className="text-center w-full py-7 md:py-4 border-none bg-black text-white md:text-sm font-medium cursor-pointer ease-in-out duration-100 hover:text-black hover:bg-white"
 					>
 						Finalizar Compra
 					</Link>
