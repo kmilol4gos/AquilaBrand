@@ -3,21 +3,55 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
 
-function AgregarAlCarro({ product, color, size, addToCart }) {
-	let filteredProduct = undefined;
+function filtrarProducto(product, color, size) {
+
 	if (color !== undefined && size !== undefined) {
-		filteredProduct = product[0].filter((item) => {
+		return product[0].filter((item) => {
 			return item.COLOR_ID === color && item.SIZE_ID === size;
 		});
 	}
+	return product[0].STOCK;
+}
 
+function AgregarAlCarro({ product, color, size, addToCart, setColor, setSize }) {
+	const btn = document.getElementById("agregar-al-carrito")
+	let mensaje = "Seleccione opciones";
+	let text_boton = "Agregar al carrito";
+	let filteredProduct = [];
+	if (color !== undefined && size !== undefined) {
+		filteredProduct = product[0].filter((item) => {
+		if(filteredProduct === []){
+			//no existe stock para el producto
+			setColor(undefined)
+			setSize(undefined)
+			filteredProduct = []
+		}
+		return item.COLOR_ID === color && item.SIZE_ID === size;
+	});
+	}
+	if(filteredProduct[0] === undefined && color !== undefined && size !== undefined){
+		mensaje = "No disponible"
+		btn.disabled = true
+		text_boton = "No disponible"
+
+	}
+	if (filteredProduct[0] !== undefined && color !== undefined && size !== undefined) {
+		mensaje = filteredProduct[0].STOCK;
+		text_boton = "Agregar al carrito";
+	}
 	return (
-		<button
-			onClick={() => addToCart(filteredProduct[0])}
-			className="w-full md:w-auto ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
-		>
-			Agregar al carrito
-		</button>
+		<div>
+			<span className="md:block flex justify-center text-xl font-bold border-t-2 py-2 md:border-none md:py-0">
+				Stock: {mensaje}
+			</span>
+			<button
+				id="agregar-al-carrito"
+				onClick={() => addToCart(filteredProduct[0])}
+				className="w-full md:w-auto ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
+			>
+				{text_boton}
+			</button>
+		</div>
 	);
 }
 
@@ -200,6 +234,8 @@ export default function ProductPage() {
 							color={color}
 							size={size}
 							addToCart={addToCart}
+							setColor={setColor}
+							setSize={setSize}
 						/>
 					</div>
 				</div>

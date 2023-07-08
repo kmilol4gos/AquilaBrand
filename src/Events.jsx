@@ -5,6 +5,7 @@ import ArrowRight from "./assets/ArrowRight.svg";
 import ArrowLeft from "./assets/ArrowLeft.svg";
 
 function MostrarEvento(events, currentEventIndex) {
+	let fecha = events[currentEventIndex].EVENT_DATE.slice(0, -5).split("T")
 	return (
 		<motion.div
 			initial={{ opacity: 0 }}
@@ -29,7 +30,7 @@ function MostrarEvento(events, currentEventIndex) {
 					<span>Direccion:</span> {events[currentEventIndex].EVENT_ADDRESS}
 				</p>
 				<p className="font-bold text-base px-2 italic">
-					<span>Fecha:</span> {events[currentEventIndex].EVENT_DATE}
+					<span>Fecha:</span> {fecha[0]}
 				</p>
 				<p className="font-bold text-base px-2 italic">
 					<span>Hora de inicio:</span> {events[currentEventIndex].EVENT_TIME}
