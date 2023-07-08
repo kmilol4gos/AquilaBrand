@@ -72,7 +72,6 @@ export default function Products() {
 			},
 		});
 		const responseJSON = await response.json();
-		console.log(responseJSON)
 		setProducts(responseJSON);
 	};
 
@@ -89,7 +88,6 @@ export default function Products() {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
 				setImages(data);
 			});
 	};
