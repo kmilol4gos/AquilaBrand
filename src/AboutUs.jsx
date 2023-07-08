@@ -36,7 +36,7 @@ function AbautUs() {
 					</a>
 				</div>
 			</section>
-			<section className="relative w-screen mt-36 pb-36">
+			<section className="relative w-screen mt-20 pb-20">
 				<section className="flex flex-col md:flex-row justify-around items-center  w-full text-white gap-4">
 					<div className="md:w-1/2 w-full flex flex-col items-center gap-12">
 						<h1 className="text-center font-bold text-3xl p-2">

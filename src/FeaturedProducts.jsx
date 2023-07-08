@@ -3,23 +3,22 @@ import PoleraNegra from "./assets/polera2.png";
 import { Link } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
 
-function ProductImage({image, PRODUCT_ID}){
+function ProductImage({ image, PRODUCT_ID }) {
 	let ImagePrincipal;
 	const filterImage = image.filter((item) => item.PRODUCT_ID === PRODUCT_ID);
-	if(!filterImage[0]){
-		ImagePrincipal = {PoleraNegra};
-	}
-	else{
+	if (!filterImage[0]) {
+		ImagePrincipal = { PoleraNegra };
+	} else {
 		ImagePrincipal = filterImage[0].IMAGE;
 	}
 
-	return(
+	return (
 		<img
-				src={ImagePrincipal}
-				alt=""
-				className="h-96 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+			src={ImagePrincipal}
+			alt=""
+			className="h-full w-32 rounded-t-lg object-cover md:w-48 md:rounded-none md:rounded-l-lg"
 		/>
-	)
+	);
 }
 
 export default function FeaturedProducts() {
@@ -49,7 +48,6 @@ export default function FeaturedProducts() {
 				"Content-Type": "application/json",
 				featured: 1,
 			},
-
 		});
 		const responseJSON = await response.json();
 		setImages(responseJSON);
@@ -57,7 +55,7 @@ export default function FeaturedProducts() {
 
 	useEffect(() => {
 		fetchApi();
-		Imagenes()
+		Imagenes();
 	}, []);
 
 	if (!featured || !images[0])
@@ -70,13 +68,13 @@ export default function FeaturedProducts() {
 	return featured.map((product, index) => (
 		<div
 			key={product.PRODUCT_ID}
-			className="flex flex-col rounded-lg bg-white md:max-w-xl md:flex-row w-full"
-		>	
-			<ProductImage image={images} PRODUCT_ID={product.PRODUCT_ID}/>
-			
+			className="flex rounded-lg bg-white md:flex-row w-full"
+		>
+			<ProductImage image={images} PRODUCT_ID={product.PRODUCT_ID} />
+
 			<div className="flex flex-col justify-evenly p-6 w-full">
 				<Link to={"/product/" + product.PRODUCT_ID}>
-					<h1 className="mb-2 text-xl font-bold text-black uppercase">
+					<h1 className="mb-2 text-lg font-bold text-black uppercase">
 						{product.PRODUCT_NAME}
 					</h1>
 				</Link>

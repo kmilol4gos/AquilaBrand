@@ -36,7 +36,7 @@ function Product_Card({
 				/>
 			</Link>
 			<div className="flex flex-col justify-around h-60 w-60">
-				<Link to="/" className="text-black text-xl font-bold uppercase">
+				<Link to="/" className="text-black text-lg font-bold uppercase">
 					<h3>{PRODUCT_NAME}</h3>
 				</Link>
 				<p className="text-black font-normal text-lg md:text-sm">{PRODUCT_DESCRIPTION}</p>

@@ -34,7 +34,7 @@ function Main() {
 					<Route path="/" element={<App />} />;
 					<Route path="/:category" element={<Products />} />
 					<Route path="/:category/:section" element={<Products />} />
-					<Route path="/Informacion" element={<AboutUs />}></Route>
+					<Route path="/Informacion" element={<AboutUs />} />
 					<Route path="/events" element={<Events />} />
 					<Route path="/checkout" element={<Checkout />} />
 					<Route path="/summary" element={<Summary />} />

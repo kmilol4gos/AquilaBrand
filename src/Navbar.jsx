@@ -21,7 +21,6 @@ const Menu = () => {
 		setIsOpen(false);
 	};
 
-
 	return (
 		<header className="w-screen fixed top-0 z-50">
 			<nav className="w-screen h-20 flex items-center bg-mainColor z-50 justify-between shadow-lg relative">
@@ -81,22 +80,22 @@ const Menu = () => {
 				>
 					<ul className="w-screen h-[28rem] flex flex-col justify-around gap-4 md:hidden">
 						<li className="w-full text-center flex">
-							<Link to="/ropa" className=" w-full text-4xl font-bold ">
+							<Link to="/ropa" className=" w-full text-2xl font-bold ">
 								Ropa
 							</Link>
 						</li>
 						<li className="w-full flex text-center">
-							<Link to="/skate" className=" w-full text-4xl font-bold ">
+							<Link to="/skate" className=" w-full text-2xl font-bold ">
 								Skate
 							</Link>
 						</li>
 						<li className="w-full flex text-center">
-							<Link to="/accesorios" className=" w-full text-4xl font-bold ">
+							<Link to="/accesorios" className=" w-full text-2xl font-bold ">
 								Accesorios
 							</Link>
 						</li>
 						<li className="w-full flex text-center">
-							<Link to="/Informacion" className=" w-full text-4xl font-bold ">
+							<Link to="/Informacion" className=" w-full text-2xl font-bold ">
 								Informacion
 							</Link>
 						</li>
@@ -109,7 +108,9 @@ const Menu = () => {
 					[&>li>div>a]:text-s [&>li>div>a]:w-36 [&>li>div>a]:p-1 [&>li>div>a]:my-1 [&>li>div>a]:px-3 [&>li>div>a]:rounded"
 					>
 						<li>
-							<Link to="/ropa">Ropa</Link>
+							<Link to="/ropa" onClick={handleItemClick}>
+								Ropa
+							</Link>
 							<div>
 								<Link
 									to="/ropa/poleras"
@@ -142,7 +143,9 @@ const Menu = () => {
 							</div>
 						</li>
 						<li>
-							<Link to="/skate">Skate</Link>
+							<Link to="/skate" onClick={handleItemClick}>
+								Skate
+							</Link>
 							<div>
 								<Link
 									to="/skate/ruedas"
@@ -161,7 +164,9 @@ const Menu = () => {
 							</div>
 						</li>
 						<li>
-							<Link to="/accesorios">Accesorios</Link>
+							<Link to="/accesorios" onClick={handleItemClick}>
+								Accesorios
+							</Link>
 							<div>
 								<Link
 									to="/accesorios/bolsos"
@@ -187,23 +192,9 @@ const Menu = () => {
 							</div>
 						</li>
 						<li>
-							<Link to="Informacion">Informacion</Link>
-							<div>
-								<Link
-									to="/events"
-									className="hover:bg-mainColor"
-									onClick={handleItemClick}
-								>
-									Eventos
-								</Link>
-								<Link
-									to="/info"
-									className="hover:bg-mainColor"
-									onClick={handleItemClick}
-								>
-									Quienes Somos
-								</Link>
-							</div>
+							<Link to="Informacion" onClick={handleItemClick}>
+								Informacion
+							</Link>
 						</li>
 					</ul>
 				</motion.nav>

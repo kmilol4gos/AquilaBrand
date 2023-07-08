@@ -11,7 +11,7 @@ function MostrarEvento(events, currentEventIndex) {
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.5 }}
 			key={events[currentEventIndex].EVENT_ID}
-			className="w-[55rem] h-[25rem] flex items-center relative"
+			className="w-60 md:w-[55rem] h-[25rem] flex items-center relative"
 		>
 			<img
 				src={events[currentEventIndex].EVENT_IMAGE}
