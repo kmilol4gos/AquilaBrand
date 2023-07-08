@@ -5,7 +5,7 @@ import Check from "./assets/circle-check-filled.svg";
 import Rejected from "./assets/rejected-icon.svg";
 
 function Webpay(token) {
-	const URL = "http://server.aquilabrand.cl/checkout";
+	const URL = "https://server.aquilabrand.cl/checkout";
 
 	const [transaction_info, setTransaction_info] = useState();
 
@@ -29,7 +29,7 @@ function Webpay(token) {
 }
 
 function obtenerDatos(token) {
-	const URL = "http://server.aquilabrand.cl/transactions";
+	const URL = "https://server.aquilabrand.cl/transactions";
 
 	const [transactionData, setTransactionData] = useState();
 
@@ -53,7 +53,7 @@ function obtenerDatos(token) {
 }
 
 function ActualizarEstado(nuevo_estado, token) {
-	const URL = "http://server.aquilabrand.cl/transactions";
+	const URL = "https://server.aquilabrand.cl/transactions";
 	let respuesta;
 
 	console.log(nuevo_estado);
@@ -129,7 +129,7 @@ export default function Summary() {
 
 	const [images, setImages] = useState([]);
 
-	const URLIMG = "http://server.aquilabrand.cl/images";
+	const URLIMG = "https://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
 		fetch(URLIMG, {

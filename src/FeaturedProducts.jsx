@@ -22,7 +22,7 @@ function ProductImage({ image, PRODUCT_ID }) {
 }
 
 export default function FeaturedProducts() {
-	const URL = "http://server.aquilabrand.cl/featured";
+	const URL = "https://server.aquilabrand.cl/featured";
 
 	const [featured, setFeatured] = useState();
 
@@ -39,7 +39,7 @@ export default function FeaturedProducts() {
 
 	const [images, setImages] = useState([]);
 
-	const URLIMG = "http://server.aquilabrand.cl/images";
+	const URLIMG = "https://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
 		const response = await fetch(URLIMG, {

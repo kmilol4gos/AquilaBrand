@@ -39,7 +39,7 @@ function GuardarDatos(
 		},
 	];
 
-	const URL = "http://server.aquilabrand.cl/transactions";
+	const URL = "https://server.aquilabrand.cl/transactions";
 
 	const response = fetch(URL, {
 		method: "POST",
@@ -72,7 +72,7 @@ const App = ({
 	const [regiones, setRegiones] = useState([]);
 
 	const fetchApi = async () => {
-		const response = await fetch("http://server.aquilabrand.cl/region");
+		const response = await fetch("https://server.aquilabrand.cl/region");
 		const data = await response.json();
 		setRegiones(data[1]);
 		setComunas(data[0]);
@@ -131,7 +131,7 @@ const App = ({
 };
 
 function Webpay(order_id, session_id, amount) {
-	const URL = "http://server.aquilabrand.cl/checkout";
+	const URL = "https://server.aquilabrand.cl/checkout";
 
 	const [retorno, setRetorno] = useState();
 
@@ -229,7 +229,7 @@ export default function Checkout() {
 
 	const [images, setImages] = useState([]);
 
-	const URLIMG = "http://server.aquilabrand.cl/images";
+	const URLIMG = "https://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
 		const response = await fetch(URLIMG, {
