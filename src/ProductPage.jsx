@@ -108,7 +108,7 @@ export default function ProductPage() {
 
 	const { addToCart } = useCart();
 
-	const URL = "http://localhost:3000/product";
+	const URL = "http://server.aquilabrand.cl/product";
 
 	const [product, setProduct] = useState();
 
@@ -129,7 +129,7 @@ export default function ProductPage() {
 
 	const [images, setImages] = useState([]);
 
-	const URLIMG = "http://localhost:3000/images";
+	const URLIMG = "http://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
 		const response = await fetch(URLIMG, {

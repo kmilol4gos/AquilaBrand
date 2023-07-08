@@ -40,7 +40,7 @@ function MostrarEvento(events, currentEventIndex) {
 }
 
 function Events() {
-	const URL = "http://localhost:3000/event";
+	const URL = "http://server.aquilabrand.cl/event";
 
 	const [events, setEvents] = useState();
 	const [currentEventIndex, setCurrentEventIndex] = useState(0);
