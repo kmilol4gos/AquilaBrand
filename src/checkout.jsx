@@ -96,7 +96,7 @@ const App = ({
 	if (!regiones) {
 		return <h1>Cargando...</h1>;
 	}
-	newState = comunas.filter((item) => item.REGION_NOMBRE === selectedRegion);
+	newState = comunas.filter((item) => item.REGION_NAME === selectedRegion);
 
 	return (
 		<div className="flex flex-col gap-4">
@@ -107,8 +107,8 @@ const App = ({
 			>
 				<option value="">Seleccione región</option>
 				{regiones.map((region) => (
-					<option key={region.REGION_NOMBRE} value={region.REGION_NOMBRE}>
-						{region.REGION_NOMBRE}
+					<option key={region.REGION_NAME} value={region.REGION_NAME}>
+						{region.REGION_NAME}
 					</option>
 				))}
 			</select>
@@ -119,8 +119,8 @@ const App = ({
 			>
 				<option value="">Seleccione comuna</option>
 				{newState.map((comuna) => (
-					<option key={comuna.COMUNA_NOMBRE} value={comuna.COMUNA_NOMBRE}>
-						{comuna.COMUNA_NOMBRE}
+					<option key={comuna.COMUNA_NAME} value={comuna.COMUNA_NAME}>
+						{comuna.COMUNA_NAME}
 					</option>
 				))}
 			</select>
