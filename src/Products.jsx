@@ -65,15 +65,14 @@ export default function Products() {
 	const URL = "https://server.aquilabrand.cl/products";
 
 	const fetchApi = async () => {
-		const response = await fetch(URL, {
+		const response = await fetch(URL +"?" + new URLSearchParams({category: category, section: section}), {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				category: category,
-				section: section,
 			},
 		});
 		const responseJSON = await response.json();
+		console.log(responseJSON)
 		setProducts(responseJSON);
 	};
 
@@ -82,16 +81,15 @@ export default function Products() {
 	const URLIMG = "https://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
-		fetch(URLIMG, {
+		fetch(URLIMG +"?" + new URLSearchParams({category: category, section: section}), {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				category: category,
-				section: section,
 			},
 		})
 			.then((response) => response.json())
 			.then((data) => {
+				console.log(data);
 				setImages(data);
 			});
 	};

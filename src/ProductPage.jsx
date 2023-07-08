@@ -110,17 +110,16 @@ export default function ProductPage() {
 
 	const URL = "https://server.aquilabrand.cl/product";
 
-	const [product, setProduct] = useState();
+	const [product, setProduct] = useState([]);
 
 	const [color, setColor] = useState();
 	const [size, setSize] = useState();
 
 	const fetchApi = async () => {
-		const response = await fetch(URL, {
+		const response = await fetch(URL + "?" + new URLSearchParams({ id: id }), {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				id: id,
 			},
 		});
 		const responseJSON = await response.json();
@@ -132,11 +131,10 @@ export default function ProductPage() {
 	const URLIMG = "https://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
-		const response = await fetch(URLIMG, {
+		const response = await fetch(URLIMG +'?'+ new URLSearchParams({ id: id }), {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				product: id,
 			},
 		});
 		const responseJSON = await response.json();
@@ -148,7 +146,7 @@ export default function ProductPage() {
 		Imagenes();
 	}, []);
 
-	if (!product || !images[0]) {
+	if (!product[0] || !images[0]) {
 		return (
 			<div className="relative flex justify-center items-center w-screen h-screen">
 				<TailSpin color="#e2fcef" height={80} width={80} />

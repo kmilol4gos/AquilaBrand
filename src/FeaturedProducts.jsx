@@ -42,11 +42,10 @@ export default function FeaturedProducts() {
 	const URLIMG = "https://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
-		const response = await fetch(URLIMG, {
+		const response = await fetch(URLIMG +"?" + new URLSearchParams({ featured: "1"}), {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				featured: 1,
 			},
 		});
 		const responseJSON = await response.json();

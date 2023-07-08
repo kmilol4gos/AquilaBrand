@@ -99,32 +99,4 @@ function Events() {
 }
 
 export default Events;
-/*
 
-webpay // importante
-carro compras //importante
-eventos //importante (listo)
-productos destacados (cambiar parametros base de datos, agregar tabla producto destacado) //importante (listo)
-funcionalidad botones carro de compra //importante (despues de implementar carro de compras)
-productos por categoria o seccion (listo)
-informacion //prioridad baja
-whatsapp //prioridad baja
-pagina de confirmacion de compra //importante (pendiente de carro de compras)
-pagina pa que pueda cambiar los productos //prioridad baja (al ultimo)
-
-
-carro de compras:
-
-Json con:
-
-1. orden compra (numero generado aleatorio que no se repita.)
-2. productos (id de inventario, porque estos contienen la talla el color)
-    1. id de inventario (para descontar del inventario)
-    2. cantidad
-    3. precio unitario
-    4. id producto
-    5. color
-    6. talla
-3. total (suma de todos los productos)
-4. fecha de compra (fecha en que se realizo la compra)
-*/

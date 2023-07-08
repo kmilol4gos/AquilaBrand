@@ -41,12 +41,10 @@ function GuardarDatos(
 
 	const URL = "https://server.aquilabrand.cl/transactions";
 
-	const response = fetch(URL, {
+	const response = fetch(URL +"?" + new URLSearchParams({ token: token, estado: "pendiente" }),{
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			token: token,
-			estado: "pendiente",
 		},
 		body: JSON.stringify({
 			cliente: informacionCliente,

@@ -34,11 +34,10 @@ function obtenerDatos(token) {
 	const [transactionData, setTransactionData] = useState();
 
 	const fetchApi = async () => {
-		const response = await fetch(URL, {
+		const response = await fetch(URL + "?" + new URLSearchParams({token: token}), {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				token: token,
 			},
 		});
 		const responseJSON = await response.json();
@@ -56,15 +55,11 @@ function ActualizarEstado(nuevo_estado, token) {
 	const URL = "https://server.aquilabrand.cl/transactions";
 	let respuesta;
 
-	console.log(nuevo_estado);
-
 	const fetchApi = async () => {
-		const response = await fetch(URL, {
+		const response = await fetch(URL + "?" + new URLSearchParams({token: token, estado: nuevo_estado}), {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
-				token: token,
-				estado: nuevo_estado,
 			},
 		});
 		const responseJSON = await response.json();
