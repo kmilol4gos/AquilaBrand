@@ -62,7 +62,7 @@ export default function Products() {
 
 	const [products, setProducts] = useState();
 
-	const URL = "http://localhost:3000/products";
+	const URL = "http://server.aquilabrand.cl/products";
 
 	const fetchApi = async () => {
 		const response = await fetch(URL, {
@@ -79,7 +79,7 @@ export default function Products() {
 
 	const [images, setImages] = useState([]);
 
-	const URLIMG = "http://localhost:3000/images";
+	const URLIMG = "http://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
 		fetch(URLIMG, {

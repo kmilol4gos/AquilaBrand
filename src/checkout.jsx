@@ -7,14 +7,6 @@ import EmailIcon from "./assets/EmailIcon.svg";
 import CellIcon from "./assets/CellIcon.svg";
 import HomeIcon from "./assets/HomeIcon.svg";
 
-//pagina de confirmacion de compra
-
-//llamar a webpay luego de confirmar compra.
-
-//aca ya llega el carro definitivo para la compra.
-
-//aca se pide la informacion de la cliente.
-
 function GuardarDatos(
 	cart,
 	order_id,
@@ -47,7 +39,7 @@ function GuardarDatos(
 		},
 	];
 
-	const URL = "http://localhost:3000/transactions";
+	const URL = "http://server.aquilabrand.cl/transactions";
 
 	const response = fetch(URL, {
 		method: "POST",
@@ -80,7 +72,7 @@ const App = ({
 	const [regiones, setRegiones] = useState([]);
 
 	const fetchApi = async () => {
-		const response = await fetch("http://localhost:3000/region");
+		const response = await fetch("http://server.aquilabrand.cl/region");
 		const data = await response.json();
 		setRegiones(data[1]);
 		setComunas(data[0]);
@@ -139,7 +131,7 @@ const App = ({
 };
 
 function Webpay(order_id, session_id, amount) {
-	const URL = "http://localhost:3000/checkout";
+	const URL = "http://server.aquilabrand.cl/checkout";
 
 	const [retorno, setRetorno] = useState();
 
@@ -150,7 +142,7 @@ function Webpay(order_id, session_id, amount) {
 				buy_order: order_id,
 				session_id: session_id,
 				amount: amount,
-				return_url: "http://localhost:5173/summary",
+				return_url: "https://aquilabrand.cl/summary",
 			}),
 		});
 		const responseJSON = await response.json();
@@ -237,7 +229,7 @@ export default function Checkout() {
 
 	const [images, setImages] = useState([]);
 
-	const URLIMG = "http://localhost:3000/images";
+	const URLIMG = "http://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
 		const response = await fetch(URLIMG, {

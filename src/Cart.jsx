@@ -81,7 +81,7 @@ export default function Cart() {
 
 	const [images, setImages] = useState([]);
 
-	const URLIMG = "http://localhost:3000/images";
+	const URLIMG = "http://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
 		const response = await fetch(URLIMG, {
