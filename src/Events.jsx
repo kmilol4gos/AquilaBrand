@@ -79,10 +79,6 @@ function Events() {
 		);
 	};
 
-	console.log(events);
-	console.log(currentEventIndex);
-	console.log(events[currentEventIndex]);
-
 	return (
 		<div id="event-card" className="text-white relative">
 			<div className="flex justify-center items-center">
