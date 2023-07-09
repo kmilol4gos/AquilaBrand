@@ -25,6 +25,10 @@ function GuardarDatos(
 	telefono,
 	token
 ) {
+	if(nombre === "" || apellido === "" || email === "" || telefono === "" || region === "" || comuna === "" || address === ""){
+		alert("Revise la informacion ingresada")
+		return
+	}
 	const informacionCliente = {
 		nombre: nombre + " " + apellido,
 		email: email,
@@ -55,8 +59,6 @@ function GuardarDatos(
 		}),
 	});
 	response;
-
-	
 
 	alert("Rediriendo a Webpay...")
 
