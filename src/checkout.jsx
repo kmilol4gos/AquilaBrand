@@ -23,17 +23,15 @@ function GuardarDatos(
 	telefono,
 	token
 ) {
-	if (
-		nombre === "" ||
-		apellido === "" ||
-		email === "" ||
-		telefono === "" ||
-		region === "" ||
-		comuna === "" ||
-		address === ""
-	) {
-		alert("Revise la informacion ingresada");
-		return;
+	if(nombre === undefined || 
+		apellido === undefined || 
+		email === undefined || 
+		telefono === undefined || 
+		region === undefined || 
+		comuna === undefined || 
+		address === undefined){
+		alert("Revise la informacion ingresada")
+		return
 	}
 	const informacionCliente = {
 		nombre: nombre + " " + apellido,
@@ -232,13 +230,13 @@ export default function Checkout() {
 
 	const info = Webpay(order_id, session_id, Cart_Amount());
 
-	const [selectedRegion, setSelectedRegion] = useState("");
-	const [selectedComuna, setSelectedComuna] = useState("");
-	const [Address, setAddress] = useState("");
-	const [nombre, setNombre] = useState("");
-	const [apellido, setApellido] = useState("");
-	const [email, setEmail] = useState("");
-	const [telefono, setTelefono] = useState("");
+	const [selectedRegion, setSelectedRegion] = useState();
+	const [selectedComuna, setSelectedComuna] = useState();
+	const [Address, setAddress] = useState();
+	const [nombre, setNombre] = useState();
+	const [apellido, setApellido] = useState();
+	const [email, setEmail] = useState();
+	const [telefono, setTelefono] = useState();
 
 	const [images, setImages] = useState([]);
 
