@@ -7,7 +7,7 @@ import Events from "./Events";
 
 function App() {
 	return (
-		<main className="w-full pb-36 mb-36">
+		<main className="w-full pb-36 mb-36 ">
 			<div className="relative w-screen h-screen flex justify-center items-center">
 				<section className="relative w-full h-full z-40  ">
 					<header className="absolute p-16 flex flex-col items-center top-20 w-full">

@@ -44,7 +44,7 @@ const Menu = () => {
 				</div>
 				<picture className="order-3 hidden md:block">
 					<a
-						href="https://www.instagram.com/?hl=es"
+						href="https://www.instagram.com/aquila.brand_"
 						target="_blank"
 						rel="noreferrer"
 					>
@@ -52,7 +52,7 @@ const Menu = () => {
 					</a>
 				</picture>
 				<picture className="order-5 hidden md:block">
-					<a href="https://www.google.cl" rel="noreferrer" target="_blank">
+					<a href="https://wa.me/56926937584" rel="noreferrer" target="_blank">
 						<img src={WhatsApp} alt="" />
 					</a>
 				</picture>
