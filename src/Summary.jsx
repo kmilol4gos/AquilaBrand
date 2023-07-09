@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
 import Check from "./assets/circle-check-filled.svg";
 import Rejected from "./assets/rejected-icon.svg";
+import { useCart } from "./hook/useCart";
 
 function Webpay(token) {
 	const URL = "https://server.aquilabrand.cl/checkout";
@@ -111,6 +112,8 @@ function Product_Card({
 }
 
 export default function Summary() {
+
+	const { clearCart } = useCart();
 	const queryString = window.location.search;
 
 	const urlParams = new URLSearchParams(queryString);
@@ -169,6 +172,8 @@ export default function Summary() {
 	const infoProductos = info[0]["detalle_productos"];
 
 	infoProductos.map((item) => (count = count + item.quantity));
+
+	clearCart();
 
 	if (
 		transaction_info.response_code === 0 &&
