@@ -39,7 +39,7 @@ function Product_Card({
 				<Link to="/" className="text-black text-lg font-bold uppercase">
 					<h3>{PRODUCT_NAME}</h3>
 				</Link>
-				<p className="text-black font-normal text-lg md:text-sm">{PRODUCT_DESCRIPTION}</p>
+				<p className="text-black font-normal text-lg md:text-sm overflow-y-auto">{PRODUCT_DESCRIPTION}</p>
 				<span className="text-black text-xl font-bold before:content-['$']">
 					{PRECIO}
 				</span>

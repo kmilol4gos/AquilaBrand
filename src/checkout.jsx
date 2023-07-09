@@ -7,9 +7,6 @@ import EmailIcon from "./assets/EmailIcon.svg";
 import CellIcon from "./assets/CellIcon.svg";
 import HomeIcon from "./assets/HomeIcon.svg";
 
-
-
-
 function GuardarDatos(
 	cart,
 	order_id,
@@ -25,9 +22,17 @@ function GuardarDatos(
 	telefono,
 	token
 ) {
-	if(nombre === "" || apellido === "" || email === "" || telefono === "" || region === "" || comuna === "" || address === ""){
-		alert("Revise la informacion ingresada")
-		return
+	if (
+		nombre === "" ||
+		apellido === "" ||
+		email === "" ||
+		telefono === "" ||
+		region === "" ||
+		comuna === "" ||
+		address === ""
+	) {
+		alert("Revise la informacion ingresada");
+		return;
 	}
 	const informacionCliente = {
 		nombre: nombre + " " + apellido,
@@ -48,25 +53,27 @@ function GuardarDatos(
 
 	const URL = "https://server.aquilabrand.cl/transactions";
 
-	const response = fetch(URL +"?" + new URLSearchParams({ token: token, estado: "pendiente" }),{
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			cliente: informacionCliente,
-			bolsa: informacionCompra,
-		}),
-	});
+	const response = fetch(
+		URL + "?" + new URLSearchParams({ token: token, estado: "pendiente" }),
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				cliente: informacionCliente,
+				bolsa: informacionCompra,
+			}),
+		}
+	);
 	response;
 
-	alert("Rediriendo a Webpay...")
+	alert("Rediriendo a Webpay...");
 
 	let formulario = document.getElementById("pago");
 
 	formulario.submit();
 }
-
 
 const App = ({
 	selectedRegion,
@@ -177,14 +184,13 @@ function Product_Card({
 		(item) => item.COLOR_NAME === COLOR_NAME && item.PRODUCT_ID === PRODUCT_ID
 	);
 	if (!filterImages[0]) {
-		
 	} else {
 		ImagePrincipal = filterImages[0].IMAGE;
 	}
 	return (
 		<div
 			key={PRODUCT_NAME + COLOR_NAME + SIZE_NAME}
-			className="w-full flex gap-3 bg-mainColor p-3"
+			className="w-full h-28 flex gap-3 bg-mainColor p-3"
 		>
 			<div className="flex items-center w-20 h-full">
 				<img
@@ -198,9 +204,9 @@ function Product_Card({
 				<span className="before:content-['$'] text-sm">{PRECIO}</span>
 			</div>
 			<div className="flex flex-col">
-				<span className="text-base font-medium">Talla: {SIZE_NAME}</span>
-				<span className="text-base font-medium">Color: {COLOR_NAME}</span>
-				<span className="text-base font-medium">Cantidad: {quantity}</span>
+				<span className="text-sm font-medium">Talla: {SIZE_NAME}</span>
+				<span className="text-sm font-medium">Color: {COLOR_NAME}</span>
+				<span className="text-sm font-medium">Cantidad: {quantity}</span>
 			</div>
 		</div>
 	);
@@ -274,7 +280,6 @@ export default function Checkout() {
 				<TailSpin color="#e2fcef" height={80} width={80} />
 			</div>
 		);
-
 
 	return (
 		<div
@@ -350,10 +355,28 @@ export default function Checkout() {
 					/>
 					<button
 						type="submit"
-						onClick={(e) => {document.getElementById('form-info-personal').addEventListener('submit', function(e){
-							e.preventDefault();
-							GuardarDatos(cart, order_id, session_id, amount, quantity, selectedRegion, selectedComuna, Address, nombre, apellido, email, telefono, info.token)
-						})}}
+						onClick={(e) => {
+							document
+								.getElementById("form-info-personal")
+								.addEventListener("submit", function (e) {
+									e.preventDefault();
+									GuardarDatos(
+										cart,
+										order_id,
+										session_id,
+										amount,
+										quantity,
+										selectedRegion,
+										selectedComuna,
+										Address,
+										nombre,
+										apellido,
+										email,
+										telefono,
+										info.token
+									);
+								});
+						}}
 						id="btn-pagar"
 						className="bg-black  text-white py-2 font-bold text-lg hover:bg-white hover:text-black cursor-pointer rounded-sm"
 					>
@@ -361,7 +384,7 @@ export default function Checkout() {
 					</button>
 				</form>
 			</div>
-			
+
 			<div
 				className="flex flex-col justify-center items-center h-full relative text-white"
 				id="resumen-productos"
@@ -386,12 +409,10 @@ export default function Checkout() {
 						{<Cart_Amount />}
 					</span>
 				</div>
-				<form id="pago"className="w-full" action={info.url} method="post">
+				<form id="pago" className="w-full" action={info.url} method="post">
 					<input type="hidden" name="token_ws" value={info.token} />
-					
 				</form>
 			</div>
-			
 		</div>
 	);
 }

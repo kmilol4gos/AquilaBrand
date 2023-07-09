@@ -29,25 +29,28 @@ function CartProduct_Card({
 
 	return (
 		<div className="my-2 flex flex-col justify-center bg-mainColor">
-			<div className="flex w-[90%] items-stretch pt-4 pb-6" id="card-product">
+			<div
+				className="flex w-[90%] h-36 items-stretch pt-4 pb-6"
+				id="card-product"
+			>
 				<div className="w-[30%] flex justify-center items-center mx-2">
 					<Link to="/product/idproducto">
 						<img
 							src={ImagePrincipal}
 							alt=""
-							className="w-full h-full object-cover border-none"
+							className="w-28 h-28 object-cover border-none"
 						/>
 					</Link>
 				</div>
 				<div className="flex justify-center flex-grow items-stretch ml-2">
 					<div className="w-full h-full flex flex-col justify-around text-white items-start">
-						<Link to="/" className="font-bold text-xl no-underline">
+						<Link to="/" className="font-bold text-base no-underline">
 							{PRODUCT_NAME}
 						</Link>
-						<div className="flex flex-col my-2">
-							<span className="font-light text-xs">Talla: {SIZE_NAME}</span>
-							<span className="font-light text-xs">Color: {COLOR_NAME}</span>
-							<span className="font-light text-xs">Cantidad: {quantity}</span>
+						<div className="flex flex-col ">
+							<span className="font-light text-sm">Talla: {SIZE_NAME}</span>
+							<span className="font-light text-sm">Color: {COLOR_NAME}</span>
+							<span className="font-light text-sm">Cantidad: {quantity}</span>
 						</div>
 						<div>
 							<span className="font-normal text-xl before:content-['$']">

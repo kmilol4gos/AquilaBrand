@@ -16,7 +16,7 @@ function ProductImage({ image, PRODUCT_ID }) {
 		<img
 			src={ImagePrincipal}
 			alt=""
-			className="h-full w-32 rounded-t-lg object-cover md:w-48 md:rounded-none md:rounded-l-lg"
+			className="h-full w-full rounded-t-lg object-cover md:w-48 md:rounded-none md:rounded-l-lg"
 		/>
 	);
 }
@@ -42,12 +42,15 @@ export default function FeaturedProducts() {
 	const URLIMG = "https://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
-		const response = await fetch(URLIMG +"?" + new URLSearchParams({ featured: "1"}), {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+		const response = await fetch(
+			URLIMG + "?" + new URLSearchParams({ featured: "1" }),
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}
+		);
 		const responseJSON = await response.json();
 		setImages(responseJSON);
 	};
@@ -67,9 +70,13 @@ export default function FeaturedProducts() {
 	return featured.map((product, index) => (
 		<div
 			key={product.PRODUCT_ID}
-			className="flex rounded-lg bg-white md:flex-row w-full"
+			className="flex rounded-lg bg-white md:flex-row w-full h-56"
 		>
-			<ProductImage image={images} PRODUCT_ID={product.PRODUCT_ID} />
+			<div className="h-full w-48">
+				<Link to={"/product/" + product.PRODUCT_ID}>
+					<ProductImage image={images} PRODUCT_ID={product.PRODUCT_ID} />
+				</Link>
+			</div>
 
 			<div className="flex flex-col justify-evenly p-6 w-full">
 				<Link to={"/product/" + product.PRODUCT_ID}>
@@ -77,12 +84,12 @@ export default function FeaturedProducts() {
 						{product.PRODUCT_NAME}
 					</h1>
 				</Link>
-				<p className="mb-4 text-base text-black">
+				<p className=" text-sm text-black h-16 overflow-y-auto">
 					{product.PRODUCT_DESCRIPTION}
 				</p>
 				<Link
 					to={"/product/" + product.PRODUCT_ID}
-					className="flex justify-center bg-black text-white rounded-lg p-1"
+					className="flex mt-4 justify-center bg-black text-white rounded-lg py-1"
 				>
 					Ir a comprar
 				</Link>

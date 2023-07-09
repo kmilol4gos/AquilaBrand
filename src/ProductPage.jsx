@@ -2,46 +2,82 @@ import { useCart } from "./hook/useCart";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
+import { motion } from "framer-motion";
 
-function AgregarAlCarro({ product, color, size, addToCart, setColor, setSize }) {
-	const btn = document.getElementById("agregar-al-carrito")
+function AgregarAlCarro({
+	product,
+	color,
+	size,
+	addToCart,
+	setColor,
+	setSize,
+}) {
+	const btn = document.getElementById("agregar-al-carrito");
 	let mensaje = "Seleccione opciones";
 	let text_boton = "Selecciona opciones";
-	let disabled = true
+	let disabled = true;
 	let filteredProduct = [];
 	if (color !== undefined && size !== undefined) {
 		filteredProduct = product[0].filter((item) => {
-		if(filteredProduct === []){
-			//no existe stock para el producto
-			setColor(undefined)
-			setSize(undefined)
-			filteredProduct = []
-		}
-		return item.COLOR_ID === color && item.SIZE_ID === size;
-	});
+			if (filteredProduct === []) {
+				//no existe stock para el producto
+				setColor(undefined);
+				setSize(undefined);
+				filteredProduct = [];
+			}
+			return item.COLOR_ID === color && item.SIZE_ID === size;
+		});
 	}
-	if(filteredProduct[0] === undefined && color !== undefined && size !== undefined){
-		mensaje = "No disponible"
-		disabled = true
-		text_boton = "No disponible"
-
+	if (
+		filteredProduct[0] === undefined &&
+		color !== undefined &&
+		size !== undefined
+	) {
+		mensaje = "No disponible";
+		disabled = true;
+		text_boton = "No disponible";
 	}
-	if (filteredProduct[0] !== undefined && color !== undefined && size !== undefined) {
+	if (
+		filteredProduct[0] !== undefined &&
+		color !== undefined &&
+		size !== undefined
+	) {
 		mensaje = "Disponible";
 		text_boton = "Agregar al carrito";
-		disabled = false
+		disabled = false;
 	}
+	const [showModal, setShowModal] = useState(false);
+	const HandleClick = () => {
+		setShowModal(true);
+		addToCart(filteredProduct[0]);
+		setTimeout(() => {
+			setShowModal(false);
+		}, 3000);
+	};
 	return (
 		<div>
-			<span className="md:block flex justify-center text-xl font-bold border-t-2 py-2 md:border-none md:py-0">
+			<span className="md:block flex justify-center text-base font-bold border-t-2 py-2 md:border-none md:py-0">
 				{mensaje}
 			</span>
 			<button
 				id="agregar-al-carrito"
 				disabled={disabled}
-				onClick={() => {addToCart(filteredProduct[0]); alert("Producto agregado al carrito") /*cambiar por popup*/ }}
+				onClick={() => {
+					HandleClick();
+				}}
 				className="w-full md:w-auto ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
 			>
+				{showModal && (
+					<motion.div
+						initial={{ opacity: 0, y: 43, x: -13 }}
+						animate={{ opacity: 1, y: 45, x: -15 }}
+						exit={{ opacity: 0, y: -20 }}
+						transition={{ duration: 0.3 }}
+						className="bg-black p-4 absolute z-50"
+					>
+						<h1 className=" text-white">Se ha añadido al carrito de compras</h1>
+					</motion.div>
+				)}
 				{text_boton}
 			</button>
 		</div>
@@ -94,7 +130,7 @@ function Sizes({ SIZE_NAME, SIZE_ID, setSize }) {
 			<label
 				key={SIZE_NAME}
 				htmlFor={SIZE_NAME}
-				className="justify-center bg-black flex items-center p-2 w-12 h-12 text-base hover:bg-white hover:text-black ease-in-out duration-100 cursor-pointer"
+				className="justify-center bg-black flex items-center p-2 w-16 h-12 text-base hover:bg-white hover:text-black ease-in-out duration-100 cursor-pointer"
 				onClick={() => setSize(SIZE_ID)}
 			>
 				{SIZE_NAME}
@@ -158,12 +194,15 @@ export default function ProductPage() {
 	const URLIMG = "https://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
-		const response = await fetch(URLIMG +'?'+ new URLSearchParams({ id: id }), {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+		const response = await fetch(
+			URLIMG + "?" + new URLSearchParams({ id: id }),
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}
+		);
 		const responseJSON = await response.json();
 		setImages(responseJSON);
 	};
@@ -186,7 +225,7 @@ export default function ProductPage() {
 	}
 
 	return (
-		<div className="w-screen h-full flex justify-center items-center relative top-20  mb-36 pb-36">
+		<div className="w-screen h-full flex justify-center items-center relative top-20 mb-36 pb-36">
 			<section
 				id="producto"
 				className="relative flex h-screen flex-col md:flex-row md:items-stretch justify-center md:h-[36rem] text-white md:mt-20"
@@ -201,7 +240,10 @@ export default function ProductPage() {
 						<h1 className="text-center md:text-start text-4xl font-bold uppercase">
 							{product[0][0].PRODUCT_NAME}
 						</h1>
-						<p className="w-full text-center md:text-start md:text-sm font-normal py-2">
+						<span className="md:block flex justify-center text-xl font-bold before:content-['$'] border-t-2 py-2 md:border-none md:py-0">
+							{product[0][0].PRECIO}
+						</span>
+						<p className="w-full text-center md:text-start md:text-base font-normal py-2">
 							{product[0][0].PRODUCT_DESCRIPTION}
 						</p>
 					</section>
@@ -218,9 +260,7 @@ export default function ProductPage() {
 						<span className="text-lg md:text-base">Seleccionar color</span>
 						<Colors product={product[1]} setColor={setColor} />
 					</section>
-					<span className="md:block flex justify-center text-xl font-bold before:content-['$'] border-t-2 py-2 md:border-none md:py-0">
-						{product[0][0].PRECIO}
-					</span>
+
 					<div className="flex justify-center md:block">
 						<AgregarAlCarro
 							product={product}

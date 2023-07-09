@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Logo from "./assets/Aguila_Sola.png";
 import Instagram from "./assets/Instagram-icon.svg";
@@ -27,6 +27,7 @@ const Menu = () => {
 				<picture className="order-5">
 					<Link to="/">
 						<img
+							onClick={handleItemClick}
 							src={Logo}
 							alt="Logo AquilaBrand"
 							className="w-20 drop-shadow-aq hover:scale-110 duration-100 "
