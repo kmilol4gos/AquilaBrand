@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useCart } from "./hook/useCart";
 import { Cart_Amount, Cart_Cantidad } from "./hook/datosCart";
 import { TailSpin } from "react-loader-spinner";
+import { motion } from "framer-motion";
 import PersonIcon from "./assets/PersonIcon.svg";
 import EmailIcon from "./assets/EmailIcon.svg";
 import CellIcon from "./assets/CellIcon.svg";
@@ -281,6 +282,10 @@ export default function Checkout() {
 			</div>
 		);
 
+	// const form = document.getElementById("form-info-personal");
+	// const input = document.getElementById("btn-pagar");
+	// const popUp = document.getElementById("required");
+
 	return (
 		<div
 			className="flex items-center justify-around relative h-screen w-screen mb-20"
@@ -383,6 +388,15 @@ export default function Checkout() {
 						Ir a pagar
 					</button>
 				</form>
+				<motion.div
+					className="bg-mainColor absolute"
+					id="required"
+					initial={{ opacity: 0, y: 300, x: 0 }}
+					animate={{ opacity: 1, y: 300, x: 0 }}
+					transition={{ duration: 0.3 }}
+				>
+					<h1 className="text-white p-4">Debe rellenar todos los campos</h1>
+				</motion.div>
 			</div>
 
 			<div

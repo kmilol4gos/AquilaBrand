@@ -113,7 +113,7 @@ export default function Cart() {
 		<motion.nav
 			initial={{ opacity: 0, x: 20 }}
 			animate={{ opacity: 1, x: 0 }}
-			exit={{ opacity: 0, x: -20 }}
+			exit={{ opacity: 0, x: 20 }}
 			transition={{ duration: 0.3 }}
 			className="z-40 top-0 fixed right-0 h-screen flex flex-col w-full md:w-[30rem]"
 		>

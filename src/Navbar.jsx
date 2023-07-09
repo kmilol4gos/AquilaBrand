@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Logo from "./assets/Aguila_Sola.png";
 import Instagram from "./assets/Instagram-icon.svg";
 import WhatsApp from "./assets/Whatsapp-icon.svg";
@@ -69,138 +69,139 @@ const Menu = () => {
 					</button>
 				</div>
 			</nav>
-
-			{isOpen && (
-				<motion.nav
-					initial={{ opacity: 0, y: -5 }}
-					animate={{ opacity: 1, y: 0 }}
-					exit={{ opacity: 0, y: -20 }}
-					transition={{ duration: 0.3 }}
-					id="dropdown-menu"
-					className="fixed top-20 z-50 block w-full overflow-hidden rounded-bl-xl rounded-br-xl bg-black text-white"
-				>
-					<ul className="w-screen h-[28rem] flex flex-col justify-around gap-4 md:hidden">
-						<li className="w-full text-center flex">
-							<Link to="/ropa" className=" w-full text-2xl font-bold ">
-								Ropa
-							</Link>
-						</li>
-						<li className="w-full flex text-center">
-							<Link to="/skate" className=" w-full text-2xl font-bold ">
-								Skate
-							</Link>
-						</li>
-						<li className="w-full flex text-center">
-							<Link to="/accesorios" className=" w-full text-2xl font-bold ">
-								Accesorios
-							</Link>
-						</li>
-						<li className="w-full flex text-center">
-							<Link to="/Informacion" className=" w-full text-2xl font-bold ">
-								Informacion
-							</Link>
-						</li>
-					</ul>
-					<ul
-						className="w-full list-none justify-around hidden md:flex
+			<AnimatePresence>
+				{isOpen && (
+					<motion.nav
+						initial={{ opacity: 0, y: -5 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -5 }}
+						transition={{ duration: 0.3 }}
+						id="dropdown-menu"
+						className="fixed top-20 z-50 block w-full overflow-hidden rounded-bl-xl rounded-br-xl bg-black text-white"
+					>
+						<ul className="w-screen h-[28rem] flex flex-col justify-around gap-4 md:hidden">
+							<li className="w-full text-center flex">
+								<Link to="/ropa" className=" w-full text-2xl font-bold ">
+									Ropa
+								</Link>
+							</li>
+							<li className="w-full flex text-center">
+								<Link to="/skate" className=" w-full text-2xl font-bold ">
+									Skate
+								</Link>
+							</li>
+							<li className="w-full flex text-center">
+								<Link to="/accesorios" className=" w-full text-2xl font-bold ">
+									Accesorios
+								</Link>
+							</li>
+							<li className="w-full flex text-center">
+								<Link to="/Informacion" className=" w-full text-2xl font-bold ">
+									Informacion
+								</Link>
+							</li>
+						</ul>
+						<ul
+							className="w-full list-none justify-around hidden md:flex
 					[&>li]:mx-3 [&>li]:h-full [&>li]:w-72 [&>li]:flex [&>li]:flex-col [&>li]:items-center
 					[&>li>a]:inline-block [&>li>a]:pt-3 [&>li>a]:pb-1 [&>li>a]:text-xl [&>li>a]:font-bold [&>li>a]:self-center [&>li>a]:w-36
 					[&>li>div]:flex [&>li>div]:flex-col [&>li>div]:justify-center [&>li>div]:my-2
 					[&>li>div>a]:text-s [&>li>div>a]:w-36 [&>li>div>a]:p-1 [&>li>div>a]:my-1 [&>li>div>a]:px-3 [&>li>div>a]:rounded"
-					>
-						<li>
-							<Link to="/ropa" onClick={handleItemClick}>
-								Ropa
-							</Link>
-							<div>
-								<Link
-									to="/ropa/poleras"
-									className="hover:bg-mainColor"
-									onClick={handleItemClick}
-								>
-									Poleras
+						>
+							<li>
+								<Link to="/ropa" onClick={handleItemClick}>
+									Ropa
 								</Link>
-								<Link
-									to="/ropa/pantalones"
-									className="hover:bg-mainColor"
-									onClick={handleItemClick}
-								>
-									Pantalones
+								<div>
+									<Link
+										to="/ropa/poleras"
+										className="hover:bg-mainColor"
+										onClick={handleItemClick}
+									>
+										Poleras
+									</Link>
+									<Link
+										to="/ropa/pantalones"
+										className="hover:bg-mainColor"
+										onClick={handleItemClick}
+									>
+										Pantalones
+									</Link>
+									<Link
+										to="/ropa/polerones"
+										className="hover:bg-mainColor"
+										onClick={handleItemClick}
+									>
+										Polerones
+									</Link>
+									<Link
+										to="/ropa/faldas"
+										className="hover:bg-mainColor"
+										onClick={handleItemClick}
+									>
+										Faldas
+									</Link>
+								</div>
+							</li>
+							<li>
+								<Link to="/skate" onClick={handleItemClick}>
+									Skate
 								</Link>
-								<Link
-									to="/ropa/polerones"
-									className="hover:bg-mainColor"
-									onClick={handleItemClick}
-								>
-									Polerones
+								<div>
+									<Link
+										to="/skate/ruedas"
+										className="hover:bg-mainColor"
+										onClick={handleItemClick}
+									>
+										Ruedas
+									</Link>
+									<Link
+										to="/skate/tablas"
+										className="hover:bg-mainColor"
+										onClick={handleItemClick}
+									>
+										Tablas
+									</Link>
+								</div>
+							</li>
+							<li>
+								<Link to="/accesorios" onClick={handleItemClick}>
+									Accesorios
 								</Link>
-								<Link
-									to="/ropa/faldas"
-									className="hover:bg-mainColor"
-									onClick={handleItemClick}
-								>
-									Faldas
+								<div>
+									<Link
+										to="/accesorios/bolsos"
+										className="hover:bg-mainColor"
+										onClick={handleItemClick}
+									>
+										Bolsos
+									</Link>
+									<Link
+										to="/accesorios/pulseras"
+										className="hover:bg-mainColor"
+										onClick={handleItemClick}
+									>
+										Pulseras
+									</Link>
+									<Link
+										to="/accesorios/collares"
+										className="hover:bg-mainColor"
+										onClick={handleItemClick}
+									>
+										Collares
+									</Link>
+								</div>
+							</li>
+							<li>
+								<Link to="Informacion" onClick={handleItemClick}>
+									Informacion
 								</Link>
-							</div>
-						</li>
-						<li>
-							<Link to="/skate" onClick={handleItemClick}>
-								Skate
-							</Link>
-							<div>
-								<Link
-									to="/skate/ruedas"
-									className="hover:bg-mainColor"
-									onClick={handleItemClick}
-								>
-									Ruedas
-								</Link>
-								<Link
-									to="/skate/tablas"
-									className="hover:bg-mainColor"
-									onClick={handleItemClick}
-								>
-									Tablas
-								</Link>
-							</div>
-						</li>
-						<li>
-							<Link to="/accesorios" onClick={handleItemClick}>
-								Accesorios
-							</Link>
-							<div>
-								<Link
-									to="/accesorios/bolsos"
-									className="hover:bg-mainColor"
-									onClick={handleItemClick}
-								>
-									Bolsos
-								</Link>
-								<Link
-									to="/accesorios/pulseras"
-									className="hover:bg-mainColor"
-									onClick={handleItemClick}
-								>
-									Pulseras
-								</Link>
-								<Link
-									to="/accesorios/collares"
-									className="hover:bg-mainColor"
-									onClick={handleItemClick}
-								>
-									Collares
-								</Link>
-							</div>
-						</li>
-						<li>
-							<Link to="Informacion" onClick={handleItemClick}>
-								Informacion
-							</Link>
-						</li>
-					</ul>
-				</motion.nav>
-			)}
-			{isCartOpen && <Cart />}
+							</li>
+						</ul>
+					</motion.nav>
+				)}
+				{isCartOpen && <Cart />}
+			</AnimatePresence>
 		</header>
 	);
 };

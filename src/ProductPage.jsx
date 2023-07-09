@@ -2,7 +2,7 @@ import { useCart } from "./hook/useCart";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 function AgregarAlCarro({
 	product,
@@ -67,17 +67,20 @@ function AgregarAlCarro({
 				}}
 				className="w-full md:w-auto ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
 			>
-				{showModal && (
-					<motion.div
-						initial={{ opacity: 0, y: 43, x: -13 }}
-						animate={{ opacity: 1, y: 45, x: -15 }}
-						exit={{ opacity: 0, y: -20 }}
-						transition={{ duration: 0.3 }}
-						className="bg-black p-4 absolute z-50"
-					>
-						<h1 className=" text-white">Se ha añadido al carrito de compras</h1>
-					</motion.div>
-				)}
+				<AnimatePresence>
+					{showModal && (
+						<motion.div
+							initial={{ opacity: 0, y: 43, x: -13 }}
+							animate={{ opacity: 1, y: 45, x: -15 }}
+							exit={{ opacity: 0, x: -17 }}
+							className="bg-black p-4 absolute z-50"
+						>
+							<h1 className=" text-white">
+								Se ha añadido al carrito de compras
+							</h1>
+						</motion.div>
+					)}
+				</AnimatePresence>
 				{text_boton}
 			</button>
 		</div>
