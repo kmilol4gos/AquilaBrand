@@ -8,13 +8,11 @@ function Webpay(token) {
 	const URL = "https://server.aquilabrand.cl/checkout";
 
 	const [transaction_info, setTransaction_info] = useState();
-
 	const fetchApi = async () => {
-		const response = await fetch(URL, {
+		const response = await fetch(URL + "?" + new URLSearchParams({token: token}), {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				token: token,
 			},
 		});
 		const responseJSON = await response.json();
@@ -118,9 +116,11 @@ export default function Summary() {
 	const urlParams = new URLSearchParams(queryString);
 	const token = urlParams.get("token_ws");
 
+
 	const tbk_token = urlParams.get("TBK_TOKEN");
 	const tbk_id_sesion = urlParams.get("TBK_ID_SESION");
 	const tbk_orden_compra = urlParams.get("TBK_ORDEN_COMPRA");
+
 
 	const [images, setImages] = useState([]);
 
@@ -163,6 +163,7 @@ export default function Summary() {
 		);
 
 	let count = 0;
+
 
 	const info = JSON.parse(transactionData[0]["INFO"]);
 	const infoProductos = info[0]["detalle_productos"];

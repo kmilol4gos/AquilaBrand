@@ -7,6 +7,9 @@ import EmailIcon from "./assets/EmailIcon.svg";
 import CellIcon from "./assets/CellIcon.svg";
 import HomeIcon from "./assets/HomeIcon.svg";
 
+
+
+
 function GuardarDatos(
 	cart,
 	order_id,
@@ -53,12 +56,15 @@ function GuardarDatos(
 	});
 	response;
 
-	alert("Datos guardados");
+	
+
+	alert("Rediriendo a Webpay...")
 
 	let formulario = document.getElementById("pago");
 
 	formulario.submit();
 }
+
 
 const App = ({
 	selectedRegion,
@@ -99,7 +105,7 @@ const App = ({
 	newState = comunas.filter((item) => item.REGION_NAME === selectedRegion);
 
 	return (
-		<div className="flex flex-col gap-4">
+		<label className="flex flex-col gap-4">
 			<select
 				className="bg-white p-2 text-black rounded-sm outline-none border-none"
 				value={selectedRegion}
@@ -124,7 +130,7 @@ const App = ({
 					</option>
 				))}
 			</select>
-		</div>
+		</label>
 	);
 };
 
@@ -267,6 +273,7 @@ export default function Checkout() {
 			</div>
 		);
 
+
 	return (
 		<div
 			className="flex items-center justify-around relative h-screen w-screen mb-20"
@@ -277,8 +284,8 @@ export default function Checkout() {
 				id="info-personal "
 			>
 				<h1 className="text-3xl mb-14  text-white">Informacion personal</h1>
-				<div className="flex flex-col gap-4">
-					<div className=" rounded-sm flex items-center bg-white">
+				<form className="flex flex-col gap-4" id="form-info-personal">
+					<label className=" rounded-sm flex items-center bg-white">
 						<img src={PersonIcon} alt="" className="ml-3" />
 						<input
 							type="text"
@@ -288,7 +295,7 @@ export default function Checkout() {
 							placeholder="Nombre"
 							className="bg-transparent w-full p-2 placeholder:text-bgColor outline-none border-none "
 						/>
-					</div>
+					</label>
 					<label className=" bg-white rounded-sm flex items-center  ">
 						<img src={PersonIcon} alt="" className="ml-3" />
 						<input
@@ -340,31 +347,19 @@ export default function Checkout() {
 						selectedRegion={selectedRegion}
 					/>
 					<button
-						onClick={() => {
-							GuardarDatos(
-								cart,
-								order_id,
-								session_id,
-								amount,
-								quantity,
-								selectedRegion,
-								selectedComuna,
-								Address,
-								nombre,
-								apellido,
-								email,
-								telefono,
-								info.token
-							);
-						}}
-						value="Confirmar Datos"
+						type="submit"
+						onClick={(e) => {document.getElementById('form-info-personal').addEventListener('submit', function(e){
+							e.preventDefault();
+							GuardarDatos(cart, order_id, session_id, amount, quantity, selectedRegion, selectedComuna, Address, nombre, apellido, email, telefono, info.token)
+						})}}
+						id="btn-pagar"
 						className="bg-black  text-white py-2 font-bold text-lg hover:bg-white hover:text-black cursor-pointer rounded-sm"
 					>
 						Ir a pagar
 					</button>
-				</div>
+				</form>
 			</div>
-
+			
 			<div
 				className="flex flex-col justify-center items-center h-full relative text-white"
 				id="resumen-productos"
@@ -394,6 +389,7 @@ export default function Checkout() {
 					
 				</form>
 			</div>
+			
 		</div>
 	);
 }

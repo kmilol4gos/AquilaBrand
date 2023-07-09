@@ -3,20 +3,11 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
 
-function filtrarProducto(product, color, size) {
-
-	if (color !== undefined && size !== undefined) {
-		return product[0].filter((item) => {
-			return item.COLOR_ID === color && item.SIZE_ID === size;
-		});
-	}
-	return product[0].STOCK;
-}
-
 function AgregarAlCarro({ product, color, size, addToCart, setColor, setSize }) {
 	const btn = document.getElementById("agregar-al-carrito")
 	let mensaje = "Seleccione opciones";
-	let text_boton = "Agregar al carrito";
+	let text_boton = "Selecciona opciones";
+	let disabled = true
 	let filteredProduct = [];
 	if (color !== undefined && size !== undefined) {
 		filteredProduct = product[0].filter((item) => {
@@ -31,22 +22,24 @@ function AgregarAlCarro({ product, color, size, addToCart, setColor, setSize }) 
 	}
 	if(filteredProduct[0] === undefined && color !== undefined && size !== undefined){
 		mensaje = "No disponible"
-		btn.disabled = true
+		disabled = true
 		text_boton = "No disponible"
 
 	}
 	if (filteredProduct[0] !== undefined && color !== undefined && size !== undefined) {
-		mensaje = filteredProduct[0].STOCK;
+		mensaje = "Disponible";
 		text_boton = "Agregar al carrito";
+		disabled = false
 	}
 	return (
 		<div>
 			<span className="md:block flex justify-center text-xl font-bold border-t-2 py-2 md:border-none md:py-0">
-				Stock: {mensaje}
+				{mensaje}
 			</span>
 			<button
 				id="agregar-al-carrito"
-				onClick={() => addToCart(filteredProduct[0])}
+				disabled={disabled}
+				onClick={() => {addToCart(filteredProduct[0]); alert("Producto agregado al carrito") /*cambiar por popup*/ }}
 				className="w-full md:w-auto ease-in-out duration-100 my-2 p-3 border-2 border-black text-white bg-black cursor-pointer text-base font-bold hover:bg-white hover:border-white hover:text-black"
 			>
 				{text_boton}
