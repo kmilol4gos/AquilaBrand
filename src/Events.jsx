@@ -12,7 +12,7 @@ function MostrarEvento(events, currentEventIndex) {
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.5 }}
 			key={events[currentEventIndex].EVENT_ID}
-			className="w-60 md:w-[55rem] h-[25rem] flex items-center relative"
+			className="w-[20rem] md:w-[55rem] lg:w-[80rem]  h-[40rem] md:h-[25rem] lg:h-[35rem] flex items-center relative"
 		>
 			<img
 				src={events[currentEventIndex].EVENT_IMAGE}
@@ -81,7 +81,7 @@ function Events() {
 	};
 
 	return (
-		<div id="event-card" className="text-white relative">
+		<div id="event-card" className="text-white relative ">
 			<div className="flex justify-center items-center">
 				<button className="" onClick={handlePrevClick}>
 					<img src={ArrowLeft} alt="" />

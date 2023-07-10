@@ -73,9 +73,9 @@ function AgregarAlCarro({
 							initial={{ opacity: 0, y: 43, x: -13 }}
 							animate={{ opacity: 1, y: 45, x: -15 }}
 							exit={{ opacity: 0, x: -17 }}
-							className="bg-black p-4 absolute cursor-default"
+							className="bg-white p-4 absolute cursor-default"
 						>
-							<h1 className=" text-white">
+							<h1 className=" text-black">
 								Se ha añadido al carrito de compras
 							</h1>
 						</motion.div>
@@ -104,7 +104,7 @@ function MostrarImagenes({ color, images, PRODUCT_NAME }) {
 		image3 = filterImages[0].IMAGE_3;
 	}
 	return (
-		<div className="md:mr-10 self-center flex flex-col md:flex-row h-full gap-4">
+		<div className="md:mr-10 self-center flex flex-col md:flex-row h-full gap-4  md:mt-0">
 			<img
 				src={ImagePrincipal}
 				alt=""
@@ -114,12 +114,12 @@ function MostrarImagenes({ color, images, PRODUCT_NAME }) {
 				<img
 					src={image2}
 					alt=""
-					className="md:w-60 md:h-60 w-44  object-cover rounded-lg"
+					className="md:w-60 md:h-60 w-40  object-cover rounded-lg"
 				/>
 				<img
 					src={image3}
 					alt=""
-					className="md:w-60 md:h-60 w-44 object-cover rounded-lg"
+					className="md:w-60 md:h-60 w-40 object-cover rounded-lg"
 				/>
 			</div>
 		</div>
@@ -228,16 +228,18 @@ export default function ProductPage() {
 	}
 
 	return (
-		<div className="w-screen h-full flex justify-center items-center relative top-20 mb-36 pb-36">
+		<div className="w-screen h-full flex justify-center items-center relative top-20 mb-36 pb-36 ">
 			<section
 				id="producto"
-				className="relative flex h-screen flex-col md:flex-row md:items-stretch justify-center md:h-[36rem] text-white md:mt-20"
+				className="relative flex h-full flex-col md:flex-row md:items-stretch justify-center md:h-[36rem] text-white md:mt-20"
 			>
-				<MostrarImagenes
-					color={color}
-					images={images}
-					PRODUCT_NAME={product[0][0].PRODUCT_NAME}
-				/>
+				<div>
+					<MostrarImagenes
+						color={color}
+						images={images}
+						PRODUCT_NAME={product[0][0].PRODUCT_NAME}
+					/>
+				</div>
 				<div className="h-[80%] flex flex-col justify-around m-2 w-80 font-bold self-center">
 					<section className="flex flex-col gap-2 mb-3 border-b-2 md:border-none">
 						<h1 className="text-center md:text-start text-4xl font-bold uppercase">
@@ -264,7 +266,7 @@ export default function ProductPage() {
 						<Colors product={product[1]} setColor={setColor} />
 					</section>
 
-					<div className="flex justify-center md:block">
+					<div className="flex justify-center md:block ">
 						<AgregarAlCarro
 							product={product}
 							color={color}

@@ -23,15 +23,17 @@ function GuardarDatos(
 	telefono,
 	token
 ) {
-	if(nombre === undefined || 
-		apellido === undefined || 
-		email === undefined || 
-		telefono === undefined || 
-		region === undefined || 
-		comuna === undefined || 
-		address === undefined){
-		alert("Revise la informacion ingresada")
-		return
+	if (
+		nombre === undefined ||
+		apellido === undefined ||
+		email === undefined ||
+		telefono === undefined ||
+		region === undefined ||
+		comuna === undefined ||
+		address === undefined
+	) {
+		alert("Revise la informacion ingresada");
+		return;
 	}
 	const informacionCliente = {
 		nombre: nombre + " " + apellido,
@@ -189,7 +191,7 @@ function Product_Card({
 	return (
 		<div
 			key={PRODUCT_NAME + COLOR_NAME + SIZE_NAME}
-			className="w-full h-28 flex gap-3 bg-mainColor p-3"
+			className="w-full h-full md:h-28 flex gap-3 bg-mainColor p-3"
 		>
 			<div className="flex items-center w-20 h-full">
 				<img
@@ -286,7 +288,7 @@ export default function Checkout() {
 
 	return (
 		<div
-			className="flex items-center justify-around relative h-screen w-screen mb-20"
+			className=" flex flex-col-reverse md:flex-row items-center justify-around relative h-full top-20 md:h-screen md:top-0 w-screen gap-6 md:gap-0 mb-44 md:mb-20"
 			id="redireccion webpay"
 		>
 			<div

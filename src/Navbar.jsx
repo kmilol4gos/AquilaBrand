@@ -20,6 +20,9 @@ const Menu = () => {
 	const handleItemClick = () => {
 		setIsOpen(false);
 	};
+	const handleCartClick = () => {
+		setIsCartOpen(false);
+	};
 
 	return (
 		<header className="w-screen fixed top-0 z-50">
@@ -27,7 +30,7 @@ const Menu = () => {
 				<picture className="order-5">
 					<Link to="/">
 						<img
-							onClick={handleItemClick}
+							onClick={handleItemClick && handleCartClick}
 							src={Logo}
 							alt="Logo AquilaBrand"
 							className="w-20 drop-shadow-aq hover:scale-110 duration-100 "
@@ -200,7 +203,7 @@ const Menu = () => {
 						</ul>
 					</motion.nav>
 				)}
-				{isCartOpen && <Cart />}
+				{isCartOpen && <Cart open={setIsCartOpen} />}
 			</AnimatePresence>
 		</header>
 	);

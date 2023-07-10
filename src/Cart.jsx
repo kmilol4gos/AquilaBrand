@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
 import { motion } from "framer-motion";
 import { Cart_Amount, Cart_Cantidad } from "./hook/datosCart";
-import AddIcon from "./assets/Add.svg";
+import Plus from "./assets/Plus.svg";
+import Minus from "./assets/Minus.svg";
 import DeleteIcon from "./assets/Delete.svg";
 
 function CartProduct_Card({
@@ -31,7 +32,7 @@ function CartProduct_Card({
 	return (
 		<div className="my-2 flex flex-col justify-center bg-mainColor">
 			<div
-				className="flex w-[90%] h-36 items-stretch pt-4 pb-6"
+				className="flex w-full h-36 items-stretch pt-4 pb-6"
 				id="card-product"
 			>
 				<div className="w-[30%] flex justify-center items-center mx-2">
@@ -60,30 +61,28 @@ function CartProduct_Card({
 						</div>
 					</div>
 				</div>
-				<div className="flex flex-col justify-around">
-					<button>
-						<img src={DeleteIcon} alt="" onClick={removeFromCart} />
-					</button>
+				<div className="flex flex-col mx-4  justify-around items-center">
 					<button>
 						<img src={DeleteIcon} alt="" onClick={removeTotalFromCart} />
 					</button>
-					<button>
-						<img src={AddIcon} alt="" onClick={addToCart} />
-					</button>
+					<div className="flex gap-4">
+						<button className="hover:bg-white rounded-full p-1">
+							<img src={Minus} alt="" onClick={removeFromCart} />
+						</button>
+						<button className="hover:bg-white rounded-full p-1">
+							<img src={Plus} alt="" onClick={addToCart} />
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	);
 }
 
-export default function Cart() {
-	const {
-		cart,
-		clearCart,
-		addToCart,
-		removeFromCart,
-		removeTotalFromCart,
-	} = useCart();
+export default function Cart(props) {
+	const setIsCartOpen = props.setIsCartOpen;
+	const { cart, clearCart, addToCart, removeFromCart, removeTotalFromCart } =
+		useCart();
 
 	const [images, setImages] = useState([]);
 
@@ -111,7 +110,9 @@ export default function Cart() {
 			</div>
 		);
 	}
-
+	const handleItemClick = () => {
+		setIsCartOpen(false);
+	};
 	return (
 		<motion.nav
 			initial={{ opacity: 0, x: 20 }}
@@ -126,7 +127,7 @@ export default function Cart() {
 						Carrito
 					</h3>
 				</div>
-				<div className="relative overflow-y-auto h-[66%] md:h-[64]">
+				<div className="relative overflow-y-auto h-[55%] md:h-[64]">
 					<div className="flex flex-col">
 						<div className="h-[85%]">
 							{cart.map((product) => (
@@ -145,7 +146,7 @@ export default function Cart() {
 					</div>
 				</div>
 			</div>
-			<div className="border-t-2 border-solid border-white absolute w-full md:h-auto bottom-0 z-50 text-white bg-mainColor">
+			<div className="border-t-2 mb-24 md:mb-0 border-solid border-white absolute w-full md:h-auto bottom-0 z-50 text-white bg-mainColor">
 				<div className="flex justify-between items-center px-6 m-2">
 					<h4>Productos</h4>
 					<span className="text-sm font-medium">{<Cart_Cantidad />}</span>
@@ -156,8 +157,9 @@ export default function Cart() {
 						{<Cart_Amount />}
 					</span>
 				</div>
-				<div className="flex justify-center w-full">
+				<div className="flex justify-center w-full ">
 					<Link
+						onClick={handleItemClick}
 						to="/checkout"
 						className="text-center w-full py-7 md:py-4 border-none bg-black text-white md:text-sm font-medium cursor-pointer ease-in-out duration-100 hover:text-black hover:bg-white"
 					>

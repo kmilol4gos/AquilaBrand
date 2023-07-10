@@ -16,7 +16,7 @@ function AbautUs() {
 					Eventos
 				</h1>
 				<Eventos />
-				<strong className="text-2xl uppercase text-white p-3">
+				<strong className="text-2xl uppercase text-white p-3 text-center">
 					Mantente atento a los proximos eventos que puedan surgir!
 				</strong>
 				<div className="py-8">
@@ -62,10 +62,18 @@ function AbautUs() {
 							Recuerda que puedes contactarnos desde nuestras redes sociales!
 						</h2>
 						<div className="flex justify-around w-1/2 py-2">
-							<a href="#">
+							<a
+								href="https://wa.me/56926937584"
+								target="_blank"
+								rel="noreferrer"
+							>
 								<img src={WhatsApp} alt="" className="w-12" />
 							</a>
-							<a href="#">
+							<a
+								href="https://www.instagram.com/aquila.brand_"
+								target="_blank"
+								rel="noreferrer"
+							>
 								<img src={Instagram} alt="" className="w-12" />
 							</a>
 						</div>

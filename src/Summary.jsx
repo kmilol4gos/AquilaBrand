@@ -10,12 +10,15 @@ function Webpay(token) {
 
 	const [transaction_info, setTransaction_info] = useState();
 	const fetchApi = async () => {
-		const response = await fetch(URL + "?" + new URLSearchParams({token: token}), {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+		const response = await fetch(
+			URL + "?" + new URLSearchParams({ token: token }),
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}
+		);
 		const responseJSON = await response.json();
 		setTransaction_info(responseJSON);
 	};
@@ -33,12 +36,15 @@ function obtenerDatos(token) {
 	const [transactionData, setTransactionData] = useState();
 
 	const fetchApi = async () => {
-		const response = await fetch(URL + "?" + new URLSearchParams({token: token}), {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+		const response = await fetch(
+			URL + "?" + new URLSearchParams({ token: token }),
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}
+		);
 		const responseJSON = await response.json();
 		setTransactionData(responseJSON);
 	};
@@ -55,12 +61,15 @@ function ActualizarEstado(nuevo_estado, token) {
 	let respuesta;
 
 	const fetchApi = async () => {
-		const response = await fetch(URL + "?" + new URLSearchParams({token: token, estado: nuevo_estado}), {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+		const response = await fetch(
+			URL + "?" + new URLSearchParams({ token: token, estado: nuevo_estado }),
+			{
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}
+		);
 		const responseJSON = await response.json();
 		respuesta = responseJSON;
 	};
@@ -89,9 +98,9 @@ function Product_Card({
 	return (
 		<div
 			key={PRODUCT_ID}
-			className="flex w-[90%] justify-around gap-3 bg-mainColor p-3 text-white"
+			className="flex items-center md:w-[90%]  justify-around gap-3 bg-mainColor p-3 text-white"
 		>
-			<div className="flex items-center w-32  h-full">
+			<div className="flex items-center w-32 lg:w-48 h-full lg:h-32">
 				<img
 					src={ImagePrincipal}
 					alt={PRODUCT_NAME}
@@ -103,27 +112,30 @@ function Product_Card({
 				<span className="before:content-['$'] text-sm">{PRECIO}</span>
 			</div>
 			<div className="flex flex-col">
-				<span className="text-base font-medium">Talla: {SIZE_NAME}</span>
-				<span className="text-base font-medium">Color: {COLOR_NAME}</span>
-				<span className="text-base font-medium">Cantidad: {quantity}</span>
+				<span className="md:text-base text-sm font-medium">
+					Talla: {SIZE_NAME}
+				</span>
+				<span className="md:text-base text-sm font-medium">
+					Color: {COLOR_NAME}
+				</span>
+				<span className="md:text-base text-sm font-medium">
+					Cantidad: {quantity}
+				</span>
 			</div>
 		</div>
 	);
 }
 
 export default function Summary() {
-
 	const { cart, clearCart } = useCart();
 	const queryString = window.location.search;
 
 	const urlParams = new URLSearchParams(queryString);
 	const token = urlParams.get("token_ws");
 
-
 	const tbk_token = urlParams.get("TBK_TOKEN");
 	const tbk_id_sesion = urlParams.get("TBK_ID_SESION");
 	const tbk_orden_compra = urlParams.get("TBK_ORDEN_COMPRA");
-
 
 	const [images, setImages] = useState([]);
 
@@ -168,7 +180,6 @@ export default function Summary() {
 
 	let count = 0;
 
-
 	const info = JSON.parse(transactionData[0]["INFO"]);
 	const infoProductos = info[0]["detalle_productos"];
 
@@ -185,7 +196,7 @@ export default function Summary() {
 		let nombre_cliente = cliente.nombre.split(" ");
 		return (
 			<div className="flex top-20 w-screen justify-center items-center relative h-full mb-28 pb-28 md:pt-28">
-				<div className="bg-white w-1/2 flex flex-col relative rounded-xl p-4">
+				<div className="bg-white md:w-1/2 w-screen flex flex-col relative rounded-xl p-4">
 					<img
 						src={Check}
 						alt="check"
@@ -277,7 +288,7 @@ export default function Summary() {
 		//transaccion anulada o ha ocurrido un error
 		return (
 			<div className=" flex top-20 w-screen justify-center items-center relative h-full mb-28 pb-28 md:pt-28">
-				<div className="bg-white w-1/2 flex h-full flex-col relative rounded-xl p-4">
+				<div className="bg-white md:w-1/2 w-screen flex flex-col relative rounded-xl p-4">
 					<img
 						src={Rejected}
 						alt="check"
@@ -320,7 +331,7 @@ export default function Summary() {
 		ActualizarEstado(transaction_info.status, token);
 		return (
 			<div className="flex top-20 w-screen justify-center items-center relative h-full mb-28 pb-28 md:pt-28">
-				<div className="bg-white w-1/2 flex flex-col relative rounded-xl p-4">
+				<div className="bg-white md:w-1/2 w-screen flex flex-col relative rounded-xl p-4">
 					<img
 						src={Rejected}
 						alt="check"

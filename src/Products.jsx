@@ -35,11 +35,13 @@ function Product_Card({
 					className="object-cover box-content w-56 h-52 md:ml-[-60px] md:mr-[30px] rounded-3xl shadow-xl"
 				/>
 			</Link>
-			<div className="flex flex-col justify-around h-60 w-60">
+			<div className="flex flex-col justify-around h-60 w-60 gap-2 md:gap-0">
 				<Link to="/" className="text-black text-lg font-bold uppercase">
 					<h3>{PRODUCT_NAME}</h3>
 				</Link>
-				<p className="text-black font-normal text-lg md:text-sm overflow-y-auto">{PRODUCT_DESCRIPTION}</p>
+				<p className="text-black font-normal text-lg md:text-sm overflow-y-auto">
+					{PRODUCT_DESCRIPTION}
+				</p>
 				<span className="text-black text-xl font-bold before:content-['$']">
 					{PRECIO}
 				</span>
@@ -65,12 +67,15 @@ export default function Products() {
 	const URL = "https://server.aquilabrand.cl/products";
 
 	const fetchApi = async () => {
-		const response = await fetch(URL +"?" + new URLSearchParams({category: category, section: section}), {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+		const response = await fetch(
+			URL + "?" + new URLSearchParams({ category: category, section: section }),
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}
+		);
 		const responseJSON = await response.json();
 		setProducts(responseJSON);
 	};
@@ -80,12 +85,17 @@ export default function Products() {
 	const URLIMG = "https://server.aquilabrand.cl/images";
 
 	const Imagenes = async () => {
-		fetch(URLIMG +"?" + new URLSearchParams({category: category, section: section}), {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
+		fetch(
+			URLIMG +
+				"?" +
+				new URLSearchParams({ category: category, section: section }),
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}
+		)
 			.then((response) => response.json())
 			.then((data) => {
 				setImages(data);

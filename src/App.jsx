@@ -44,7 +44,7 @@ function App() {
 					/>
 				</section>
 			</div>
-			<section className="mt-24 relative mx-8">
+			<section className="mt-24 relative mx-8  inline-block">
 				<div className="my-16 flex items-center justify-center">
 					<h2 className="text-center text-white text-4xl font-bold drop-shadow-aq">
 						Productos Destacados
@@ -55,9 +55,9 @@ function App() {
 				</div>
 			</section>
 
-			<section className="relative mt-24">
-				<div>
-					<h2 className="text-center my-16 text-white text-4xl font-bold drop-shadow-aq">
+			<section className="relative mt-24 flex flex-col">
+				<div className="my-16 flex items-center justify-center">
+					<h2 className="text-center text-white text-4xl font-bold drop-shadow-aq">
 						Próximos Eventos
 					</h2>
 				</div>
