@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 function AbautUs() {
 	return (
-		<section className="relative w-screen bg-black inline-block">
+		<section className="relative w-screen inline-block">
 			<section
 				className="relative top-20 w-full h-full flex flex-col items-center pb-32"
 				id="eventos"

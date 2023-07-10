@@ -1,57 +1,26 @@
-import Webpay from "./assets/logo-webpay.png";
+import Webpay from "./assets/webpay.svg";
+import Aquila from "./assets/Aguila_Sola.png";
 import { Link } from "react-router-dom";
 
 function Footer() {
 	return (
 		<footer className="bottom-0 right-0 h-60 bg-black w-screen relative inline-block">
-			<section className="mx-40 h-full flex  justify-between items-stretch text-white">
-				<div className="flex flex-col w-52">
-					<h3 className="text-2xl font-normal my-4">Informacion</h3>
-					<ul className="flex flex-col">
-						<li>
-							<Link
-								to="/Catalogo"
-								className="font-normal text-lg py-2 hover:text-mainColor "
-							>
-								Eventos
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/"
-								className="font-normal text-lg py-2 hover:text-mainColor "
-							>
-								Quienes Somos
-							</Link>
-						</li>
-					</ul>
+			<section className="mx-40 display-flex h-full items-stretch text-white">
+				<div className=" mx-auto my-auto flex flex-col justify-center items-center">
+					<div id="metodopago" className="flex flex-col justify-center items-center">
+						<h3 className="text-sm font-normal my-4">Compra segura con</h3>
+						<img src={Webpay} alt="Logo de WebPay" className="relative w-[140%]"/>
+					</div>
+					<div id="info" className="flex flex-col justify-center items-center absolute bottom-0 mb-auto space-y-3">
+						<img src={Aquila} alt="Logo Empresa" className="relative w-[25%]" />
+						<div className="flex flex-col justify-center items-center">
+						<p className="text-sm">© AquilaBrand 2023. Todos los derechos reservados</p>
+						<p className="text-sm">Sitio seguro con criptografia (SSL)</p>
+						</div>
+					</div>
+					
 				</div>
-				<div className="flex flex-col w-52">
-					<img src={Webpay} alt="Logo de WebPay" />
-				</div>
-				<div className="flex flex-col w-52">
-					<h3 className="text-2xl font-normal my-4">Redes Sociales</h3>
-					<ul className="flex flex-col">
-						<li>
-							<Link
-								to=""
-								className="font-normal text-lg my-2 hover:text-mainColor"
-							>
-								{" "}
-								Instagram
-							</Link>
-						</li>
-						<li>
-							<Link
-								to=""
-								className="font-normal text-lg my-2 hover:text-mainColor"
-							>
-								{" "}
-								WhatsApp
-							</Link>
-						</li>
-					</ul>
-				</div>
+				
 			</section>
 		</footer>
 	);

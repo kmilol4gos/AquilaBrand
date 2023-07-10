@@ -113,7 +113,7 @@ function Product_Card({
 
 export default function Summary() {
 
-	const { clearCart } = useCart();
+	const { cart, clearCart } = useCart();
 	const queryString = window.location.search;
 
 	const urlParams = new URLSearchParams(queryString);
@@ -144,6 +144,7 @@ export default function Summary() {
 
 	useEffect(() => {
 		Imagenes();
+		clearCart();
 	}, []);
 
 	let transaction_info;
@@ -172,8 +173,6 @@ export default function Summary() {
 	const infoProductos = info[0]["detalle_productos"];
 
 	infoProductos.map((item) => (count = count + item.quantity));
-
-	clearCart();
 
 	if (
 		transaction_info.response_code === 0 &&
