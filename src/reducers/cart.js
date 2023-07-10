@@ -3,6 +3,7 @@ export const cartInitialState = JSON.parse(window.localStorage.getItem('cart')) 
 export const CART_ACTION_TYPES = {
     ADD_TO_CART: 'ADD_TO_CART',
     REMOVE_FROM_CART: 'REMOVE_FROM_CART',
+    REMOVE_TOTAL_FROM_CART: 'REMOVE_TOTAL_FROM_CART',
     CLEAR_CART: 'CLEAR_CART',
     CALCULAR_TOTAL: 'CALCULAR_TOTAL',
     CANTIDAD_PRODUCTOS: 'CANTIDAD_PRODUCTOS'
@@ -36,7 +37,6 @@ export const cartReducer = (state, action) => {
                     quantity: 1
                 }
             ]
-            newState['amount'] = state.reduce((acc, item) => acc + (item.quantity * item.PRICE), 0);
             updateLocalStorage(newState);
             return newState;
 
@@ -51,12 +51,19 @@ export const cartReducer = (state, action) => {
             if(productInCartIndex >= 0 && quantity > 1	){
                 const newState = structuredClone(state);
                 newState[productInCartIndex].quantity -= 1;
-                newState['amount'] = state.reduce((acc, item) => acc + (item.quantity * item.PRICE), 0);
                 updateLocalStorage(newState);
                 return newState;
             }
             const newState = state.filter(item => item.INVENTORY_ID !== INVENTORY_ID);
-            newState['amount'] = state.reduce((acc, item) => acc + (item.quantity * item.PRICE), 0);
+            updateLocalStorage(newState);
+            return newState;
+        }
+
+        case CART_ACTION_TYPES.REMOVE_TOTAL_FROM_CART: {
+
+            const { INVENTORY_ID } = actionPayload;
+
+            const newState = state.filter(item => item.INVENTORY_ID !== INVENTORY_ID);
             updateLocalStorage(newState);
             return newState;
         }

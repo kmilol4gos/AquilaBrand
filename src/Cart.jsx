@@ -16,6 +16,7 @@ function CartProduct_Card({
 	quantity,
 	addToCart,
 	removeFromCart,
+	removeTotalFromCart,
 	images,
 }) {
 	let ImagePrincipal = [];
@@ -64,6 +65,9 @@ function CartProduct_Card({
 						<img src={DeleteIcon} alt="" onClick={removeFromCart} />
 					</button>
 					<button>
+						<img src={DeleteIcon} alt="" onClick={removeTotalFromCart} />
+					</button>
+					<button>
 						<img src={AddIcon} alt="" onClick={addToCart} />
 					</button>
 				</div>
@@ -77,9 +81,8 @@ export default function Cart() {
 		cart,
 		clearCart,
 		addToCart,
-		calcularTotal,
 		removeFromCart,
-		calcularCantidad,
+		removeTotalFromCart,
 	} = useCart();
 
 	const [images, setImages] = useState([]);
@@ -133,6 +136,7 @@ export default function Cart() {
 									}
 									addToCart={() => addToCart(product)}
 									removeFromCart={() => removeFromCart(product)}
+									removeTotalFromCart={() => removeTotalFromCart(product)}
 									{...product}
 									images={images}
 								/>
