@@ -73,7 +73,7 @@ function AgregarAlCarro({
 							initial={{ opacity: 0, y: 43, x: -13 }}
 							animate={{ opacity: 1, y: 45, x: -15 }}
 							exit={{ opacity: 0, x: -17 }}
-							className="bg-black p-4 absolute z-50"
+							className="bg-black p-4 absolute cursor-default"
 						>
 							<h1 className=" text-white">
 								Se ha añadido al carrito de compras
