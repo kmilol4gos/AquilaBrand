@@ -28,7 +28,7 @@ function Product_Card({
 			key={PRODUCT_ID}
 			className="flex flex-col md:flex-row my-4 p-4 w-[20rem] md:mx-12 md:w-[32rem] md:pr-[30px] md:pl-[20px] md:py-[30px] bg-white rounded-3xl items-center"
 		>
-			<Link to="/" className="md:w-56 h-52">
+			<Link to={"/product/" + PRODUCT_ID} className="md:w-56 h-52">
 				<img
 					src={ImagePrincipal}
 					alt={PRODUCT_NAME}
@@ -36,10 +36,13 @@ function Product_Card({
 				/>
 			</Link>
 			<div className="flex flex-col justify-around h-60 w-60 gap-2 md:gap-0">
-				<Link to="/" className="text-black text-lg font-bold uppercase">
+				<Link
+					to={"/product/" + PRODUCT_ID}
+					className="text-black text-lg font-bold uppercase"
+				>
 					<h3>{PRODUCT_NAME}</h3>
 				</Link>
-				<p className="text-black font-normal text-lg md:text-sm overflow-y-auto">
+				<p className="text-black font-normal text-lg md:text-sm overflow-hidden md:overflow-y-auto">
 					{PRODUCT_DESCRIPTION}
 				</p>
 				<span className="text-black text-xl font-bold before:content-['$']">
@@ -123,7 +126,7 @@ export default function Products() {
 						<img src={img} alt="" className="w-full object-cover rounded-xl" />
 						<div className="absolute flex flex-col text-center bottom-0 right-0 justify-center opacity-80 backdrop-blur-2xl h-40 w-full md:w-auto ">
 							<h2 className="drop-shadow-aq text-white text-4xl font-bold m-2">
-								Nuestra Coleccion
+								Nuestra Colección
 							</h2>
 							<span className="drop-shadow-aq text-white font-medium text-3xl m-2 uppercase">
 								{section === undefined ? category : category + "/" + section}

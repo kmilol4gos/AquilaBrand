@@ -11,7 +11,7 @@ function Footer() {
 						className="flex flex-col justify-center items-center"
 					>
 						<h3 className="text-xl font-normal my-4">Compra segura con</h3>
-						<div>
+						<div className="md:w-56 w-48">
 							<img src={Webpay} alt="Logo de WebPay" className="w-full" />
 						</div>
 					</div>
@@ -24,9 +24,9 @@ function Footer() {
 						</div>
 						<div className="flex flex-col justify-center items-center">
 							<p className="text-sm">
-								© AquilaBrand 2023. Todos los derechos reservados
+								© AquilaBrand 2023. Todos los derechos reservados.
 							</p>
-							<p className="text-sm">Sitio seguro con criptografia (SSL)</p>
+							<p className="text-sm">Sitio seguro con criptografía (SSL)</p>
 						</div>
 					</div>
 				</div>

@@ -55,8 +55,8 @@ function AgregarAlCarro({
 		}, 3000);
 	};
 	return (
-		<div>
-			<span className="md:block flex justify-center text-base font-bold border-t-2 py-2 md:border-none md:py-0">
+		<div className="border-t-2 md:border-none w-full">
+			<span className="md:block flex justify-center text-base font-bold  py-2 md:border-none md:py-0">
 				{mensaje}
 			</span>
 			<button
@@ -104,7 +104,7 @@ function MostrarImagenes({ color, images, PRODUCT_NAME }) {
 		image3 = filterImages[0].IMAGE_3;
 	}
 	return (
-		<div className="md:mr-10 self-center flex flex-col md:flex-row h-full gap-4  md:mt-0">
+		<div className="md:mr-10 self-center flex flex-col md:flex-row h-full gap-4 mt-4 md:mt-0">
 			<img
 				src={ImagePrincipal}
 				alt=""
@@ -256,7 +256,7 @@ export default function ProductPage() {
 						<span className="text-lg md:text-base">Seleccionar talla</span>
 						<form
 							id="sizes"
-							className="flex py-2 w-12 justify-center md:justify-end gap-2 flex-row-reverse mb-2"
+							className="flex py-2 w-12 justify-center md:justify-start gap-2 mb-2"
 						>
 							{product[2].map((talla, index) => (
 								<Sizes key={talla.SIZE_ID} setSize={setSize} {...talla} />

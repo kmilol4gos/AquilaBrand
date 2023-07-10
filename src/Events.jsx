@@ -27,7 +27,7 @@ function MostrarEvento(events, currentEventIndex) {
 					{events[currentEventIndex].EVENT_NAME}
 				</h1>
 				<p className="font-bold text-base px-2 italic">
-					<span>Direccion:</span> {events[currentEventIndex].EVENT_ADDRESS}
+					<span>Dirección:</span> {events[currentEventIndex].EVENT_ADDRESS}
 				</p>
 				<p className="font-bold text-base px-2 italic">
 					<span>Fecha:</span> {fecha[0]}

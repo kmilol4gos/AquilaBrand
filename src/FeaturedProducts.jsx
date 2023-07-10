@@ -77,21 +77,20 @@ export default function FeaturedProducts() {
 					<ProductImage image={images} PRODUCT_ID={product.PRODUCT_ID} />
 				</Link>
 			</div>
-
 			<div className="flex flex-col justify-evenly p-6 w-full">
 				<Link to={"/product/" + product.PRODUCT_ID}>
 					<h1 className="mb-2 text-lg font-bold text-black uppercase">
 						{product.PRODUCT_NAME}
 					</h1>
 				</Link>
-				<p className=" text-sm text-black h-16 overflow-y-auto">
+				<p className=" text-sm text-black h-16 overflow-hidden md:overflow-y-auto">
 					{product.PRODUCT_DESCRIPTION}
 				</p>
 				<Link
 					to={"/product/" + product.PRODUCT_ID}
 					className="flex mt-4 justify-center bg-black text-white rounded-lg py-1"
 				>
-					Ir a comprar
+					Comprar
 				</Link>
 			</div>
 		</div>

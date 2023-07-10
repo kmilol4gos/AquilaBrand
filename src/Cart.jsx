@@ -105,11 +105,24 @@ export default function Cart(props) {
 
 	if (!images) {
 		return (
-			<div className="relative flex justify-center items-center w-screen h-screen">
+			<div className="">
 				<TailSpin color="#e2fcef" height={80} width={80} />
 			</div>
 		);
 	}
+
+	const noProducts = () => {
+		if (cart.length === 0) {
+			return (
+				<div className="flex justify-center py-5 text-white font-bold text-xl">
+					El carro de compras está vacío
+				</div>
+			);
+		} else {
+			return "";
+		}
+	};
+
 	const handleItemClick = () => {
 		setIsCartOpen(false);
 	};
@@ -130,6 +143,7 @@ export default function Cart(props) {
 				<div className="relative overflow-y-auto h-[55%] md:h-[64]">
 					<div className="flex flex-col">
 						<div className="h-[85%]">
+							{noProducts()}
 							{cart.map((product) => (
 								<CartProduct_Card
 									key={

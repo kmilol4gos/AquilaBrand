@@ -292,7 +292,7 @@ export default function Checkout() {
 			id="redireccion webpay"
 		>
 			<div
-				className="flex flex-col justify-center items-center h-full relative"
+				className="flex flex-col justify-center items-center h-full relative "
 				id="info-personal "
 			>
 				<h1 className="text-3xl mb-14  text-white">Informacion personal</h1>
@@ -388,7 +388,7 @@ export default function Checkout() {
 						Ir a pagar
 					</button>
 				</form>
-				<motion.div
+				{/* <motion.div
 					className="bg-mainColor absolute"
 					id="required"
 					initial={{ opacity: 0, y: 300, x: 0 }}
@@ -396,11 +396,11 @@ export default function Checkout() {
 					transition={{ duration: 0.3 }}
 				>
 					<h1 className="text-white p-4">Debe rellenar todos los campos</h1>
-				</motion.div>
+				</motion.div> */}
 			</div>
 
 			<div
-				className="flex flex-col justify-center items-center h-full relative text-white"
+				className="flex flex-col justify-center items-center h-full relative text-white mt-40 md:mt-0"
 				id="resumen-productos"
 			>
 				<h1 className="text-3xl mb-14">Resumen de la compra</h1>
@@ -426,6 +426,13 @@ export default function Checkout() {
 				<form id="pago" className="w-full" action={info.url} method="post">
 					<input type="hidden" name="token_ws" value={info.token} />
 				</form>
+			</div>
+			<div className="absolute top-0 md:top-20 w-full text-center">
+				<p className="font-bold text-2xl text-white">
+					Para el <span className="text-[#ff0000]">envio</span>, el vendedor se
+					pondra en contacto con UD. despues de la compra, ya que son productos
+					a pedido.
+				</p>
 			</div>
 		</div>
 	);

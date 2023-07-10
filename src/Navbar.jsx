@@ -84,23 +84,39 @@ const Menu = () => {
 					>
 						<ul className="w-screen h-[28rem] flex flex-col justify-around gap-4 md:hidden">
 							<li className="w-full text-center flex">
-								<Link to="/ropa" className=" w-full text-2xl font-bold ">
+								<Link
+									to="/ropa"
+									className=" w-full text-2xl font-bold "
+									onClick={handleItemClick}
+								>
 									Ropa
 								</Link>
 							</li>
 							<li className="w-full flex text-center">
-								<Link to="/skate" className=" w-full text-2xl font-bold ">
+								<Link
+									to="/skate"
+									className=" w-full text-2xl font-bold "
+									onClick={handleItemClick}
+								>
 									Skate
 								</Link>
 							</li>
 							<li className="w-full flex text-center">
-								<Link to="/accesorios" className=" w-full text-2xl font-bold ">
+								<Link
+									to="/accesorios"
+									className=" w-full text-2xl font-bold "
+									onClick={handleItemClick}
+								>
 									Accesorios
 								</Link>
 							</li>
 							<li className="w-full flex text-center">
-								<Link to="/Informacion" className=" w-full text-2xl font-bold ">
-									Informacion
+								<Link
+									to="/Informacion"
+									className=" w-full text-2xl font-bold "
+									onClick={handleItemClick}
+								>
+									Información
 								</Link>
 							</li>
 						</ul>
@@ -197,7 +213,7 @@ const Menu = () => {
 							</li>
 							<li>
 								<Link to="Informacion" onClick={handleItemClick}>
-									Informacion
+									Información
 								</Link>
 							</li>
 						</ul>
