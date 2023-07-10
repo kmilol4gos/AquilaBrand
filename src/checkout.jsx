@@ -69,11 +69,12 @@ function GuardarDatos(
 	);
 	response;
 
-	alert("Rediriendo a Webpay...");
-
 	let formulario = document.getElementById("pago");
 
-	formulario.submit();
+	setTimeout(() => {
+		formulario.submit();
+	}, 1500);
+	
 }
 
 const App = ({
