@@ -82,7 +82,7 @@ const Menu = () => {
 						id="dropdown-menu"
 						className="fixed top-20 z-50 block w-full overflow-hidden rounded-bl-xl rounded-br-xl bg-black text-white"
 					>
-						<ul className="w-screen h-[28rem] flex flex-col justify-around gap-4 md:hidden">
+						<ul className="w-screen h-auto flex flex-col justify-center gap-10 md:hidden py-6">
 							<li className="w-full text-center flex">
 								<Link
 									to="/ropa"
@@ -127,12 +127,8 @@ const Menu = () => {
 					[&>li>div]:flex [&>li>div]:flex-col [&>li>div]:justify-center [&>li>div]:my-2
 					[&>li>div>a]:text-s [&>li>div>a]:w-36 [&>li>div>a]:p-1 [&>li>div>a]:my-1 [&>li>div>a]:px-3 [&>li>div>a]:rounded"
 						>
-							<li >
-								<Link
-									to="/ropa"
-									className="hover:bg-mainColor"
-									onClick={handleItemClick}
-								>
+							<li>
+								<Link to="/ropa" onClick={handleItemClick}>
 									Ropa
 								</Link>
 								<div>
