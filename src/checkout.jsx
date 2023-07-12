@@ -74,7 +74,6 @@ function GuardarDatos(
 	setTimeout(() => {
 		formulario.submit();
 	}, 1500);
-	
 }
 
 const App = ({
@@ -192,9 +191,9 @@ function Product_Card({
 	return (
 		<div
 			key={PRODUCT_NAME + COLOR_NAME + SIZE_NAME}
-			className="w-full h-full md:h-28 flex gap-3 bg-mainColor p-3"
+			className="w-full h-auto md:h-28 flex gap-3 bg-mainColor p-3"
 		>
-			<div className="flex items-center w-20 h-full">
+			<div className="flex items-center w-20 h-20 md:h-full">
 				<img
 					alt={PRODUCT_NAME}
 					src={ImagePrincipal}
